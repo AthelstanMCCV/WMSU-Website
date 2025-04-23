@@ -1,5 +1,5 @@
 <section class="navSectionCont">
-<<<<<<< Updated upstream
+
     <div class="navSection h-full flex justify-between items-center mx-5">
         <div class="navLogo&TitleCont h-full flex items-center">
             <img class="navLogo size-16" src="{{ asset('images/WMSU-Logo.png') }}" alt="">
@@ -22,30 +22,7 @@
             </div>
             <a class="MyWmsuBtn inter-regular text-xs py-2 px-7 ml-5 bg-[#BD0F03] border border-white text-white  hover:bg-white hover:text-[#BD0F03] hover:border-[#BD0F03] duration-300 ease-in-out" href="/register">MyWMSU</a>
         </div>
-=======
-   <div class="navSection h-full flex justify-between items-center mx-5">
-       <div class="navLogo&TitleCont h-full flex items-center">
-           <img class="navLogo w-12 h-12 md:size-16" src="{{ asset('images/WMSU-Logo.png') }}" alt="">
-           <div class="navDivider"></div>
-           <div class="navTitle">
-               <p class="inter-bold text-sm md:text-base text-[#BD0F03]">WESTERN MINDANAO STATE UNIVERSITY</p>
-               <p class="montserrat-regular text-[10px] md:text-xs text-[#BD0F03] -mt-1">A Smart Research University by 2040</p>
-           </div>
-           
-       </div>
-       <div class="navLinksCont h-full flex items-center opacity-0 pointer-events-none absolute xl:opacity-100 xl:pointer-events-auto xl:relative ">
-           <div class="flex items-center space-x-2 md:space-x-4 text-[10px] md:text-xs inter-extralight text-[#BD0F03]">
-               <a class="navLinks hover:font-extrabold duration-150 ease-in-out" href="" id="Home">Home</a>
-               <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="About Us">About Us <img class="ml-1 w-2 h-2 md:w-auto md:h-auto group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-               <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Admissions">Admissions <img class="ml-1 w-2 h-2 md:w-auto md:h-auto group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-               <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Academic">Academic <img class="ml-1 w-2 h-2 md:w-auto md:h-auto group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-               <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Administration">Administration <img class="ml-1 w-2 h-2 md:w-auto md:h-auto group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-               <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Res & Ext">Res & Ext <img class="ml-1 w-2 h-2 md:w-auto md:h-auto group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-               <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Other">Others <img class="ml-1 w-2 h-2 md:w-auto md:h-auto group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-           </div>
-           <a class="MyWmsuBtn inter-regular text-[10px] md:text-xs py-1.5 md:py-2 px-4 md:px-7 ml-5 bg-[#BD0F03] border border-white text-white hover:bg-white hover:text-[#BD0F03] hover:border-[#BD0F03] duration-300 ease-in-out" href="/signin">MyWMSU</a>
-       </div>
->>>>>>> Stashed changes
+
 
        <div class="fixed top-[80px] md:top-[98px] right-8 z-50">
            <button class="bg-[white] hover:bg-[white] text-white px-5 md:px-7 py-2 rounded-b-[100px] shadow-lg transition-all duration-300 ease-in-out transform hover:translate-y-2">
