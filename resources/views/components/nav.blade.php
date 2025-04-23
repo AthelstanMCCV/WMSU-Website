@@ -19,7 +19,7 @@
                 <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Res & Ext">Res & Ext <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
                 <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Other">Others <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
             </div>
-            <a class="MyWmsuBtn inter-regular text-xs py-2 px-7 ml-5 bg-[#BD0F03] border border-white text-white  hover:bg-white hover:text-[#BD0F03] hover:border-[#BD0F03] duration-300 ease-in-out" href="/MyWmsu">MyWMSU</a>
+            <a class="MyWmsuBtn inter-regular text-xs py-2 px-7 ml-5 bg-[#BD0F03] border border-white text-white  hover:bg-white hover:text-[#BD0F03] hover:border-[#BD0F03] duration-300 ease-in-out" href="/register">MyWMSU</a>
         </div>
 
         <div class="fixed top-[98px] right-8 z-50">

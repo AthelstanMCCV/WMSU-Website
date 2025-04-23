@@ -17,7 +17,8 @@ class UserController extends Controller
 
         $incomingFields['password'] = bcrypt($incomingFields['password']);
         $user = User::create($incomingFields);
-        
+        Auth::login($user);
+
         return redirect('/dashboard');
     }
 

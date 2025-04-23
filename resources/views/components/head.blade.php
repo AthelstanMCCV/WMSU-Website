@@ -36,6 +36,7 @@
     </div>
 
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     @vite('resources/js/app.js')
 </body>
 </html>
