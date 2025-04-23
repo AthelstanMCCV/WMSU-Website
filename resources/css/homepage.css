@@ -1,0 +1,15 @@
+/* When the video starts playing, make it visible */
+.playing {
+    opacity: 1;
+}
+.upperNavDivider{
+    width: 2px;
+    height: 30%;
+    background-color: white;
+}
+
+.lowerNavDivider{
+    width: 2px;
+    height: 15%;
+    background-color: white;
+}
