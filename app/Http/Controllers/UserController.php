@@ -4,34 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function register(Request $request){
-        $incomingFields = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
         ]);
 
-        $incomingFields['password'] = bcrypt($incomingFields['password']);
-        $user = User::create($incomingFields);
+        $validated['password'] = Hash::make($validated['password']);
+        $user = User::create($validated);
         Auth::login($user);
 
         return redirect('/dashboard');
     }
 
     public function login(Request $request){
-        $incomingFields = $request->validate([
-            'loginname' => 'required',
-            'loginpassword' => 'required',
+        $validated = $request->validate([
+            'loginname' => 'required|string',
+            'loginpassword' => 'required|string',
         ]);
 
-        if(Auth::attempt(['name' => $incomingFields['loginname'], 'password' => $incomingFields['loginpassword']])){
+        if (Auth::attempt(['name' => $validated['loginname'], 'password' => $validated['loginpassword']])) {
             $request->session()->regenerate();
+            return redirect('/dashboard');
         }
 
-        return redirect('/dashboard');
+        return back()->withErrors([
+            'loginname' => 'The provided credentials do not match our records.',
+        ]);
     }
 }
