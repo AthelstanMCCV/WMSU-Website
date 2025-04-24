@@ -16,3 +16,4 @@ const navbar = document.getElementById('navbar');
     navbar.classList.add('opacity-100', 'pointer-events-auto', 'permanently-visible');
     navbar.classList.remove('opacity-0');
   }, 3000); // 3 second delay
+  
