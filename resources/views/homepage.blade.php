@@ -7,9 +7,16 @@
     @if(isset($sections['Homepage Hero']))
         <section class="hero-section-cont relative w-screen h-screen">
             <div class="homepage-video-container relative">
-                <video id="delayedVideo" class="homepage-background-video h-screen w-screen notPlaying object-cover" muted loop>
-                    <source src="{{ asset('images/WMSU profile 2024.mp4') }}" type="video/mp4">
-                </video>
+                @php
+                    $heroSection = $sections['Homepage Hero']->firstWhere('description', 'HeroVideo');
+                @endphp
+
+                @if($heroSection && $heroSection->imagePath)
+                    <video id="delayedVideo" class="homepage-background-video h-screen w-screen notPlaying object-cover" muted loop>
+                        <source src="{{ asset('storage/' . $heroSection->imagePath) }}" type="video/mp4">
+                    </video>
+                @endif
+
                 <div class="absolute inset-0 bg-gradient-to-r from-[#7b1305] via-[#7C0A02] to-[#7b1305] opacity-70"></div>
                 @foreach($sections['Homepage Hero'] as $section)
                     <div class="absolute inset-0 flex items-center justify-start flex-col">
