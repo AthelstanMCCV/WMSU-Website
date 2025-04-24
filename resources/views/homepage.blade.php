@@ -36,143 +36,69 @@
     @endif
     
     
+ 
     <!-- WMSU NEWS SECTION -->
     <section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center">
         <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
-        <div class="w-full h-full mt-5 px-4 md:px-14">
+        <div class="w-full h-full mt-5 px-4 md:px-3">
             <div class="newsTitleCont flex items-center justify-between w-full h-20">
                 <div class="hidden md:block w-1/3"></div>
-                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-3xl md:text-5xl w-full md:w-1/3 text-center">wmsu news</p>
+                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-2xl sm:text-3xl md:text-5xl w-full md:w-1/3 text-center">wmsu news</p>
                 <div class="hidden md:flex flex-col w-1/3 h-full items-end justify-end">
-                    <div class="flex flex-col items-end group cursor-pointer">
+                    <div class="flex flex-col items-end group cursor-pointer mr-5">
                         <img class="size-7 group-hover:rotate-45 duration-300 ease-in-out" src="{{asset('images/plus.png')}}" alt="">
                         <p class="uppercase inter-medium tracking-tighter text-sm md:text-base">more articles</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Mobile and Tablet Carousel -->
-            <div class="lg:hidden relative overflow-hidden mt-0 sm:mt-12">
-                <div id="newsCarousel" class="flex transition-transform duration-300 ease-in-out">
-                    <!-- News Item 1 -->
-                    <div class="w-full flex-shrink-0 px-2">
-                        <div class="relative bg-white rounded-lg sm:rounded-none shadow-[0_3px_10px_rgb(0,0,0,0.2)] sm:shadow-none sm:shadow-[0_4px_15px_rgba(0,0,0,0.3)] overflow-hidden">
-                            <div class="h-48 sm:h-64 bg-gray-50 flex items-center justify-center">
-                                <img src="{{ asset('images/news1.png') }}" alt="News 1" class="w-full h-auto max-h-48 sm:max-h-64 object-contain">
-                            </div>
-                            <div class="p-4 sm:p-6 sm:mt-4">
-                                <h3 class="text-xl sm:text-2xl font-bold text-[#7C0A02] mb-2 sm:mb-4">WMSU Ranks Among Top Universities in the Philippines</h3>
-                                <p class="text-sm sm:text-base text-gray-700 mb-3 sm:mb-5">Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</p>
-                                <a href="#" class="text-[#7C0A02] text-lg sm:text-xl font-medium hover:text-[#BD0F03] transition-colors duration-300">Read More <span class="ml-1">&gt;</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Item 2 -->
-                    <div class="w-full flex-shrink-0 px-2">
-                        <div class="relative bg-white rounded-lg sm:rounded-none shadow-[0_3px_10px_rgb(0,0,0,0.2)] sm:shadow-none sm:shadow-[0_4px_15px_rgba(0,0,0,0.3)] overflow-hidden">
-                            <div class="h-48 sm:h-64 bg-gray-50 flex items-center justify-center">
-                                <img src="{{ asset('images/news2.png') }}" alt="News 2" class="w-full h-auto max-h-48 sm:max-h-64 object-contain">
-                            </div>
-                            <div class="p-4 sm:p-6 sm:mt-4">
-                                <h3 class="text-xl sm:text-2xl font-bold text-[#7C0A02] mb-2 sm:mb-4">WMSU Launches New Research Initiatives</h3>
-                                <p class="text-sm sm:text-base text-gray-700 mb-3 sm:mb-5">The university introduces groundbreaking research programs aimed at addressing regional development challenges and fostering innovation.</p>
-                                <a href="#" class="text-[#7C0A02] text-lg sm:text-xl font-medium hover:text-[#BD0F03] transition-colors duration-300">Read More <span class="ml-1">&gt;</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Item 3 -->
-                    <div class="w-full flex-shrink-0 px-2">
-                        <div class="relative bg-white rounded-lg sm:rounded-none shadow-[0_3px_10px_rgb(0,0,0,0.2)] sm:shadow-none sm:shadow-[0_4px_15px_rgba(0,0,0,0.3)] overflow-hidden">
-                            <div class="h-48 sm:h-64 bg-gray-50 flex items-center justify-center">
-                                <img src="{{ asset('images/news3.png') }}" alt="News 3" class="w-full h-auto max-h-48 sm:max-h-64 object-contain">
-                            </div>
-                            <div class="p-4 sm:p-6 sm:mt-4">
-                                <h3 class="text-xl sm:text-2xl font-bold text-[#7C0A02] mb-2 sm:mb-4">WMSU Expands International Partnerships</h3>
-                                <p class="text-sm sm:text-base text-gray-700 mb-3 sm:mb-5">New collaborations with international institutions open up opportunities for student exchange and joint research programs.</p>
-                                <a href="#" class="text-[#7C0A02] text-lg sm:text-xl font-medium hover:text-[#BD0F03] transition-colors duration-300">Read More <span class="ml-1">&gt;</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Item 4 -->
-                    <div class="w-full flex-shrink-0 px-2">
-                        <div class="relative bg-white rounded-lg sm:rounded-none shadow-[0_3px_10px_rgb(0,0,0,0.2)] sm:shadow-none sm:shadow-[0_4px_15px_rgba(0,0,0,0.3)] overflow-hidden">
-                            <div class="h-48 sm:h-64 bg-gray-50 flex items-center justify-center">
-                                <img src="{{ asset('images/news4.png') }}" alt="News 4" class="w-full h-auto max-h-48 sm:max-h-64 object-contain">
-                            </div>
-                            <div class="p-4 sm:p-6 sm:mt-4">
-                                <h3 class="text-xl sm:text-2xl font-bold text-[#7C0A02] mb-2 sm:mb-4">WMSU Achieves Excellence in Academic Programs</h3>
-                                <p class="text-sm sm:text-base text-gray-700 mb-3 sm:mb-5">Multiple programs receive national accreditation, reinforcing WMSU's commitment to educational excellence.</p>
-                                <a href="#" class="text-[#7C0A02] text-lg sm:text-xl font-medium hover:text-[#BD0F03] transition-colors duration-300">Read More <span class="ml-1">&gt;</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
+            <div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-1 lg:gap-8 mt-4 sm:mt-4 lg:mt-7 px-2 sm:px-2 lg:px-6">
+                @for($i = 0; $i < 4; $i++)
+                    <x-home-card>
+                        <x-slot:homeCardImg>{{ asset('images/news1.png') }}</x-slot:homeCard>
+                        <x-slot:homeCardTitle>WMSU Ranks Among Top Universities in the Philippines</x-slot:homeCardTitle> 
+                        <x-slot:homeCardBody>Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</x-slot:homeCardBody>
+                    </x-home-card>
+                @endfor
             </div>
-
-            <!-- Desktop News Grid -->
-                <div class="hidden lg:grid newsItems grid-cols-4 gap-4 mt-7">
-                    @for($i = 0; $i < 4; $i++)
-                        <x-home-card>
-                            <x-slot:homeCardImg>{{ asset('images/news1.png') }}</x-slot:homeCard>
-                            <x-slot:homeCardTitle>WMSU Ranks Among Top Universities in the Philippines</x-slot:homeCardTitle> 
-                            <x-slot:homeCardBody>Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</x-slot:homeCardBody>
-                        </x-home-card>
-                    @endfor
-                </div>
         </div>
+        
     </section>
-         
+    
+    
     <!-- RESEARCH ARCHIVES SECTION -->
     <section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center"> 
-        <div class="w-[2px] h-[110px] bg-[#BD0F03] block sm:block md:hidden lg:block"></div>
-        <div class="w-full h-full mt-5 px-4 md:px-14">
-            <div class="flex flex-col items-center justify-center w-full h-20">
-                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-3xl sm:text-4xl md:text-5xl text-center">research archives</p>
-            </div>
-            <!-- Mobile and Tablet View (hidden on desktop) -->
-            <div class="block md:hidden">
-                <div class="flex flex-col mt-8 space-y-6">
-                    <div class="w-full h-[200px] sm:h-[300px]">
-                        <img class="w-full h-full object-cover shadow-[0_4px_15px_rgba(0,0,0,0.2)]" src="{{ asset('images/research.png')}}" alt="">
-                    </div>
-                    <div class="flex flex-col space-y-4 sm:space-y-6 px-2">
-                        <h2 class="inter-semibold capitalize text-[#7C0A02] text-2xl sm:text-3xl leading-tight">
-                            Artificial Intelligence in Education: Improving Learning Through Smart Tutoring Systems
-                        </h2>
-                        <p class="inter-medium capitalize text-sm sm:text-base">
-                            Lead Researcher: Engr. John Dela Cruz, College of Computing Studies
-                        </p>
-                        <p class="inter-light text-sm sm:text-base tracking-tighter sm:leading-relaxed">
-                            As artificial intelligence (AI) continues to reshape various industries, its role in education has become increasingly significant. This study explores the implementation of AI-powered Smart Tutoring Systems (STS) to enhance student learning experiences. By leveraging machine learning algorithms, natural language processing, and adaptive learning models, these systems provide personalized guidance tailored to each student's learning pace and comprehension level.
-                        </p>
-                        <div class="pt-4 sm:pt-6">
-                            <p class="inter-medium tracking-tight text-sm sm:text-base">Published: December 2023</p>
-                            <p class="flex gap-2 text-[#7C0A02] text-xl sm:text-2xl inter-medium tracking-tight mt-2">
-                                Read More 
-                                <span class="transition-transform duration-300 group-hover:translate-x-2"> > </span>
-                            </p>
+        <div class="w-[2px] h-[110px] bg-[#BD0F03] block lg:block"></div>
+        <div class="w-full h-full mt-5">
+            <div class="bg-[#7C0A02] lg:bg-transparent px-4 py-8 lg:p-0">
+                <div class="flex flex-col items-center justify-center w-full">
+                    <p class="newsTitle uppercase text-white lg:text-[#7C0A02] inter-bold text-3xl sm:text-4xl lg:text-5xl text-center mb-6 lg:mb-0">research archives</p>
+                </div>
+                <div class="max-w-[300px] mx-auto lg:max-w-none lg:mx-0 lg:px-14">
+                    <div class="lg:hidden">
+                        <div class="bg-white p-1">
+                            <img src="{{ asset('images/research.png')}}" alt="Research" class="w-full aspect-square object-cover">
+                        </div>
+                        <h3 class="text-white text-xl font-bold text-center mt-6 mb-6 px-4">Artificial Intelligence in Education: Improving Learning Through Smart Tutoring Systems</h3>
+                        <div class="flex justify-center">
+                            <button class="bg-[#BD0F03] text-white px-6 py-2 rounded-tr-[35px] rounded-bl-[35px]">LEARN MORE ></button>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Desktop View (hidden on mobile/tablet) -->
-            <div class="hidden md:flex mt-8">
-                <div class="flex flex-col justify-between">
-                    <div class="pr-14 flex flex-col gap-4">
-                        <p class="inter-semibold capitalize text-[#7C0A02] text-4xl">Artificial Intelligence in Education: Improving Learning Through Smart Tutoring Systems</p>
-                        <p class="inter-medium capitalize text-base">Lead Researcher: Engr. John Dela Cruz, College of Computing Studies</p>
-                        <p class="inter-light text-base tracking-tighter">As artificial intelligence (AI) continues to reshape various industries, its role in education has become increasingly significant. This study explores the implementation of AI-powered Smart Tutoring Systems (STS) to enhance student learning experiences. By leveraging machine learning algorithms, natural language processing, and adaptive learning models, these systems provide personalized guidance tailored to each student's learning pace and comprehension level.</p>
+                    <div class="hidden lg:flex mt-8">
+                        <div class="flex flex-col justify-between">
+                            <div class="pr-14 flex flex-col gap-4">
+                                <p class="inter-semibold capitalize text-[#7C0A02] text-4xl">Artificial Intelligence in Education: Improving Learning Through Smart Tutoring Systems</p>
+                                <p class="inter-medium capitalize text-base">Lead Researcher: Engr. John Dela Cruz, College of Computing Studies</p>
+                                <p class="inter-light text-base tracking-tighter">As artificial intelligence (AI) continues to reshape various industries, its role in education has become increasingly significant. This study explores the implementation of AI-powered Smart Tutoring Systems (STS) to enhance student learning experiences. By leveraging machine learning algorithms, natural language processing, and adaptive learning models, these systems provide personalized guidance tailored to each student's learning pace and comprehension level.</p>
+                            </div>
+                            <div class="">
+                                <p class="inter-medium tracking-tight">Published: December 2023</p>
+                                <p class="flex gap-2 text-[#7C0A02] text-3xl inter-medium tracking-tight mt-2">Read More <span> > </span></p>
+                            </div>
+                        </div>
+                        <img class="border-2 border-[#7C0A02]" src="{{ asset('images/research.png')}}" alt="">
                     </div>
-                    <div class="">
-                        <p class="inter-medium tracking-tight">Published: December 2023</p>
-                        <p class="flex gap-2 text-[#7C0A02] text-3xl inter-medium tracking-tight mt-2">Read More <span> > </span></p>
-                    </div>
                 </div>
-                <img class="border-2 border-[#7C0A02]" src="{{ asset('images/research.png')}}" alt="">
             </div>
         </div>
     </section>
@@ -203,7 +129,7 @@
         </div>
     </section>
 
-<section class="PresCorner bg-gray-100"></section>
+    <section class="PresCorner bg-gray-100"></section>
     <!-- Line Divider -->
    <section class="w-screen h-[130px] flex flex-col justify-start items-center">
     <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
@@ -213,79 +139,80 @@
     <!-- President's Corner Section -->
     <section class="flex flex-col md:flex-row max-w-full mb-8 mt-4">
         <!-- Left: Image Section -->
-        <div class="md:w-[45%] min-h-[300px] md:h-auto bg-gray-100 overflow-hidden">
-            <img src="{{ asset('../images/OCHO.png') }}" alt="President" class="w-full h-full object-cover object-center">
+        <div class="md:w-[45%] min-h-[250px] sm:min-h-[350px] md:min-h-[300px] md:h-auto bg-gray-100 overflow-hidden">
+            <img src="{{ asset('../images/OCHO.png') }}" alt="President" class="w-full h-full object-cover sm:object-contain md:object-cover rounded-tr-[35px] rounded-bl-[35px]">
         </div>
 
         <!-- Right: Content Section -->
-        <div class="md:w-[55%] md:pl-32 pr-8">
-            <h2 class="text-[2.5rem] font-bold text-[#7c0a02] mb-10 ml-8">PRESIDENT'S CORNER</h2>
+        <div class="md:w-[55%] md:pl-32 pr-2">
+            <h2 class="text-[2rem] sm:text-[2.2rem] md:text-[2.5rem] font-bold text-[#7c0a02] mb-6 sm:mb-8 md:mb-10 ml-8">PRESIDENT'S CORNER</h2>
 
             <!-- Reports List -->
-<!--Spacing/Distance of reports item -->
-            <div class="space-y-12 ml-8">
+            <div class="space-y-8 sm:space-y-10 md:space-y-12 ml-8">
                 <!-- Report Items -->
-                <div class="flex items-center justify-between group cursor-pointer">
-                    <div>
-                        <p class="text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
-        <!--Update 2 6:30 PM 4/21/25(adding/editing hover effect)-->
-        <!-- Report list hover effect -->
-                            <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Report 1st Quarter 2024</span>
-                        </p>
-                        <p class="text-sm text-gray-500">April 11, 2024</p>
+                <div class="flex items-start justify-between group cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <p class="text-base sm:text-lg md:text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
+                                <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Report 1st Quarter 2024</span>
+                            </p>
+                            <span class="text-[#7c0a02] text-xl sm:text-2xl group-hover:translate-x-2 transition-transform duration-200 ml-4">&gt;</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1">April 11, 2024</p>
                     </div>
-                    <span class="text-[#7c0a02] text-2xl group-hover:translate-x-2 transition-transform duration-200">&gt;</span>
                 </div>
 
-                <div class="flex items-center justify-between group cursor-pointer">
-                    <div>
-                        <p class="text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
-        <!-- Report list hover effect -->
-                            <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Report 1st Quarter 2023</span>
-                        </p>
-                        <p class="text-sm text-gray-500">April 11, 2024</p>
+                <div class="flex items-start justify-between group cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <p class="text-base sm:text-lg md:text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
+                                <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Report 1st Quarter 2023</span>
+                            </p>
+                            <span class="text-[#7c0a02] text-xl sm:text-2xl group-hover:translate-x-2 transition-transform duration-200 ml-4">&gt;</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1">April 11, 2024</p>
                     </div>
-        <!-- Hover effect for the '>' (moving) -->
-                    <span class="text-[#7c0a02] text-2xl group-hover:translate-x-2 transition-transform duration-200">&gt;</span>
                 </div>
 
-                <div class="flex items-center justify-between group cursor-pointer">
-                    <div>
-                        <p class="text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
-        <!-- Report list hover effect -->
-                            <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Final Report</span>
-                        </p>
-                        <p class="text-sm text-gray-500">April 11, 2024</p>
+                <div class="flex items-start justify-between group cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <p class="text-base sm:text-lg md:text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
+                                <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Final Report</span>
+                            </p>
+                            <span class="text-[#7c0a02] text-xl sm:text-2xl group-hover:translate-x-2 transition-transform duration-200 ml-4">&gt;</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1">April 11, 2024</p>
                     </div>
-        <!-- Hover effect for the '>' (moving) -->
-                    <span class="text-[#7c0a02] text-2xl group-hover:translate-x-2 transition-transform duration-200">&gt;</span>
                 </div>
 
-                <div class="flex items-center justify-between group cursor-pointer">
-                    <div>
-                        <p class="text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
-        <!-- Report list hover effect -->
-                            <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Report 4th Quarter</span>
-                        </p>
-                        <p class="text-sm text-gray-500">April 11, 2024</p>
+                <div class="flex items-start justify-between group cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <p class="text-base sm:text-lg md:text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
+                                <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Report 4th Quarter</span>
+                            </p>
+                            <span class="text-[#7c0a02] text-xl sm:text-2xl group-hover:translate-x-2 transition-transform duration-200 ml-4">&gt;</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1">April 11, 2024</p>
                     </div>
-        <!-- Hover effect for the '>' (moving) -->
-                    <span class="text-[#7c0a02] text-2xl group-hover:translate-x-2 transition-transform duration-200">&gt;</span>
                 </div>
 
-                <div class="flex items-center justify-between group cursor-pointer">
-                    <div>
-                        <p class="text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
-                            <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Report Year 2</span>
-                        </p>
-                        <p class="text-sm text-gray-500">April 11, 2024</p>
+                <div class="flex items-start justify-between group cursor-pointer">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <p class="text-base sm:text-lg md:text-lg text-gray-900 font-medium group-hover:text-[#7c0a02] transition-colors duration-200 relative">
+                                <span class="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#7c0a02] after:transition-transform after:duration-300 group-hover:after:scale-x-100">President's Report Year 2</span>
+                            </p>
+                            <span class="text-[#7c0a02] text-xl sm:text-2xl group-hover:translate-x-2 transition-transform duration-200 ml-4">&gt;</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1">April 11, 2024</p>
                     </div>
-        <!-- Hover effect for the '>' (moving) -->
-                    <span class="text-[#7c0a02] text-2xl group-hover:translate-x-2 transition-transform duration-200">&gt;</span>
                 </div>
             </div>
         </div>
     </section>
+  
     
 <!--Update 3 3:35 PM (Start of Campus Section) -->
     <!-- WMSU Campuses Section -->
@@ -345,77 +272,78 @@
         </div>
     </section>
 
-    <!-- WMSU Services Section -->
-    <section class="w-screen h-[130px] flex flex-col justify-start items-center">
-        <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
-        <div class="w-full mt-5 px-4"></div>
-    </section>
-        <section class="ServicesCont py-16 bg-white">
-            <h1 class="text-4xl font-bold text-[#7C0A02] mb-12 text-center">SERVICES</h1>
-            
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mx-auto px-4">
-                <!-- Freshman Online Pre-Admission -->
-                <div class="relative bg-gray-100 rounded-[2rem] p-8 h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                    <!-- Icon Container -->
-                    <div class="absolute -top-2 -right-2 w-24 h-24">
-                        <div class="absolute inset-0 bg-[#FFE5E5] rounded-tl-[2rem] rounded-bl-[2rem] rounded-br-[2rem] rounded-tr-[0.5rem] transform rotate-45"></div>
-                        <div class="absolute inset-[15%] bg-[#7C0A02] rounded-tl-[1.5rem] rounded-bl-[1.5rem] rounded-br-[1.5rem] rounded-tr-[0.5rem] transform rotate-45 flex items-center justify-center">
-                            <img src="{{ asset('images/freshman-icon.png') }}" alt="Freshman Online Pre-Admission" class="w-10 h-10 object-contain transform -rotate-45">
-                        </div>
-                    </div>
-                    <div class="absolute bottom-8">
-                        <h3 class="text-xl font-bold text-gray-800">Freshman Online Pre-Admission</h3>
+<!-- WMSU Services Section -->
+<section class="w-screen h-[130px] flex flex-col justify-start items-center">
+    <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
+    <div class="w-full mt-5 px-4"></div>
+</section>
+    <section class="ServicesCont py-4 md:py-16 bg-white">
+        <h1 class="text-4xl font-bold text-[#7C0A02] mb-4 md:mb-12 text-center">SERVICES</h1>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 md:gap-8 mx-auto">
+            <!-- Freshman Online Pre-Admission -->
+            <div class="relative bg-gray-100 rounded-[2rem] p-4 md:p-8 h-[120px] md:h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                <!-- Icon Container -->
+                <div class="absolute -top-[-4px] -right-[-2px] w-20 md:w-24 h-20 md:h-24">
+                    <div class="absolute inset-0 bg-[#FFE5E5] rounded-[65%_0%_35%_65%]"></div>
+                    <div class="absolute inset-[15%] bg-[#7C0A02] rounded-[65%_0%_35%_65%] flex items-center justify-center">
+                        <img src="{{ asset('images/freshman-icon.png') }}" alt="Freshman Online Pre-Admission" class="w-10 md:w-10 h-10 md:h-10 object-contain">
                     </div>
                 </div>
-    
-                <!-- Online Registration -->
-                <div class="relative bg-gray-100 rounded-[2rem] p-8 h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                    <div class="absolute -top-2 -right-2 w-24 h-24">
-                        <div class="absolute inset-0 bg-[#FFE5E5] rounded-tl-[2rem] rounded-bl-[2rem] rounded-br-[2rem] rounded-tr-[0.5rem] transform rotate-45"></div>
-                        <div class="absolute inset-[15%] bg-[#7C0A02] rounded-tl-[1.5rem] rounded-bl-[1.5rem] rounded-br-[1.5rem] rounded-tr-[0.5rem] transform rotate-45 flex items-center justify-center">
-                            <img src="{{ asset('images/Old Student-icon.png') }}" alt="Online Registration" class="w-10 h-10 object-contain transform -rotate-45">
-                        </div>
-                    </div>
-                    <div class="absolute bottom-8">
-                        <h3 class="text-xl font-bold text-gray-800">Online Registration<br/>(Old Student)</h3>
-                    </div>
-                </div>
-    
-                <!-- Online Advising -->
-                <div class="relative bg-gray-100 rounded-[2rem] p-8 h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                    <div class="absolute -top-2 -right-2 w-24 h-24">
-                        <div class="absolute inset-0 bg-[#FFE5E5] rounded-tl-[2rem] rounded-bl-[2rem] rounded-br-[2rem] rounded-tr-[0.5rem] transform rotate-45"></div>
-                        <div class="absolute inset-[15%] bg-[#7C0A02] rounded-tl-[1.5rem] rounded-bl-[1.5rem] rounded-br-[1.5rem] rounded-tr-[0.5rem] transform rotate-45 flex items-center justify-center">
-                            <img src="{{ asset('images/Advising-icon.png') }}" alt="Online Advising" class="w-10 h-10 object-contain transform -rotate-45">
-                        </div>
-                    </div>
-                    <div class="absolute bottom-8">
-                        <h3 class="text-xl font-bold text-gray-800">Online Advising</h3>
-                    </div>
-                </div>
-    
-                <!-- Online Enlistment -->
-                <div class="relative bg-gray-100 rounded-[2rem] p-8 h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                    <div class="absolute -top-2 -right-2 w-24 h-24">
-                        <div class="absolute inset-0 bg-[#FFE5E5] rounded-tl-[2rem] rounded-bl-[2rem] rounded-br-[2rem] rounded-tr-[0.5rem] transform rotate-45"></div>
-                        <div class="absolute inset-[15%] bg-[#7C0A02] rounded-tl-[1.5rem] rounded-bl-[1.5rem] rounded-br-[1.5rem] rounded-tr-[0.5rem] transform rotate-45 flex items-center justify-center">
-                            <img src="{{ asset('images/Enlistment-icon.png') }}" alt="Online Enlistment" class="w-10 h-10 object-contain transform -rotate-45">
-                        </div>
-                    </div>
-                    <div class="absolute bottom-8">
-                        <h3 class="text-xl font-bold text-gray-800">Online Enlistment</h3>
-                    </div>
-                </div>
-    
-                <!-- More Services Button -->
-                <div class="relative bg-[#7C0A02] rounded-[1rem] p-8 h-[200px] flex items-center justify-center cursor-pointer hover:bg-[#8B0000] transition-colors duration-300">
-                    <div class="text-center">
-                        <span class="text-5xl font-bold text-white">+</span>
-                        <p class="text-white font-bold mt-2">MORE</p>
-                    </div>
+                <div class="absolute bottom-3 md:bottom-8">
+                    <h3 class="text-base md:text-xl font-bold text-gray-800">Freshman Online Pre-Admission</h3>
                 </div>
             </div>
-        </section>
+
+            <!-- Online Registration -->
+            <div class="relative bg-gray-100 rounded-[2rem] p-4 md:p-8 h-[120px] md:h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                <div class="absolute -top-[-4px] -right-[-2px] w-20 md:w-24 h-20 md:h-24">
+                    <div class="absolute inset-0 bg-[#FFE5E5] rounded-[65%_0%_35%_65%]"></div>
+                    <div class="absolute inset-[15%] bg-[#7C0A02] rounded-[65%_0%_35%_65%] flex items-center justify-center">
+                        <img src="{{ asset('images/Old Student-icon.png') }}" alt="Online Registration" class="w-10 md:w-10 h-10 md:h-10 object-contain">
+                    </div>
+                </div>
+                <div class="absolute bottom-3 md:bottom-8">
+                    <h3 class="text-base md:text-xl font-bold text-gray-800">Online Registration<br/>(Old Student)</h3>
+                </div>
+            </div>
+
+            <!-- Online Advising -->
+            <div class="relative bg-gray-100 rounded-[2rem] p-4 md:p-8 h-[120px] md:h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                <div class="absolute -top-[-4px] -right-[-2px] w-20 md:w-24 h-20 md:h-24">
+                    <div class="absolute inset-0 bg-[#FFE5E5] rounded-[65%_0%_35%_65%]"></div>
+                    <div class="absolute inset-[15%] bg-[#7C0A02] rounded-[65%_0%_35%_65%] flex items-center justify-center">
+                        <img src="{{ asset('images/Advising-icon.png') }}" alt="Online Advising" class="w-10 md:w-10 h-10 md:h-10 object-contain">
+                    </div>
+                </div>
+                <div class="absolute bottom-3 md:bottom-8">
+                    <h3 class="text-base md:text-xl font-bold text-gray-800">Online Advising</h3>
+                </div>
+            </div>
+
+            <!-- Online Enlistment -->
+            <div class="relative bg-gray-100 rounded-[2rem] p-4 md:p-8 h-[120px] md:h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                <div class="absolute -top-[-4px] -right-[-2px] w-20 md:w-24 h-20 md:h-24">
+                    <div class="absolute inset-0 bg-[#FFE5E5] rounded-[65%_0%_35%_65%]"></div>
+                    <div class="absolute inset-[15%] bg-[#7C0A02] rounded-[65%_0%_35%_65%] flex items-center justify-center">
+                        <img src="{{ asset('images/Enlistment-icon.png') }}" alt="Online Enlistment" class="w-10 md:w-10 h-10 md:h-10 object-contain">
+                    </div>
+                </div>
+                <div class="absolute bottom-3 md:bottom-8">
+                    <h3 class="text-base md:text-xl font-bold text-gray-800">Online Enlistment</h3>
+                </div>
+            </div>
+
+            <!-- More Services Button -->
+            <div class="relative bg-[#7C0A02] h-[120px] md:h-[200px] flex items-center justify-center cursor-pointer hover:bg-[#8B0000] transition-colors duration-300">
+                <div class="text-center">
+                    <p class="text-white font-bold text-xl md:text-2xl">WMSU</p>
+                    <p class="text-white font-bold text-xl md:text-2xl mb-2">SERVICES</p>
+                    <span class="text-white text-2xl md:text-2xl font-bold">×</span>
+                </div>
+            </div>
+        </div>
+    </section>
           
     <!-- Footer Section -->
     <footer class="relative text-white py-12">
@@ -443,9 +371,15 @@
 
                 <!-- Resources Section -->
                 <div class="text-center sm:border-r border-white/20">
-                    <h3 class="text-xl sm:text-2xl font-bold mb-4">RESOURCES</h3>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4">GOVERNMENT LINKS</h3>
                     <ul class="space-y-2">
-                        <li class="hover:text-red-200 cursor-pointer">Downloadables</li>
+                        <li class="hover:text-red-200 cursor-pointer">Office of the President</li>
+                        <li class="hover:text-red-200 cursor-pointer">Office of the Vice President</li>
+                        <li class="hover:text-red-200 cursor-pointer">Senate of the Philippines</li>
+                        <li class="hover:text-red-200 cursor-pointer">House of the Representatives</li>
+                        <li class="hover:text-red-200 cursor-pointer">Supreme Court</li>
+                        <li class="hover:text-red-200 cursor-pointer">Court of Appeals</li>
+                        <li class="hover:text-red-200 cursor-pointer">Sandiganbayan</li>
                     </ul>
                 </div>
 
