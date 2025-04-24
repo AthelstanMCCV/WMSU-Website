@@ -12,9 +12,13 @@
                 @endphp
 
                 @if($heroSection && $heroSection->imagePath)
-                    <video id="delayedVideo" class="homepage-background-video h-screen w-screen notPlaying object-cover" muted loop>
-                        <source src="{{ asset('storage/' . $heroSection->imagePath) }}" type="video/mp4">
-                    </video>
+                    @if(Str::endsWith($heroSection->imagePath, ['.mp4', '.webm', '.ogg']))
+                        <video id="delayedVideo" class="homepage-background-video h-screen w-screen notPlaying object-cover" muted loop>
+                            <source src="{{ asset('storage/' . $heroSection->imagePath) }}" type="video/mp4">
+                        </video>
+                    @elseif(Str::endsWith($heroSection->imagePath, ['.jpg', '.jpeg', '.png', '.gif', '.webp']))
+                        <img src="{{ asset('storage/' . $heroSection->imagePath) }}" alt="Hero Media" class="homepage-background-video h-screen w-screen object-cover">
+                    @endif
                 @endif
 
                 <div class="absolute inset-0 bg-gradient-to-r from-[#7b1305] via-[#7C0A02] to-[#7b1305] opacity-70"></div>
