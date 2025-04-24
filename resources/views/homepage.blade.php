@@ -4,27 +4,37 @@
     </x-slot:navbar>
     
     <!-- WMSU HERO SECTION  -->
-    <section class="hero-section-cont relative w-screen h-screen">
-        <div class="homepage-video-container relative">
-            <video id="delayedVideo" class="homepage-background-video h-screen w-screen notPlaying object-cover" muted loop>
-                <source src="{{ asset('images/WMSU profile 2024.mp4') }}" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#7b1305] via-[#7C0A02] to-[#7b1305] opacity-70"></div>
-            <div class="absolute inset-0 flex items-center justify-start flex-col">
-                <div class="upperNavDivider"></div>
-                <div class="text-center text-white my-4 px-4">
-                    <p class="text-4xl md:text-6xl lg:text-8xl uppercase inter-bold">Western Mindanao</p>
-                    <p class="text-4xl md:text-6xl lg:text-8xl uppercase inter-bold mt-1 md:-mt-4">State University</p>
-                    <p class="inter-extralight uppercase text-lg md:text-xl lg:text-2xl mt-4">Your Future Starts Here: Learn, Innovate, Lead at WMSU!</p>
-                </div>
-                <div class="lowerNavDivider"></div>
-                <a href="" class="text-xl md:text-2xl uppercase px-8 md:px-[65px] py-2 my-5 border border-white text-white rounded-tr-[35px] rounded-bl-[35px] hover:bg-[#BD0F03] duration-300 ease-in-out">
-                    <span class="font-bold">BE A <span class="text-[red] [text-shadow:_0_1px_2px_white]">CRIMSON</span></span>
-                </a>
-                <img class="motion-safe:animate-bounce mt-5 w-8 h-8 md:w-10 md:h-10" src="{{ asset('images/down-arrow.png')}}" alt="">
+    @if(isset($sections['Homepage Hero']))
+        <section class="hero-section-cont relative w-screen h-screen">
+            <div class="homepage-video-container relative">
+                <video id="delayedVideo" class="homepage-background-video h-screen w-screen notPlaying object-cover" muted loop>
+                    <source src="{{ asset('images/WMSU profile 2024.mp4') }}" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#7b1305] via-[#7C0A02] to-[#7b1305] opacity-70"></div>
+                @foreach($sections['Homepage Hero'] as $section)
+                    <div class="absolute inset-0 flex items-center justify-start flex-col">
+                        <div class="upperNavDivider"></div>
+                        <div class="text-center text-white my-4 px-4">
+                            <p name='HPHeroTitleUpper' class="text-4xl md:text-6xl lg:text-8xl uppercase inter-bold leading-21 ">
+                                {{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroTitleUpper')->content ?? '' }}
+                                <br /> 
+                                <span name='HPHeroTitleLower'>
+                                    {{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroTitleLower')->content ?? '' }}
+                                </span>
+                            </p>
+                            <p name='HPHeroSubTitle' class="inter-extralight uppercase text-lg md:text-xl lg:text-2xl mt-4">{{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroSubTitle')->content ?? '' }}</p>
+                        </div>
+                        <div class="lowerNavDivider"></div>
+                        <a href="" class="text-xl md:text-2xl uppercase px-8 md:px-[65px] py-2 my-5 border border-white text-white rounded-[20px] bg-[#BD0F03] hover:bg-white hover:border-[#BD0F03] hover:text-[#BD0F03] duration-300 ease-in-out">
+                            <span name='HpCTABtn' class="font-bold">{{ $sections['Homepage Hero']->firstWhere('description', 'HpCTABtn')->content ?? '' }}</span>
+                        </a>
+                        <img class="motion-safe:animate-bounce mt-5 w-8 h-8 md:w-10 md:h-10" src="{{ asset('images/down-arrow.png')}}" alt="">
+                    </div>
+                @endforeach
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+    
     
     <!-- WMSU NEWS SECTION -->
     <section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center">
@@ -103,15 +113,15 @@
             </div>
 
             <!-- Desktop News Grid -->
-            <div class="hidden lg:grid newsItems grid-cols-4 gap-4 mt-7">
-                @for($i = 0; $i < 4; $i++)
-                    <x-home-card>
-                        <x-slot:homeCardImg>{{ asset('images/news1.png') }}</x-slot:homeCard>
-                        <x-slot:homeCardTitle>WMSU Ranks Among Top Universities in the Philippines</x-slot:homeCardTitle> 
-                        <x-slot:homeCardBody>Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</x-slot:homeCardBody>
-                    </x-home-card>
-                @endfor
-            </div>
+                <div class="hidden lg:grid newsItems grid-cols-4 gap-4 mt-7">
+                    @for($i = 0; $i < 4; $i++)
+                        <x-home-card>
+                            <x-slot:homeCardImg>{{ asset('images/news1.png') }}</x-slot:homeCard>
+                            <x-slot:homeCardTitle>WMSU Ranks Among Top Universities in the Philippines</x-slot:homeCardTitle> 
+                            <x-slot:homeCardBody>Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</x-slot:homeCardBody>
+                        </x-home-card>
+                    @endfor
+                </div>
         </div>
     </section>
          
@@ -525,106 +535,4 @@
         </div>
     </footer>
 </section>
-</x-head> 
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const carousel = document.getElementById('newsCarousel');
-        const dots = document.querySelectorAll('[data-index]');
-        let currentIndex = 0;
-        let startX = 0;
-        let isDragging = false;
-
-        // Touch events
-        carousel.addEventListener('touchstart', handleTouchStart, { passive: true });
-        carousel.addEventListener('touchmove', handleTouchMove, { passive: true });
-        carousel.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-        function handleTouchStart(e) {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        }
-
-        function handleTouchMove(e) {
-            if (!isDragging) return;
-            
-            const currentX = e.touches[0].clientX;
-            const diff = startX - currentX;
-            const moveX = (currentIndex * -100) - (diff / carousel.offsetWidth * 100);
-            
-            // Limit the drag to the next/previous slide only
-            if (moveX <= 0 && moveX >= -300) {
-                carousel.style.transform = `translateX(${moveX}%)`;
-                carousel.style.transition = 'none';
-            }
-        }
-
-        function handleTouchEnd(e) {
-            if (!isDragging) return;
-            
-            isDragging = false;
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-            const threshold = carousel.offsetWidth * 0.2; // 20% of carousel width
-
-            carousel.style.transition = 'transform 0.3s ease-out';
-
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0 && currentIndex < 3) {
-                    // Swipe left
-                    currentIndex++;
-                } else if (diff < 0 && currentIndex > 0) {
-                    // Swipe right
-                    currentIndex--;
-                }
-            }
-
-            updateCarousel();
-        }
-
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-            carousel.style.transition = 'transform 0.3s ease-out';
-
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.style.opacity = index === currentIndex ? '1' : '0.5';
-            });
-
-            // Show text for current slide
-            const slides = carousel.querySelectorAll('.group');
-            slides.forEach((slide, index) => {
-                if (index === currentIndex) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
-                }
-            });
-        }
-
-        // Handle dot navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel();
-            });
-        });
-
-        // Add CSS for active state
-        const style = document.createElement('style');
-        style.textContent = `
-            .group.active .absolute.bottom-0 {
-                transform: translateY(0);
-            }
-            .group .absolute.bottom-0 {
-                transform: translateY(100%);
-                transition: transform 0.3s ease-out;
-            }
-            #newsCarousel {
-                touch-action: pan-x pinch-zoom;
-            }
-        `;
-        document.head.appendChild(style);
-    });
-</script> 
+</x-head>

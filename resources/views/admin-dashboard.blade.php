@@ -2,7 +2,7 @@
     <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
         <h2 class="text-2xl font-bold mb-6 text-gray-800">Add New Content</h2>
       
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="/addSection" method="POST" enctype="multipart/form-data">
           @csrf
       
           <!-- Content Text -->
@@ -19,7 +19,7 @@
           <!-- Image Upload with Preview -->
           <div class="mb-5" x-data="{ imagePreview: null }">
             <label for="image" class="block text-gray-700 font-medium mb-2">Upload Image</label>
-            <input type="file" id="image" name="image" accept="image/*" required
+            <input type="file" id="image" name="image" accept="image/*"
               @change="const file = $event.target.files[0]; if (file) { imagePreview = URL.createObjectURL(file) }"
               class="w-full text-gray-600 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
       

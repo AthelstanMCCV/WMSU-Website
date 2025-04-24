@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page__sections', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('page_sections', function (Blueprint $table) {
+            $table->renameColumn('iamgePath', 'imagePath');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page__sections');
+        Schema::table('page_sections', function (Blueprint $table) {
+            //
+        });
     }
 };

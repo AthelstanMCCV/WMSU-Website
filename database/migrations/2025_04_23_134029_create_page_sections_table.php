@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('indicator');
             $table->string('elemType');
             $table->text('content');
-            $table->string('iamgePath')->nullable();
+            $table->string('imagePath')->nullable();
             $table->string('alt');
             $table->string('description');
             $table->timestamps();
