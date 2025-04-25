@@ -58,7 +58,7 @@
         <div class="w-full h-full mt-5 md:px-4">
             <div class="newsTitleCont flex items-center justify-between w-full h-20">
                 <div class="hidden md:block w-1/3"></div>
-                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-2xl sm:text-3xl md:text-5xl w-full md:w-1/3 text-center">wmsu news</p>
+                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-5xl w-full md:w-1/3 text-center">wmsu news</p>
                 <div class="hidden md:flex flex-col w-1/3 h-full items-end justify-end">
                     <div class="flex flex-col items-end group cursor-pointer mr-5">
                         <img class="size-7 group-hover:rotate-45 duration-300 ease-in-out" src="{{asset('images/plus.png')}}" alt="">
@@ -70,7 +70,7 @@
             <!-- Swiper Container -->
             <div class="w-full mt-8">
                 <div class="swiper mySwiper">
-                    <div class="swiper-wrapper lg:flex">
+                    <div class="swiper-wrapper">
                         @for($i = 0; $i < 4; $i++)
                             <div class="swiper-slide">
                                 <x-home-card>
