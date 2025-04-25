@@ -3,49 +3,53 @@
         <x-nav />
     </x-slot:navbar>
     
-    <!-- WMSU HERO SECTION  -->
-    @if(isset($sections['Homepage Hero']))
-        <section class="hero-section-cont relative w-screen h-screen">
-            <div class="homepage-video-container relative">
-                @php
-                    $heroSection = $sections['Homepage Hero']->firstWhere('description', 'HeroVideo');
-                @endphp
-
-                @if($heroSection && $heroSection->imagePath)
-                    @if(Str::endsWith($heroSection->imagePath, ['.mp4', '.webm', '.ogg']))
-                        <video id="delayedVideo" class="homepage-background-video h-screen w-screen notPlaying object-cover" muted loop>
-                            <source src="{{ asset('storage/' . $heroSection->imagePath) }}" type="video/mp4">
-                        </video>
-                    @elseif(Str::endsWith($heroSection->imagePath, ['.jpg', '.jpeg', '.png', '.gif', '.webp']))
-                        <img src="{{ asset('storage/' . $heroSection->imagePath) }}" alt="Hero Media" class="homepage-background-video h-screen w-screen object-cover">
-                    @endif
-                @endif
-
-                <div class="absolute inset-0 bg-gradient-to-r from-[#7b1305] via-[#7C0A02] to-[#7b1305] opacity-70"></div>
-                @foreach($sections['Homepage Hero'] as $section)
-                    <div class="absolute inset-0 flex items-center justify-start flex-col">
-                        <div class="upperNavDivider"></div>
-                        <div class="text-center text-white my-4 px-4">
-                            <p name='HPHeroTitleUpper' class="text-4xl md:text-6xl lg:text-8xl uppercase inter-bold leading-21 ">
-                                {{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroTitleUpper')->content ?? '' }}
-                                <br /> 
-                                <span name='HPHeroTitleLower'>
-                                    {{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroTitleLower')->content ?? '' }}
-                                </span>
-                            </p>
-                            <p name='HPHeroSubTitle' class="inter-extralight uppercase text-lg md:text-xl lg:text-2xl mt-4">{{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroSubTitle')->content ?? '' }}</p>
-                        </div>
-                        <div class="lowerNavDivider"></div>
-                        <a href="" class="text-xl md:text-2xl uppercase px-8 md:px-[65px] py-2 my-5 border border-white text-white rounded-[20px] bg-[#BD0F03] hover:bg-white hover:border-[#BD0F03] hover:text-[#BD0F03] duration-300 ease-in-out">
-                            <span name='HpCTABtn' class="font-bold">{{ $sections['Homepage Hero']->firstWhere('description', 'HpCTABtn')->content ?? '' }}</span>
-                        </a>
-                        <img class="motion-safe:animate-bounce mt-5 w-8 h-8 md:w-10 md:h-10" src="{{ asset('images/down-arrow.png')}}" alt="">
-                    </div>
-                @endforeach
-            </div>
-        </section>
-    @endif
+    @if(isset($sections['Homepage Hero']) && $sections['Homepage Hero']->isNotEmpty())
+    <section class="hero-section-cont relative w-screen h-screen">
+        <div class="homepage-video-container relative">
+            @php
+                $heroSection = $sections['Homepage Hero']->firstWhere('description', 'HeroVideo');
+            @endphp
     
+            @if($heroSection && $heroSection->imagePath)
+                @if(Str::endsWith($heroSection->imagePath, ['.mp4', '.webm', '.ogg']))
+                    <video id="delayedVideo" class="homepage-background-video h-screen w-screen notPlaying object-cover" muted loop>
+                        <source src="{{ asset('storage/' . $heroSection->imagePath) }}" type="video/mp4">
+                    </video>
+                @elseif(Str::endsWith($heroSection->imagePath, ['.jpg', '.jpeg', '.png', '.gif', '.webp']))
+                    <img src="{{ asset('storage/' . $heroSection->imagePath) }}" alt="Hero Media" class="homepage-background-video h-screen w-screen object-cover">
+                @endif
+            @endif
+    
+            <div class="absolute inset-0 bg-gradient-to-r from-[#7b1305] via-[#7C0A02] to-[#7b1305] opacity-70"></div>
+    
+            <div class="absolute inset-0 flex items-center justify-start flex-col">
+                <div class="upperNavDivider"></div>
+                <div class="text-center text-white my-4 px-4">
+                    <p class="text-4xl md:text-6xl lg:text-8xl uppercase inter-bold leading-21 ">
+                        {{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroTitleUpper')->content ?? '' }}
+                        <br /> 
+                        <span>
+                            {{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroTitleLower')->content ?? '' }}
+                        </span>
+                    </p>
+                    <p class="inter-extralight uppercase text-lg md:text-xl lg:text-2xl mt-4">
+                        {{ $sections['Homepage Hero']->firstWhere('description', 'HPHeroSubTitle')->content ?? '' }}
+                    </p>
+                </div>
+    
+                <div class="lowerNavDivider"></div>
+    
+                <a href="#" class="text-xl md:text-2xl uppercase px-8 md:px-[65px] py-2 my-5 border border-white text-white rounded-[20px] bg-[#BD0F03] hover:bg-white hover:border-[#BD0F03] hover:text-[#BD0F03] duration-300 ease-in-out">
+                    <span class="font-bold">
+                        {{ $sections['Homepage Hero']->firstWhere('description', 'HpCTABtn')->content ?? '' }}
+                    </span>
+                </a>
+    
+                <img class="motion-safe:animate-bounce mt-5 w-8 h-8 md:w-10 md:h-10" src="{{ asset('images/down-arrow.png')}}" alt="">
+            </div>
+        </div>
+    </section>
+    @endif
     
  
     <!-- WMSU NEWS SECTION -->

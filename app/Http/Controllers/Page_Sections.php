@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Page_Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Page_Sections extends Controller
 {
@@ -34,14 +35,27 @@ class Page_Sections extends Controller
         return redirect()->back()->with('success', 'Section added successfully!');
     }
 
-    public function showHomepage() {
-        $sections = Page_Section::where('page_id', 1)->get();
-        $groupedSections = $sections->groupBy('indicator');
+    public function showHomepage()
+    {
+        // Define what sections you want from which page IDs
+        $sectionMappings = [
+            'Homepage Hero' => 1,
+            'Research & Extension News' => 2,
+            'About Us' => 3,
+            // add more as needed
+        ];
     
-        return view('homepage', [
-            'sections' => $groupedSections
-        ]);
+        $sections = [];
+    
+        foreach ($sectionMappings as $indicator => $pageId) {
+            $sections[$indicator] = Page_Section::where('page_id', $pageId)
+                ->where('indicator', $indicator)
+                ->get();
+        }
+    
+        return view('homepage', compact('sections'));
     }
+    
 
     public function showHomepageData() {
         $sections = Page_Section::where('page_id', 1)->get()->groupBy('indicator');
@@ -155,5 +169,56 @@ class Page_Sections extends Controller
     }
 
     return redirect()->back()->with('success', 'News section added successfully!');
-}
+    }
+
+    public function editNewsGroup($alt)
+    {
+        $newsItems = Page_Section::where('alt', $alt)->get();
+    
+        return view('admin.edit-news-group', compact('newsItems'));
+    }
+
+    public function updateNewsGroup(Request $request, $alt)
+    {
+    // Update text fields
+    if ($request->has('newsItems')) {
+        foreach ($request->newsItems as $id => $content) {
+            $section = Page_Section::find($id);
+            if ($section) {
+                $section->content = $content;
+                $section->save();
+            }
+        }
+    }
+
+    // Handle optional media upload
+    if ($request->hasFile('media')) {
+        $media = Page_Section::where('alt', $alt)->where('description', 'RENewsImg')->first();
+        if ($media) {
+            // Delete old file
+            if ($media->imagePath && Storage::exists('public/' . $media->imagePath)) {
+                Storage::delete('public/' . $media->imagePath);
+            }
+            // Store new file
+            $filePath = $request->file('media')->store('uploads', 'public');
+            $media->imagePath = $filePath;
+            $media->save();
+        }
+    }
+
+    return redirect()->back()->with('success', 'News group updated successfully.');
+    }
+
+    public function deleteNewsGroup($alt)
+    {
+    Page_Section::where('alt', $alt)->delete();
+    return redirect()->back()->with('success', 'News item deleted successfully!');
+    }
+
+    public function showResExtHome(Request $request){
+        return view('res&ext-homepage');
+    }
+    public function showResExtActivities(Request $request){
+        return view('res&ext-actprogproj');
+    }
 }
