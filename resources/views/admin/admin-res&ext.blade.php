@@ -46,6 +46,13 @@
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                             </div>
 
+                            <!-- News Location -->
+                            <div>
+                                <label for="RENewsLocation" class="block text-sm font-medium text-gray-700">Location</label>
+                                <input type="text" name="RENewsLocation" id="RENewsLocation"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+
                             <!-- News Content -->
                             <div>
                                 <label for="RENewsContent" class="block text-sm font-medium text-gray-700">News Content</label>
@@ -75,6 +82,7 @@
                                 <tr>
                                     <th class="px-6 py-3">Title</th>
                                     <th class="px-6 py-3">Date</th>
+                                    <th class="px-6 py-3">Location</th>
                                     <th class="px-6 py-3">Content</th>
                                     <th class="px-6 py-3">Image/Video</th>
                                     <th class="px-6 py-3">Actions</th>
@@ -85,6 +93,7 @@
                                     <tr class="bg-white border-b border-gray-200">
                                         <td class="px-6 py-4">{{ $newsGroup->firstWhere('description', 'RENewsTitle')->content ?? '' }}</td>
                                         <td class="px-6 py-4">{{ $newsGroup->firstWhere('description', 'RENewsDate')->content ?? '' }}</td>
+                                        <td class="px-6 py-4">{{ $newsGroup->firstWhere('description', 'RENewsLocation')->content ?? '' }}</td>
                                         <td class="px-6 py-4">{{ $newsGroup->firstWhere('description', 'RENewsContent')->content ?? '' }}</td>
                                         <td class="px-6 py-4">
                                             @php
@@ -128,6 +137,12 @@
                                                             <input type="date" name="newsItems[{{ $item->id }}]" value="{{ $item->content }}"
                                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                                         </div>
+                                                    @elseif($item->description == 'RENewsLocation')
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700">Location</label>
+                                                        <input type="text" name="newsItems[{{ $item->id }}]" value="{{ $item->content }}"
+                                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                                    </div>
                                                     @elseif($item->description == 'RENewsContent')
                                                         <div>
                                                             <label class="block text-sm font-medium text-gray-700">Content</label>

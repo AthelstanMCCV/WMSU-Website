@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+
 class Page_Sections extends Controller
 {
     public function AddSection(Request $request) {
@@ -37,12 +38,10 @@ class Page_Sections extends Controller
 
     public function showHomepage()
     {
-        // Define what sections you want from which page IDs
         $sectionMappings = [
             'Homepage Hero' => 1,
             'Research & Extension News' => 2,
             'About Us' => 3,
-            // add more as needed
         ];
     
         $sections = [];
@@ -53,7 +52,17 @@ class Page_Sections extends Controller
                 ->get();
         }
     
-        return view('homepage', compact('sections'));
+        // Fetch latest Research & Extension News group (by alt)
+        $latestNewsAlt = Page_Section::where('indicator', 'Research & Extension News')
+            ->orderBy('created_at', 'desc')
+            ->value('alt');
+    
+        $latestNews = Page_Section::where('indicator', 'Research & Extension News')
+            ->where('alt', $latestNewsAlt)
+            ->get()
+            ->keyBy('description');
+    
+        return view('homepage', compact('sections', 'latestNews'));
     }
     
 
@@ -99,9 +108,10 @@ class Page_Sections extends Controller
 
     $validated = $request->validate([
         'RENewsImg' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
-        'RENewsTitle' => 'nullable|string',
+        'RENewsTitle' => 'nullable|string|max:255',
         'RENewsDate' => 'nullable|date',
-        'RENewsContent' => 'nullable|string',
+        'RENewsLocation' => 'nullable|string|max:255',
+        'RENewsContent' => 'nullable|string|max:255',
         'page_id' => 'required|integer|exists:pages,id',
     ]);
 
@@ -149,6 +159,20 @@ class Page_Sections extends Controller
             'imagePath' => null,
             'indicator' => 'Research & Extension News',
             'elemType' => 'date',
+            'subpage' => null,
+            'alt' => $newsGroupId,
+        ]);
+    }
+
+    // Insert Location row
+    if ($request->RENewsLocation) {
+        Page_Section::create([
+            'page_id' => $validated['page_id'],
+            'description' => 'RENewsLocation',
+            'content' => $request->RENewsLocation,
+            'imagePath' => null,
+            'indicator' => 'Research & Extension News',
+            'elemType' => 'text',
             'subpage' => null,
             'alt' => $newsGroupId,
         ]);

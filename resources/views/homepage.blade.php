@@ -90,41 +90,63 @@
     
     
     <!-- RESEARCH ARCHIVES SECTION -->
+    @if($latestNews->isNotEmpty())
     <section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center"> 
         <div class="w-[2px] h-[110px] bg-[#BD0F03] block lg:block"></div>
+    
         <div class="w-full h-full mt-5">
             <div class="bg-[#7C0A02] lg:bg-transparent px-4 py-8 lg:p-0">
-                <div class="flex flex-col items-center justify-center w-full">
-                    <p class="newsTitle uppercase text-white lg:text-[#7C0A02] inter-bold text-3xl sm:text-4xl lg:text-5xl text-center mb-6 lg:mb-0">research archives</p>
+                <div class="flex flex-col items-center justify-center w-full mb-10">
+                    <p class="newsTitle uppercase text-white lg:text-[#7C0A02] inter-bold text-3xl sm:text-4xl lg:text-5xl text-center mb-6 lg:mb-0">
+                        Research & Extension
+                    </p>
                 </div>
+    
                 <div class="max-w-[300px] mx-auto lg:max-w-none lg:mx-0 lg:px-14">
+                    {{-- Mobile Layout --}}
                     <div class="lg:hidden">
                         <div class="bg-white p-1">
-                            <img src="{{ asset('images/research.png')}}" alt="Research" class="w-full aspect-square object-cover">
+                            <img src="{{ asset('storage/' . ($latestNews['RENewsImg']->imagePath ?? 'images/default.png')) }}" alt="Research" class="w-full aspect-square object-cover">
                         </div>
-                        <h3 class="text-white text-xl font-bold text-center mt-6 mb-6 px-4">Artificial Intelligence in Education: Improving Learning Through Smart Tutoring Systems</h3>
+                        <h3 class="text-white text-xl font-bold text-center mt-6 mb-6 px-4">
+                            {{ $latestNews['RENewsTitle']->content ?? 'Latest Research Title' }}
+                        </h3>
                         <div class="flex justify-center">
-                            <button class="bg-[#BD0F03] text-white px-6 py-2 rounded-tr-[35px] rounded-bl-[35px]">LEARN MORE ></button>
+                            <button class="bg-[#BD0F03] text-white px-6 py-2 rounded-tr-[35px] rounded-bl-[35px]">
+                                LEARN MORE >
+                            </button>
                         </div>
                     </div>
-                    <div class="hidden lg:flex mt-8">
+    
+                    {{-- Desktop Layout --}}
+                    <div class="hidden lg:flex lg:justify-between mt-8">
                         <div class="flex flex-col justify-between">
                             <div class="pr-14 flex flex-col gap-4">
-                                <p class="inter-semibold capitalize text-[#7C0A02] text-4xl">Artificial Intelligence in Education: Improving Learning Through Smart Tutoring Systems</p>
-                                <p class="inter-medium capitalize text-base">Lead Researcher: Engr. John Dela Cruz, College of Computing Studies</p>
-                                <p class="inter-light text-base tracking-tighter">As artificial intelligence (AI) continues to reshape various industries, its role in education has become increasingly significant. This study explores the implementation of AI-powered Smart Tutoring Systems (STS) to enhance student learning experiences. By leveraging machine learning algorithms, natural language processing, and adaptive learning models, these systems provide personalized guidance tailored to each student's learning pace and comprehension level.</p>
+                                <p class="inter-semibold capitalize text-[#7C0A02] text-4xl">
+                                    {{ $latestNews['RENewsTitle']->content ?? 'Latest Research Title' }}
+                                </p>
+                                <p class="inter-medium capitalize text-base">
+                                    {{ \Carbon\Carbon::parse($latestNews['RENewsDate']->content)->format('d F, Y') }}
+                                    <span>|</span>
+                                    <span>{{ $latestNews['RENewsLocation']->content ?? 'Location not available' }}</span>
+                                </p>
+                                <p class="inter-light text-base tracking-tighter pr-33">
+                                    {{ $latestNews['RENewsContent']->content ?? 'Content coming soon.' }}
+                                </p>
                             </div>
-                            <div class="">
-                                <p class="inter-medium tracking-tight">Published: December 2023</p>
-                                <p class="flex gap-2 text-[#7C0A02] text-3xl inter-medium tracking-tight mt-2">Read More <span> > </span></p>
+                            <div>
+                                <p class="flex gap-2 text-[#7C0A02] text-3xl inter-medium tracking-tight mt-2 cursor-pointer">
+                                    Read More <span> > </span>
+                                </p>
                             </div>
                         </div>
-                        <img class="border-2 border-[#7C0A02]" src="{{ asset('images/research.png')}}" alt="">
+                        <img class="border-2 border-[#7C0A02] w-[550px] h-[490px] object-cover" src="{{ asset('storage/' . ($latestNews['RENewsImg']->imagePath ?? 'images/default.png')) }}" alt="Research Image">
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
 
     <!-- ABOUT WMSU SECTION -->
     <section class="w-screen h-auto md:h-[40rem] flex flex-col justify-start items-center">
