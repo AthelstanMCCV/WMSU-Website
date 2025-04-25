@@ -55,7 +55,7 @@
     <!-- WMSU NEWS SECTION -->
     <section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center">
         <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
-        <div class="w-full h-full mt-5 px-4 md:px-3">
+        <div class="w-full h-full mt-5 md:px-4">
             <div class="newsTitleCont flex items-center justify-between w-full h-20">
                 <div class="hidden md:block w-1/3"></div>
                 <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-2xl sm:text-3xl md:text-5xl w-full md:w-1/3 text-center">wmsu news</p>
@@ -67,17 +67,25 @@
                 </div>
             </div>
     
-            <div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-1 lg:gap-8 mt-4 sm:mt-4 lg:mt-7 px-2 sm:px-2 lg:px-6">
-                @for($i = 0; $i < 4; $i++)
-                    <x-home-card>
-                        <x-slot:homeCardImg>{{ asset('images/news1.png') }}</x-slot:homeCard>
-                        <x-slot:homeCardTitle>WMSU Ranks Among Top Universities in the Philippines</x-slot:homeCardTitle> 
-                        <x-slot:homeCardBody>Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</x-slot:homeCardBody>
-                    </x-home-card>
-                @endfor
+            <!-- Swiper Container -->
+            <div class="w-full mt-8">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper lg:flex">
+                        @for($i = 0; $i < 4; $i++)
+                            <div class="swiper-slide">
+                                <x-home-card>
+                                    <x-slot:homeCardImg>{{ asset('images/news1.png') }}</x-slot:homeCardImg>
+                                    <x-slot:homeCardTitle>WMSU Ranks Among Top Universities in the Philippines</x-slot:homeCardTitle> 
+                                    <x-slot:homeCardBody>Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</x-slot:homeCardBody>
+                                </x-home-card>
+                            </div>
+                        @endfor
+                    </div>
+
+                    <!-- Optional Navigation -->
+                    <div class="swiper-pagination mt-4"></div>
+                </div>
             </div>
-        </div>
-        
     </section>
     
     
@@ -485,3 +493,17 @@
     </footer>
 </section>
 </x-head>
+
+<script>
+var swiper = new Swiper(".swiper", {
+  slidesPerView: "auto",
+  centeredSlides: true,
+  grabCursor: true,
+  breakpoints: {
+    769: {
+      slidesPerView: 4,
+      centeredSlides: false,
+    }
+  }
+});
+  </script>

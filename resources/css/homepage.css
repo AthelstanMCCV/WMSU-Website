@@ -13,3 +13,27 @@
     height: 15%;
     background-color: white;
 }
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .swiper-slide {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      width: 75%; /* This controls how much of each slide is visible */
+      opacity: 0.5;
+    }
+  
+    .swiper-slide-active {
+      transform: scale(1);
+      opacity: 1;
+    }
+  
+    .swiper-slide-next,
+    .swiper-slide-prev {
+      transform: scale(0.85);
+      opacity: 0.8;
+    }
+  }
