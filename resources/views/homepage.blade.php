@@ -58,7 +58,7 @@
         <div class="w-full h-full mt-5 md:px-4">
             <div class="newsTitleCont flex items-center justify-between w-full h-20">
                 <div class="hidden md:block w-1/3"></div>
-                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-2xl sm:text-3xl md:text-5xl w-full md:w-1/3 text-center">wmsu news</p>
+                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-5xl w-full md:w-1/3 text-center">wmsu news</p>
                 <div class="hidden md:flex flex-col w-1/3 h-full items-end justify-end">
                     <div class="flex flex-col items-end group cursor-pointer mr-5">
                         <img class="size-7 group-hover:rotate-45 duration-300 ease-in-out" src="{{asset('images/plus.png')}}" alt="">
@@ -70,7 +70,7 @@
             <!-- Swiper Container -->
             <div class="w-full mt-8">
                 <div class="swiper mySwiper">
-                    <div class="swiper-wrapper lg:flex">
+                    <div class="swiper-wrapper">
                         @for($i = 0; $i < 4; $i++)
                             <div class="swiper-slide">
                                 <x-home-card>
@@ -90,67 +90,117 @@
     
     
     <!-- RESEARCH ARCHIVES SECTION -->
+    @if($latestNews->isNotEmpty())
     <section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center"> 
         <div class="w-[2px] h-[110px] bg-[#BD0F03] block lg:block"></div>
+    
         <div class="w-full h-full mt-5">
             <div class="bg-[#7C0A02] lg:bg-transparent px-4 py-8 lg:p-0">
-                <div class="flex flex-col items-center justify-center w-full">
-                    <p class="newsTitle uppercase text-white lg:text-[#7C0A02] inter-bold text-3xl sm:text-4xl lg:text-5xl text-center mb-6 lg:mb-0">research archives</p>
+                <div class="flex flex-col items-center justify-center w-full mb-10">
+                    <p class="newsTitle uppercase text-white lg:text-[#7C0A02] inter-bold text-3xl sm:text-4xl lg:text-5xl text-center mb-6 lg:mb-0">
+                        Research & Extension
+                    </p>
                 </div>
+    
                 <div class="max-w-[300px] mx-auto lg:max-w-none lg:mx-0 lg:px-14">
+                    {{-- Mobile Layout --}}
                     <div class="lg:hidden">
                         <div class="bg-white p-1">
-                            <img src="{{ asset('images/research.png')}}" alt="Research" class="w-full aspect-square object-cover">
+                            <img src="{{ asset('storage/' . ($latestNews['RENewsImg']->imagePath ?? 'images/default.png')) }}" alt="Research" class="w-full aspect-square object-cover">
                         </div>
-                        <h3 class="text-white text-xl font-bold text-center mt-6 mb-6 px-4">Artificial Intelligence in Education: Improving Learning Through Smart Tutoring Systems</h3>
+                        <h3 class="text-white text-xl font-bold text-center mt-6 mb-6 px-4">
+                            {{ $latestNews['RENewsTitle']->content ?? 'Latest Research Title' }}
+                        </h3>
                         <div class="flex justify-center">
-                            <button class="bg-[#BD0F03] text-white px-6 py-2 rounded-tr-[35px] rounded-bl-[35px]">LEARN MORE ></button>
+                            <button class="bg-[#BD0F03] text-white px-6 py-2 rounded-tr-[35px] rounded-bl-[35px]">
+                                LEARN MORE >
+                            </button>
                         </div>
                     </div>
-                    <div class="hidden lg:flex mt-8">
+    
+                    {{-- Desktop Layout --}}
+                    <div class="hidden lg:flex lg:justify-between mt-8">
                         <div class="flex flex-col justify-between">
                             <div class="pr-14 flex flex-col gap-4">
-                                <p class="inter-semibold capitalize text-[#7C0A02] text-4xl">Artificial Intelligence in Education: Improving Learning Through Smart Tutoring Systems</p>
-                                <p class="inter-medium capitalize text-base">Lead Researcher: Engr. John Dela Cruz, College of Computing Studies</p>
-                                <p class="inter-light text-base tracking-tighter">As artificial intelligence (AI) continues to reshape various industries, its role in education has become increasingly significant. This study explores the implementation of AI-powered Smart Tutoring Systems (STS) to enhance student learning experiences. By leveraging machine learning algorithms, natural language processing, and adaptive learning models, these systems provide personalized guidance tailored to each student's learning pace and comprehension level.</p>
+                                <p class="inter-semibold capitalize text-[#7C0A02] text-4xl">
+                                    {{ $latestNews['RENewsTitle']->content ?? 'Latest Research Title' }}
+                                </p>
+                                <p class="inter-medium capitalize text-base">
+                                    {{ \Carbon\Carbon::parse($latestNews['RENewsDate']->content)->format('d F, Y') }}
+                                    <span>|</span>
+                                    <span>{{ $latestNews['RENewsLocation']->content ?? 'Location not available' }}</span>
+                                </p>
+                                <p class="inter-light text-base tracking-tighter pr-33">
+                                    {{ $latestNews['RENewsContent']->content ?? 'Content coming soon.' }}
+                                </p>
                             </div>
-                            <div class="">
-                                <p class="inter-medium tracking-tight">Published: December 2023</p>
-                                <p class="flex gap-2 text-[#7C0A02] text-3xl inter-medium tracking-tight mt-2">Read More <span> > </span></p>
+                            <div>
+                                <p class="flex gap-2 text-[#7C0A02] text-3xl inter-medium tracking-tight mt-2 cursor-pointer">
+                                    Read More <span> > </span>
+                                </p>
                             </div>
                         </div>
-                        <img class="border-2 border-[#7C0A02]" src="{{ asset('images/research.png')}}" alt="">
+                        <img class="border-2 border-[#7C0A02] w-[550px] h-[490px] object-cover" src="{{ asset('storage/' . ($latestNews['RENewsImg']->imagePath ?? 'images/default.png')) }}" alt="Research Image">
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
 
     <!-- ABOUT WMSU SECTION -->
     <section class="w-screen h-auto md:h-[40rem] flex flex-col justify-start items-center">
         <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
-        <div class="px-4 md:px-14 relative w-full h-full bg-no-repeat bg-cover bg-center mt-5" style="background-image: url('{{asset('images/news2-long.png')}}')">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#7C0A02] to-[#7C0A02] opacity-70"></div>
-            <div class="relative flex flex-col md:flex-row z-10 h-full items-center justify-center py-8 md:py-0">
-                <div class="text-white inter-extrabold uppercase text-4xl md:text-6xl lg:text-9xl w-full md:w-5/12 text-center md:text-left">
-                    <p>About</p>
-                    <p class="pl-0 md:pl-20">WMSU</p>
-                </div>
-                <div class="w-full md:w-2/12 h-0.5 md:h-full flex justify-center items-center my-4 md:my-0">
-                    <div class="w-full md:w-0.5 h-0.5 md:h-5/6 bg-white"></div>
-                </div>
-                <div class="text-white w-full md:w-5/12 flex flex-col gap-4 md:gap-20 px-4 md:px-0">
-                    <p class="inter-extralight text-lg md:text-2xl lg:text-3xl text-center md:text-left">Learn how WMSU shapes future leaders, explore our rich history, and become part of a vibrant academic community.</p>
-                    <div class="flex flex-col gap-2">
-                        <p class="inter-semibold text-lg md:text-xl flex justify-between">History of WMSU <span>></span></p>
-                        <p class="inter-semibold text-lg md:text-xl flex justify-between">Leadership and Governance <span>></span></p>
-                        <p class="inter-semibold text-lg md:text-xl flex justify-between">Mission and Vision <span>></span></p>
-                        <p class="inter-semibold text-lg md:text-xl flex justify-between">WMSU in the Community <span>></span></p>
-                    </div>
-                </div>
+        <div class="px-4 md:px-14 relative w-full h-full bg-no-repeat bg-cover bg-center mt-5" style="background-image: url('{{ asset('images/news2-long.png') }}')">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#7C0A02] to-[#7C0A02] opacity-70"></div>
+          <div class="relative flex flex-col md:flex-row z-10 h-full items-center justify-center py-8 md:py-0">
+            
+            <div class="text-white inter-extrabold uppercase text-4xl md:text-6xl lg:text-9xl w-full md:w-5/12 text-center md:text-left">
+              <p>About</p>
+              <p class="pl-0 md:pl-20">WMSU</p>
             </div>
+      
+            <div class="w-full md:w-2/12 h-0.5 md:h-full flex justify-center items-center my-4 md:my-0">
+              <div class="w-full md:w-0.5 h-0.5 md:h-5/6 bg-white"></div>
+            </div>
+      
+            <div class="text-white w-full md:w-5/12 flex flex-col gap-4 md:gap-20 px-4 md:px-0">
+              <p class="inter-extralight text-lg md:text-2xl lg:text-3xl text-center md:text-left">
+                Learn how WMSU shapes future leaders, explore our rich history, and become part of a vibrant academic community.
+              </p>
+      
+              <div class="flex flex-col gap-2">
+                <div class="group relative cursor-pointer">
+                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
+                    History of WMSU <span>></span>
+                  </p>
+                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
+                </div>
+                <div class="group relative cursor-pointer">
+                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
+                    Leadership and Governance <span>></span>
+                  </p>
+                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
+                </div>
+                <div class="group relative cursor-pointer">
+                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
+                    Mission and Vision <span>></span>
+                  </p>
+                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
+                </div>
+                <div class="group relative cursor-pointer">
+                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
+                    WMSU in the Community <span>></span>
+                  </p>
+                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
+                </div>
+              </div>
+      
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
+      
 
     <section class="PresCorner bg-gray-100"></section>
     <!-- Line Divider -->
@@ -167,7 +217,7 @@
         </div>
 
         <!-- Right: Content Section -->
-        <div class="md:w-[55%] md:pl-32 pr-2">
+        <div class="md:w-[55%] md:pl-32 pr-13">
             <h2 class="text-[2rem] sm:text-[2.2rem] md:text-[2.5rem] font-bold text-[#7c0a02] mb-6 sm:mb-8 md:mb-10 ml-8">PRESIDENT'S CORNER</h2>
 
             <!-- Reports List -->
