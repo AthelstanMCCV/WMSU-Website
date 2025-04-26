@@ -29,3 +29,7 @@ Route::post('/sections/{id}/update', [Page_Sections::class, 'update'])->name('se
 Route::get('/news-group/{alt}/edit', [Page_Sections::class, 'editNewsGroup'])->name('editNewsGroup');
 Route::delete('/news-group/{alt}', [Page_Sections::class, 'deleteNewsGroup'])->name('deleteNewsGroup');
 Route::post('/news-group/{alt}/update', [Page_Sections::class, 'updateNewsGroup'])->name('updateNewsGroup');
+
+// Update & Delete Articles
+Route::put('/admin/updates/{id}', [Page_Sections::class, 'updateUpdateArticle'])->name('updateUpdateArticle');
+Route::get('/admin/updates/delete/{id}', [Page_Sections::class, 'deleteArticleGroup'])->name('deleteArticleGroup');

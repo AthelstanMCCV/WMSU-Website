@@ -59,12 +59,8 @@ class Page_Sections extends Controller
 
     public function showUpdatesData()
     {
-        $articleGroups = Page_Section::where('page_id', 3)
-            ->where('indicator', 'UpdatesArticles')
-            ->get()
-            ->groupBy('alt');
-    
-        return view('admin.admin-updates', compact('articleGroups'));
+        $sections = Page_Section::where('page_id', 3)->get()->groupBy('indicator');
+        return view('admin.admin-updates', compact('sections'));
     }
 
     /* -------------------------------
@@ -294,6 +290,49 @@ class Page_Sections extends Controller
     
         return redirect()->back()->with('success', 'Article added successfully!');
     }
+
+    public function updateUpdateArticle(Request $request, $alt)
+    {
+        // Update text fields
+        if ($request->has('newsItems')) {
+            foreach ($request->newsItems as $id => $content) {
+                $section = Page_Section::find($id);
+                if ($section) {
+                    $section->content = $content;
+                    $section->save();
+                }
+            }
+        }
+    
+        // Media upload
+        if ($request->hasFile('media')) {
+            $media = Page_Section::where('alt', $alt)->where('description', 'RENewsImg')->first();
+            if ($media) {
+                if ($media->imagePath && Storage::exists('public/' . $media->imagePath)) {
+                    Storage::delete('public/' . $media->imagePath);
+                }
+                $filePath = $request->file('media')->store('news', 'public');
+                $media->imagePath = $filePath;
+                $media->save();
+            }
+        }
+    
+        return redirect()->back()->with('success', 'News group updated successfully!');
+    }
+
+    public function deleteArticleGroup($id)
+    {
+        $article = Page_Section::findOrFail($id);
+    
+        if ($article->imagePath && Storage::exists('public/' . $article->imagePath)) {
+            Storage::delete('public/' . $article->imagePath);
+        }
+    
+        $article->delete();
+    
+        return redirect()->back()->with('success', 'Article deleted successfully!');
+    }
+    
 
     /* -------------------------------
         PUBLIC RESEARCH & EXTENSION PAGES
