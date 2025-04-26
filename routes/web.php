@@ -17,7 +17,6 @@ Route::get('/register', fn() => view('auth/sign-in'));
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
-Route::post('/addSection', [Page_Sections::class, 'AddSection']);
 Route::post('/addNewsSection', [Page_Sections::class, 'addNewsSection']);
 
 // Existing section routes

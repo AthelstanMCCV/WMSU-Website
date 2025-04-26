@@ -1,0 +1,198 @@
+.wmsu-act {
+    padding: 1rem;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.more {
+    text-align: right;
+    margin-right: 80px; 
+    margin-top: 5px 2px 0 0;
+}
+
+.act-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 0 40px;
+    padding: 2px 0 0 0; 
+}
+
+.act-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 3.54994rem;
+    color: #BD0F03;
+    margin: 0;
+    padding-top: 20px;
+    line-height: normal;
+}
+
+#more-article {
+    display: inline-flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    font-family: 'Inter';
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 2px 0;
+}
+
+
+#more-article::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #BD0F03;
+    display: none;
+}
+
+#more-article::after {
+    content: "+";
+    display: inline-block;
+    margin-left: 4px;
+    transition: all 0.3s ease; /* Made plus rotation smoother */
+}
+
+/* Hover effects */
+#more-article:hover {
+    transform: scale(1.1); /* Increased scale slightly */
+    color: #BD0F03;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Added smooth easing */
+}
+
+#more-article:hover::before {
+    display: block;
+}
+
+#more-article:hover::after {
+    transform: rotate(45deg);
+    color: #BD0F03;
+}
+.act-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 4rem;
+    color: #BD0F03;
+    margin: 0;
+}
+.act-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 15px;
+    margin: 0 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.act-item img {
+    width: 270px;
+    height: 300px;
+    object-fit: scale-down;
+}
+
+.act-item h6 {
+    color: #BD0F03;
+    padding: 15px;
+    margin: 0;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.act-item p {
+    padding: 0 15px;
+    font-size: 0.9rem;
+    color: black;
+    line-height: auto;
+}
+
+.read-more {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 24px;
+    color: #BD0F03;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+    /* Basic Reset and General Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* Blog Posts Section */
+
+.ActProgProj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.ActProgProj-post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex; /* Enable Flexbox for the post */
+    flex-direction: column; /* Stack content vertically */
+}
+
+.ActProgProj-post img {
+    width: 100%;
+    display: block;
+    height: auto;
+    border-bottom: 1px solid #eee;
+}
+
+.ActProgProj-post h3 {
+    padding: 15px;
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #BD0F03;
+    font-weight: bold;
+}
+
+.ActProgProj-post .post-meta {
+    padding: 0 15px 10px;
+    color: #615e5e;
+    font-size: 0.9em;
+}
+
+.ActProgProj-post .post-excerpt {
+    padding: 0 15px 15px;
+    line-height: 1.6;
+    flex-grow: 1; /* Allow excerpt to take up remaining vertical space */
+}
+
+.ActProgProj-post .read-more {
+    display: flex; /* Use flex to center the text if needed */
+    justify-content: center; /* Center text horizontally */
+    padding: 10px 15px;
+    background-color: #BD0F03;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 15px;
+    font-size: 1em;
+    align-self: flex-end; /* Push the button to the bottom */
+}
+
+.ActProgProj-post .read-more:hover {
+    background-color: #BD0F03;
+}
