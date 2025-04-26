@@ -57,6 +57,16 @@ class Page_Sections extends Controller
         return view('admin.admin-res&ext', compact('sections'));
     }
 
+    public function showUpdatesData()
+    {
+        $articleGroups = Page_Section::where('page_id', 3)
+            ->where('indicator', 'UpdatesArticles')
+            ->get()
+            ->groupBy('alt');
+    
+        return view('admin.admin-updates', compact('articleGroups'));
+    }
+
     /* -------------------------------
         GENERAL SECTION EDIT / UPDATE
     ---------------------------------*/
@@ -208,6 +218,81 @@ class Page_Sections extends Controller
     {
         Page_Section::where('alt', $alt)->delete();
         return redirect()->back()->with('success', 'News item deleted successfully!');
+    }
+
+    /* -------------------------------
+        UPDATES PAGE CRUD
+    ---------------------------------*/
+
+    public function addArticlesSection(Request $request)
+    {
+        // Validate form fields
+        $validated = $request->validate([
+            'title'   => 'required|string|max:255',
+            'date'    => 'required|date',
+            'body'    => 'required|string',
+            'images'  => 'nullable|array',
+            'images.*'=> 'image|mimes:jpeg,png,jpg,gif,webp|max:5120'
+        ]);
+    
+        // Optional: group the article parts with a UUID alt value
+        $articleGroupId = (string) Str::uuid();
+    
+        // Save Title
+        Page_Section::create([
+            'page_id'     => 3, // or dynamically set if needed
+            'description' => 'ArticleTitle',
+            'content'     => $validated['title'],
+            'imagePath'   => null,
+            'indicator'   => 'UpdatesArticles',
+            'elemType'    => 'text',
+            'subpage'     => null,
+            'alt'         => $articleGroupId
+        ]);
+
+            // Save Date
+        Page_Section::create([
+            'page_id'     => 3,
+            'description' => 'ArticleDate',
+            'content'     => $validated['date'],
+            'imagePath'   => null,
+            'indicator'   => 'UpdatesArticles',
+            'elemType'    => 'date',
+            'subpage'     => null,
+            'alt'         => $articleGroupId
+        ]);
+    
+        // Save Body
+        Page_Section::create([
+            'page_id'     => 3,
+            'description' => 'ArticleBody',
+            'content'     => $validated['body'],
+            'imagePath'   => null,
+            'indicator'   => 'UpdatesArticles',
+            'elemType'    => 'text',
+            'subpage'     => null,
+            'alt'         => $articleGroupId
+        ]);
+    
+        // Save Images if any
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('images', 'public');
+    
+                Page_Section::create([
+                    'page_id'     => 3,
+                    'description' => 'ArticleImage',
+                    'content'     => null,
+                    'imagePath'   => $imagePath,
+                    'indicator'   => 'UpdatesArticles',
+                    'elemType'    => 'image',
+                    'subpage'     => null,
+                    'alt'         => $articleGroupId
+                ]);
+            }
+        }
+    
+        return redirect()->back()->with('success', 'Article added successfully!');
     }
 
     /* -------------------------------
