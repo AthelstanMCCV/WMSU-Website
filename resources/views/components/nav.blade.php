@@ -11,7 +11,7 @@
 
         <div class="navLinksCont h-full flex items-center opacity-0 pointer-events-none absolute xl:opacity-100 xl:pointer-events-auto xl:relative">
             <div class="flex items-center text-xs inter-extralight text-[#BD0F03]">
-                <a class="navLinks hover:font-extrabold duration-150 ease-in-out" href="" id="Home">Home</a>
+                <a class="navLinks hover:font-extrabold duration-150 ease-in-out" href="/" id="Home">Home</a>
                 <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="About Us">About Us <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
                 <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Admissions">Admissions <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
                 <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Academic">Academic <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>

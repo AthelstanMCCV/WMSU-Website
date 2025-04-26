@@ -2,6 +2,8 @@
 @import './fonts.css';
 @import './homepage.css';
 @import './nav.css';
+@import './ResExtActResExt.css';
+@import './ResExtHomePage.css';
 @import "flowbite/src/themes/default";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
