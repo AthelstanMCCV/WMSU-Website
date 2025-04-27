@@ -218,7 +218,6 @@
     <!-- Line Divider -->
    <section class="w-screen h-[130px] flex flex-col justify-start items-center">
     <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
-    <div class="w-full h-full mt-5"></div>
    </section>
 
     <!-- President's Corner Section -->
@@ -298,135 +297,95 @@
         </div>
     </section>
   
+    <section class="w-screen h-[130px] flex flex-col justify-start items-center">
+        <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
+    </section>
     
-<!--Update 3 3:35 PM (Start of Campus Section) -->
-    <!-- WMSU Campuses Section -->
-<section class="w-screen h-[100px] flex flex-col justify-start items-center">
-    <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
-    <div class="w-full mt-5 px-4"></div>
-</section>
-
-    <section class="CampusCont mb-8">
-        <h1 class="CampusContTitle text-4xl font-bold text-red-800 mb-6 text-center">WMSU CAMPUSES</h1>
-<!--(Campuses Imgs Cont)-->
-        <div class="CampusImgCont grid md:grid-cols-2 gap-1">
-            <!-- Zamboanga Del Sur Campus -->
-            <div class="relative group overflow-hidden rounded-lg shadow-lg">
- <!--(Img cont, animation/When hovered, img zoom in)-->
-                <div class="relative h-[400px] overflow-hidden">
-<!--(Img for zc, on the left side)-->
-                    <img src="{{ asset('images/ZDS.png') }}" alt="Zamboanga Del Sur Campus" 
-                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 transition-all duration-1 bg-gradient-to-b from-transparent via-black/50 to-white/80 group-hover:opacity-0"></div>
-<!--(Black bg appeared when not hovered)-->
-                    <div class="absolute inset-0 transition-all duration-500 bg-white/50 group-hover:opacity-0"></div>
-<!--The Zamboanga City Text and the Show More is placed in the center -->
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-white">
-<!--(Text hover effect)-->
-                        <h2 class="ZDSText text-3xl font-bold text-red-500 mb-2 z-10 group-hover:text-white transition-colors duration-300">ZAMBOANGA<br/>DEL SUR</h2>
-                        <button class="flex items-center space-x-2 text-black group-hover:text-red-500 transition-colors duration-300 z-10">
-                            <span class="text-lg font-semibold">SHOW MORE</span>
-                            <span class="text-2xl transform transition-transform duration-300 group-hover:rotate-45">+</span>
-                        </button>
+    <section class="wmsu-campuses-cont">
+        <div class="main-page-titles-cont">WMSU CAMPUSES</div>
+        <div class="camp-cont"> 
+            <div class="camp-cont-left"> 
+                <div class="camp-text"> 
+                    <div class="camp-text-title">ZAMBOANGA DEL SUR</div>
+                    <div class="camp-text-mix">
+                        <div class="camp-text-plus">+</div>
+                        <div class="camp-text-show">SHOW MORE</div>
                     </div>
                 </div>
             </div>
-
-            <!-- Zamboanga Sibugay Campus -->       
- <!--(Img container)-->
-            <div class="relative group overflow-hidden rounded-lg shadow-lg">
- <!--(Img cont, animation/When hovered, img zoom in)-->
-                <div class="relative h-[400px] overflow-hidden">
-<!--(Img for zc, on the left side)-->
-                    <img src="{{ asset('images/ZS.png') }}" alt="Zamboanga Sibugay Campus"
-                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 transition-all duration-500 bg-gradient-to-b from-transparent via-black/50 to-white/80 group-hover:opacity-0"></div>
-<!--(Black bg appeared when not hovered)-->
-                    <div class="absolute inset-0 transition-all duration-500 bg-white/50 group-hover:opacity-0"></div>
-<!--The Zamboanga Sibugay Text and the Show More is placed in the center -->
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-white">
-<!--(Text hover effect)-->
-                        <h2 class="ZSText text-3xl font-bold text-red-500 mb-2 z-10 group-hover:text-white transition-colors duration-300">ZAMBOANGA<br/>SIBUGAY</h2>
-                        <button class="flex items-center space-x-2 text-black group-hover:text-red-500 transition-colors duration-300 z-10">
-                            <span class="text-lg font-semibold">SHOW MORE</span>
-                            <span class="text-2xl transform transition-transform duration-300 group-hover:rotate-45">+</span>
-                        </button>
+            <div class="camp-cont-mid"></div>
+            <div class="camp-cont-right"> 
+                <div class="camp-text"> 
+                    <div class="camp-text-title">ZAMBOANGA SIBUGAY</div>
+                    <div class="camp-text-mix">
+                    <div class="camp-text-plus">+</div>
+                    <div class="camp-text-show">SHOW MORE</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-<!-- WMSU Services Section -->
-<section class="w-screen h-[130px] flex flex-col justify-start items-center">
-    <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
-    <div class="w-full mt-5 px-4"></div>
-</section>
-    <section class="ServicesCont py-4 md:py-16 bg-white">
-        <h1 class="text-4xl font-bold text-[#7C0A02] mb-4 md:mb-12 text-center">SERVICES</h1>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 md:gap-8 mx-auto">
-            <!-- Freshman Online Pre-Admission -->
-            <div class="relative bg-gray-100 rounded-[2rem] p-4 md:p-8 h-[120px] md:h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                <!-- Icon Container -->
-                <div class="absolute -top-[-4px] -right-[-2px] w-20 md:w-24 h-20 md:h-24">
-                    <div class="absolute inset-0 bg-[#FFE5E5] rounded-[65%_0%_35%_65%]"></div>
-                    <div class="absolute inset-[15%] bg-[#7C0A02] rounded-[65%_0%_35%_65%] flex items-center justify-center">
-                        <img src="{{ asset('images/freshman-icon.png') }}" alt="Freshman Online Pre-Admission" class="w-10 md:w-10 h-10 md:h-10 object-contain">
+    
+    <section class="line-page-div"></section>
+    
+    <section class="wmsu-services-cont">
+        <div class="main-page-titles-cont">SERVICES</div>
+        <div class="services-cont">
+            <div class="services-logo-cont">
+                <div class="square-cont">
+                    <div class="square-raindrop">
+                        <div class="square-outer"></div>
+                        <div class="square-inner"></div>
+                        <div class="square-icon">
+                            <img src="{{ asset('images/Freshman-icon.png')}}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="absolute bottom-3 md:bottom-8">
-                    <h3 class="text-base md:text-xl font-bold text-gray-800">Freshman Online Pre-Admission</h3>
+                    <div class="square-text">Freshman Online Pre-Admission</div>
                 </div>
             </div>
-
-            <!-- Online Registration -->
-            <div class="relative bg-gray-100 rounded-[2rem] p-4 md:p-8 h-[120px] md:h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                <div class="absolute -top-[-4px] -right-[-2px] w-20 md:w-24 h-20 md:h-24">
-                    <div class="absolute inset-0 bg-[#FFE5E5] rounded-[65%_0%_35%_65%]"></div>
-                    <div class="absolute inset-[15%] bg-[#7C0A02] rounded-[65%_0%_35%_65%] flex items-center justify-center">
-                        <img src="{{ asset('images/Old Student-icon.png') }}" alt="Online Registration" class="w-10 md:w-10 h-10 md:h-10 object-contain">
+            <div class="services-logo-cont">
+                <div class="square-cont">
+                    <div class="square-raindrop">
+                        <div class="square-outer"></div>
+                        <div class="square-inner"></div>
+                        <div class="square-icon">
+                            <img src="{{asset('images/Old Student-icon.png')}}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="absolute bottom-3 md:bottom-8">
-                    <h3 class="text-base md:text-xl font-bold text-gray-800">Online Registration<br/>(Old Student)</h3>
+                    <div class="square-text">Online Registration (Old Student)</div>
                 </div>
             </div>
-
-            <!-- Online Advising -->
-            <div class="relative bg-gray-100 rounded-[2rem] p-4 md:p-8 h-[120px] md:h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                <div class="absolute -top-[-4px] -right-[-2px] w-20 md:w-24 h-20 md:h-24">
-                    <div class="absolute inset-0 bg-[#FFE5E5] rounded-[65%_0%_35%_65%]"></div>
-                    <div class="absolute inset-[15%] bg-[#7C0A02] rounded-[65%_0%_35%_65%] flex items-center justify-center">
-                        <img src="{{ asset('images/Advising-icon.png') }}" alt="Online Advising" class="w-10 md:w-10 h-10 md:h-10 object-contain">
+            <div class="services-logo-cont">
+                <div class="square-cont">
+                    <div class="square-raindrop">
+                        <div class="square-outer"></div>
+                        <div class="square-inner"></div>
+                        <div class="square-icon">
+                            <img src="{{asset('images/Advising-icon.png')}}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="absolute bottom-3 md:bottom-8">
-                    <h3 class="text-base md:text-xl font-bold text-gray-800">Online Advising</h3>
+                    <div class="square-text">Online Advising</div>
                 </div>
             </div>
-
-            <!-- Online Enlistment -->
-            <div class="relative bg-gray-100 rounded-[2rem] p-4 md:p-8 h-[120px] md:h-[200px] group cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                <div class="absolute -top-[-4px] -right-[-2px] w-20 md:w-24 h-20 md:h-24">
-                    <div class="absolute inset-0 bg-[#FFE5E5] rounded-[65%_0%_35%_65%]"></div>
-                    <div class="absolute inset-[15%] bg-[#7C0A02] rounded-[65%_0%_35%_65%] flex items-center justify-center">
-                        <img src="{{ asset('images/Enlistment-icon.png') }}" alt="Online Enlistment" class="w-10 md:w-10 h-10 md:h-10 object-contain">
+            <div class="services-logo-cont">
+                <div class="square-cont">
+                    <div class="square-raindrop">
+                        <div class="square-outer"></div>
+                        <div class="square-inner"></div>
+                        <div class="square-icon">
+                            <img src="{{asset('images/Enlistment-icon.png')}}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="absolute bottom-3 md:bottom-8">
-                    <h3 class="text-base md:text-xl font-bold text-gray-800">Online Enlistment</h3>
+                    <div class="square-text">Online Enlistment</div>
                 </div>
             </div>
-
-            <!-- More Services Button -->
-            <div class="relative bg-[#7C0A02] h-[120px] md:h-[200px] flex items-center justify-center cursor-pointer hover:bg-[#8B0000] transition-colors duration-300">
-                <div class="text-center">
-                    <p class="text-white font-bold text-xl md:text-2xl">WMSU</p>
-                    <p class="text-white font-bold text-xl md:text-2xl mb-2">SERVICES</p>
-                    <span class="text-white text-2xl md:text-2xl font-bold">×</span>
+            <div class="services-rectangle-cont">
+                <div class="rectangle-text">
+                    <div class="rectangle-text-hide">WMSU<br>SERVICES</div>
+                    <div class="rectangle-plus">+</div>
+                    <div class="rectangle-more">MORE</div> 
                 </div>
-            </div>
+            </div> 
         </div>
     </section>
           
