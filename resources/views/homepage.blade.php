@@ -52,41 +52,60 @@
     @endif
     
  
-    <!-- WMSU NEWS SECTION -->
-    <section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center">
-        <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
-        <div class="w-full h-full mt-5 md:px-4">
-            <div class="newsTitleCont flex items-center justify-between w-full h-20">
-                <div class="hidden md:block w-1/3"></div>
-                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-5xl w-full md:w-1/3 text-center">wmsu news</p>
-                <div class="hidden md:flex flex-col w-1/3 h-full items-end justify-end">
-                    <div class="flex flex-col items-end group cursor-pointer mr-5">
-                        <img class="size-7 group-hover:rotate-45 duration-300 ease-in-out" src="{{asset('images/plus.png')}}" alt="">
-                        <p class="uppercase inter-medium tracking-tighter text-sm md:text-base">more articles</p>
-                    </div>
+<!-- WMSU NEWS SECTION -->
+@if($updatesArticles->isNotEmpty())
+<section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center">
+    <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
+    <div class="w-full h-full mt-5 md:px-4">
+        <div class="newsTitleCont flex items-center justify-between w-full h-20">
+            <div class="hidden md:block w-1/3"></div>
+            <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-5xl w-full md:w-1/3 text-center">wmsu news</p>
+            <div class="hidden md:flex flex-col w-1/3 h-full items-end justify-end">
+                <div class="flex flex-col items-end group cursor-pointer mr-5">
+                    <img class="size-7 group-hover:rotate-45 duration-300 ease-in-out" src="{{ asset('images/plus.png') }}" alt="">
+                    <p class="uppercase inter-medium tracking-tighter text-sm md:text-base">more articles</p>
                 </div>
             </div>
-    
-            <!-- Swiper Container -->
-            <div class="w-full mt-8">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        @for($i = 0; $i < 4; $i++)
-                            <div class="swiper-slide">
-                                <x-home-card>
-                                    <x-slot:homeCardImg>{{ asset('images/news1.png') }}</x-slot:homeCardImg>
-                                    <x-slot:homeCardTitle>WMSU Ranks Among Top Universities in the Philippines</x-slot:homeCardTitle> 
-                                    <x-slot:homeCardBody>Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</x-slot:homeCardBody>
-                                </x-home-card>
-                            </div>
-                        @endfor
-                    </div>
+        </div>
 
-                    <!-- Optional Navigation -->
-                    <div class="swiper-pagination mt-4"></div>
+        <!-- Swiper Container -->
+        <div class="w-full mt-8">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    @foreach($updatesArticles as $updatesGroup)
+                        @php
+                            $sections = $updatesGroup->keyBy('description');
+                        @endphp
+
+                        <div class="swiper-slide">
+                            <x-home-card>
+                                <x-slot:homeCardImg>
+                                    <div class="relative w-full h-full">
+                                        @php
+                                            $images = $updatesGroup->where('description', 'ArticleImage');
+                                        @endphp
+                                        <div class="relative w-full h-72 overflow-hidden">
+                                            @foreach($images as $index => $image)
+                                                <img src="{{ asset($image->imagePath) }}" alt=""
+                                                    class="absolute top-0 left-0 w-full h-full object-cover 
+                                                            {{ $index === 0 ? 'opacity-100 no-transition' : 'opacity-0 transition-opacity duration-1000 ease-in-out' }} image-fader">
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </x-slot:homeCardImg>
+                                <x-slot:homeCardTitle>{{ $sections['ArticleTitle']->content ?? 'No Title' }}</x-slot:homeCardTitle>
+                                <x-slot:homeCardBody>{{ $sections['ArticleBody']->content ?? 'No content available.' }}</x-slot:homeCardBody>
+                            </x-home-card>
+                        </div>
+                    @endforeach
                 </div>
+
+                <div class="swiper-pagination mt-4"></div>
             </div>
-    </section>
+        </div>
+    </div>
+</section>
+@endif
     
     
     <!-- RESEARCH ARCHIVES SECTION -->

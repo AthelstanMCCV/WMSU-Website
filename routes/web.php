@@ -19,7 +19,7 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
 Route::post('/addNewsSection', [Page_Sections::class, 'addNewsSection']);
-Route::post('/addArticlesSection', [Page_Sections::class, 'addArticlesSection']);
+Route::post('/addArticlesSection', [Page_Sections::class, 'addArticlesSection'])->name('updates-articles.add');
 
 // Existing section routes
 Route::get('/sections/{id}/edit', [Page_Sections::class, 'edit'])->name('sections.edit');
@@ -30,6 +30,8 @@ Route::get('/news-group/{alt}/edit', [Page_Sections::class, 'editNewsGroup'])->n
 Route::delete('/news-group/{alt}', [Page_Sections::class, 'deleteNewsGroup'])->name('deleteNewsGroup');
 Route::post('/news-group/{alt}/update', [Page_Sections::class, 'updateNewsGroup'])->name('updateNewsGroup');
 
-// Update & Delete Articles
-Route::put('/admin/updates/{id}', [Page_Sections::class, 'updateUpdateArticle'])->name('updateUpdateArticle');
-Route::get('/admin/updates/delete/{id}', [Page_Sections::class, 'deleteArticleGroup'])->name('deleteArticleGroup');
+// Updates Articles routes
+Route::post('/admin/updates-articles/update/{alt}', [Page_Sections::class, 'updateUpdateArticle'])->name('updates-articles.update');
+Route::delete('/admin/updates-articles/delete/{alt}', [Page_Sections::class, 'deleteUpdateArticleGroup'])->name('updates-articles.delete');
+Route::delete('/admin/updates-articles/delete-image/{id}', [Page_Sections::class, 'deleteArticleImage'])->name('updates-articles.delete-image');
+

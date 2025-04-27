@@ -18,7 +18,7 @@ class Page_Sections extends Controller
         $sectionMappings = [
             'Homepage Hero' => 1,
             'Research & Extension News' => 2,
-            'About Us' => 3,
+            'UpdatesArticles' => 3,
         ];
 
         $sections = [];
@@ -38,7 +38,18 @@ class Page_Sections extends Controller
             ->get()
             ->keyBy('description');
 
-        return view('homepage', compact('sections', 'latestNews'));
+        $updatesArticlesRaw = Page_Section::where('indicator', 'UpdatesArticles')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->groupBy('alt');
+    
+        // Limit to 4 latest groups
+        $updatesArticles = $updatesArticlesRaw->sortByDesc(function ($group) {
+            // Use the created_at of the first item in each group
+            return $group->first()->created_at;
+        })->take(4);
+
+        return view('homepage', compact('sections', 'latestNews', 'updatesArticles'));
     }
 
     /* -------------------------------
@@ -304,35 +315,81 @@ class Page_Sections extends Controller
             }
         }
     
-        // Media upload
+        // Media upload handling
         if ($request->hasFile('media')) {
-            $media = Page_Section::where('alt', $alt)->where('description', 'RENewsImg')->first();
-            if ($media) {
+            $mediaSections = Page_Section::where('alt', $alt)
+                                ->where('description', 'ArticleImage')
+                                ->get();
+    
+            foreach ($mediaSections as $media) {
+                // Delete old image if exists
                 if ($media->imagePath && Storage::exists('public/' . $media->imagePath)) {
                     Storage::delete('public/' . $media->imagePath);
                 }
-                $filePath = $request->file('media')->store('news', 'public');
+                // Store new file
+                $filePath = $request->file('media')->store('images', 'public');
                 $media->imagePath = $filePath;
                 $media->save();
             }
         }
-    
-        return redirect()->back()->with('success', 'News group updated successfully!');
-    }
 
-    public function deleteArticleGroup($id)
-    {
-        $article = Page_Section::findOrFail($id);
-    
-        if ($article->imagePath && Storage::exists('public/' . $article->imagePath)) {
-            Storage::delete('public/' . $article->imagePath);
+        // Remove selected images
+        if ($request->has('removeImages')) {
+            foreach ($request->removeImages as $imageId) {
+                $image = Page_Section::find($imageId);
+                if ($image && $image->imagePath && Storage::exists('public/' . $image->imagePath)) {
+                    Storage::delete('public/' . $image->imagePath);
+                }
+                if ($image) {
+                    $image->delete();
+                }
+            }
+        }
+
+        // Handle new uploaded images
+        if ($request->hasFile('media')) {
+            foreach ($request->file('media') as $file) {
+                $path = $file->store('updates', 'public'); // or wherever you store images
+                Page_Section::create([
+                    'page_id' => 3, // or your Updates page id
+                    'indicator' => 'UpdatesArticles',
+                    'alt' => $alt,
+                    'description' => 'ArticleImage',
+                    'imagePath' => $path,
+                ]);
+            }
         }
     
-        $article->delete();
-    
-        return redirect()->back()->with('success', 'Article deleted successfully!');
+        return redirect()->back()->with('success', 'Updates article group updated successfully!');
     }
     
+
+    public function deleteUpdateArticleGroup($alt)
+    {
+        $articles = Page_Section::where('alt', $alt)->get();
+    
+        foreach ($articles as $article) {
+            if ($article->imagePath && Storage::exists('public/' . $article->imagePath)) {
+                Storage::delete('public/' . $article->imagePath);
+            }
+            $article->delete();
+        }
+    
+        return redirect()->back()->with('success', 'Article group deleted successfully!');
+    }
+
+    public function deleteArticleImage($id)
+    {
+        $image = Page_Section::findOrFail($id);
+    
+        if ($image->imagePath && Storage::exists('public/' . $image->imagePath)) {
+            Storage::delete('public/' . $image->imagePath);
+        }
+    
+        $image->delete();
+    
+        return response()->json(['success' => true]);
+    }
 
     /* -------------------------------
         PUBLIC RESEARCH & EXTENSION PAGES
