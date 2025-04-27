@@ -2,9 +2,6 @@
     <x-admin-head>
         <div class="p-4 sm:ml-64">
             <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-                @foreach($sections as $indicator => $group)
-                @if($indicator === 'UpdatesArticles')
-                <h2 class="text-4xl inter-bold mt-4 mb-4">{{ $indicator }}</h2>
                 <!-- Add Article Button -->
                 <button onclick="document.getElementById('addArticleModal').classList.remove('hidden')" class="px-4 py-2 bg-green-600 text-white rounded mb-4">
                     Add New Article
@@ -36,6 +33,10 @@
                         </form>
                     </div>
                 </div>
+                @foreach($sections as $indicator => $group)
+                @if($indicator === 'UpdatesArticles')
+                <h2 class="text-4xl inter-bold mt-4 mb-4">{{ $indicator }}</h2>
+                
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left rtl:text-right">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">

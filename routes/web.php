@@ -35,3 +35,4 @@ Route::post('/admin/updates-articles/update/{alt}', [Page_Sections::class, 'upda
 Route::delete('/admin/updates-articles/delete/{alt}', [Page_Sections::class, 'deleteUpdateArticleGroup'])->name('updates-articles.delete');
 Route::delete('/admin/updates-articles/delete-image/{id}', [Page_Sections::class, 'deleteArticleImage'])->name('updates-articles.delete-image');
 
+Route::post('/addSection', [Page_Sections::class, 'addAboutSection']);

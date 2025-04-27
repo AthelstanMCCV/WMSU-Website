@@ -168,57 +168,50 @@
     @endif
 
     <!-- ABOUT WMSU SECTION -->
-    <section class="w-screen h-auto md:h-[40rem] flex flex-col justify-start items-center">
-        <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
-        <div class="px-4 md:px-14 relative w-full h-full bg-no-repeat bg-cover bg-center mt-5" style="background-image: url('{{ asset('images/news2-long.png') }}')">
-          <div class="absolute inset-0 bg-gradient-to-r from-[#7C0A02] to-[#7C0A02] opacity-70"></div>
-          <div class="relative flex flex-col md:flex-row z-10 h-full items-center justify-center py-8 md:py-0">
+    @php
+    $aboutGroup = $aboutPageSection ?? collect();
+    $aboutData = $aboutGroup->keyBy('description');
+    
+    // Filter AboutLink rows
+    $aboutLinks = $aboutGroup->where('description', 'AboutLink');
+@endphp
+
+<section class="w-screen h-auto md:h-[40rem] flex flex-col justify-start items-center">
+    <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
+    <div class="px-4 md:px-14 relative w-full h-full bg-no-repeat bg-cover bg-center mt-5" 
+        style="background-image: url('{{ asset($aboutData['AboutImage']->imagePath ?? 'images/default.png') }}')">
+        
+        <div class="absolute inset-0 bg-gradient-to-r from-[#7C0A02] to-[#7C0A02] opacity-70"></div>
+        <div class="relative flex flex-col md:flex-row z-10 h-full items-center justify-center py-8 md:py-0">
             
             <div class="text-white inter-extrabold uppercase text-4xl md:text-6xl lg:text-9xl w-full md:w-5/12 text-center md:text-left">
-              <p>About</p>
-              <p class="pl-0 md:pl-20">WMSU</p>
+                <p class="text-center">{{ $aboutData['AboutTitle']->content ?? 'About WMSU' }}</p>
             </div>
-      
+
             <div class="w-full md:w-2/12 h-0.5 md:h-full flex justify-center items-center my-4 md:my-0">
-              <div class="w-full md:w-0.5 h-0.5 md:h-5/6 bg-white"></div>
+                <div class="w-full md:w-0.5 h-0.5 md:h-5/6 bg-white"></div>
             </div>
-      
+
             <div class="text-white w-full md:w-5/12 flex flex-col gap-4 md:gap-20 px-4 md:px-0">
-              <p class="inter-extralight text-lg md:text-2xl lg:text-3xl text-center md:text-left">
-                Learn how WMSU shapes future leaders, explore our rich history, and become part of a vibrant academic community.
-              </p>
-      
-              <div class="flex flex-col gap-2">
-                <div class="group relative cursor-pointer">
-                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
-                    History of WMSU <span>></span>
-                  </p>
-                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
+                <p class="inter-extralight text-lg md:text-2xl lg:text-3xl text-center md:text-left">
+                    {{ $aboutData['AboutContent']->content ?? 'No content available.' }}
+                </p>
+
+                <div class="flex flex-col gap-2">
+                    <!-- Loop through the fetched AboutLink rows -->
+                    @foreach($aboutLinks as $link)
+                        <div class="group relative cursor-pointer">
+                            <p class="inter-semibold text-lg md:text-xl flex justify-between">
+                                {{ $link->content }} <span>></span>
+                            </p>
+                            <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="group relative cursor-pointer">
-                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
-                    Leadership and Governance <span>></span>
-                  </p>
-                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
-                </div>
-                <div class="group relative cursor-pointer">
-                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
-                    Mission and Vision <span>></span>
-                  </p>
-                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
-                </div>
-                <div class="group relative cursor-pointer">
-                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
-                    WMSU in the Community <span>></span>
-                  </p>
-                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
-                </div>
-              </div>
-      
             </div>
-          </div>
         </div>
-      </section>
+    </div>
+</section>
       
 
     <section class="PresCorner bg-gray-100"></section>

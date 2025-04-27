@@ -17,6 +17,7 @@ class Page_Sections extends Controller
     {
         $sectionMappings = [
             'Homepage Hero' => 1,
+            'About Page' => 1,
             'Research & Extension News' => 2,
             'UpdatesArticles' => 3,
         ];
@@ -28,6 +29,11 @@ class Page_Sections extends Controller
                 ->where('indicator', $indicator)
                 ->get();
         }
+
+        // Fetch all rows for 'About Page' section (page_id = 1)
+        $aboutPageSection = Page_Section::where('page_id', 1)
+        ->where('indicator', 'About Page')
+        ->get(); // This will get all rows for 'About Page'
 
         $latestNewsAlt = Page_Section::where('indicator', 'Research & Extension News')
             ->orderBy('created_at', 'desc')
@@ -49,8 +55,78 @@ class Page_Sections extends Controller
             return $group->first()->created_at;
         })->take(4);
 
-        return view('homepage', compact('sections', 'latestNews', 'updatesArticles'));
+        return view('homepage', compact('sections', 'latestNews', 'updatesArticles', 'aboutPageSection'));
     }
+
+    public function addAboutSection(Request $request)
+{
+    $aboutGroupId = (string) Str::uuid();
+
+    $validated = $request->validate([
+        'aboutTitle'   => 'nullable|string|max:255',
+        'aboutContent' => 'nullable|string',
+        'aboutImage'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+        'links'        => 'nullable|array',
+        'links.*'      => 'nullable|string|max:255',
+        'page_id'      => 'required|integer|exists:pages,id',
+    ]);
+
+    // Image
+    if ($request->hasFile('aboutImage')) {
+        $imagePath = $request->file('aboutImage')->store('images', 'public');
+
+        Page_Section::create([
+            'page_id'    => $validated['page_id'],
+            'description'=> 'AboutImage',
+            'imagePath'  => $imagePath,
+            'indicator'  => 'About Page',
+            'elemType'   => 'image',
+            'alt'        => $aboutGroupId,
+        ]);
+    }
+
+    // Title
+    if (!empty($request->aboutTitle)) {
+        Page_Section::create([
+            'page_id'    => $validated['page_id'],
+            'description'=> 'AboutTitle',
+            'content'    => $validated['aboutTitle'],
+            'indicator'  => 'About Page',
+            'elemType'   => 'text',
+            'alt'        => $aboutGroupId,
+        ]);
+    }
+
+    // Content
+    if (!empty($request->aboutContent)) {
+        Page_Section::create([
+            'page_id'    => $validated['page_id'],
+            'description'=> 'AboutContent',
+            'content'    => $validated['aboutContent'],
+            'indicator'  => 'About Page',
+            'elemType'   => 'text',
+            'alt'        => $aboutGroupId,
+        ]);
+    }
+
+    // Links (if any)
+    if (!empty($validated['links'])) {
+        foreach ($validated['links'] as $linkText) {
+            if (!empty($linkText)) {
+                Page_Section::create([
+                    'page_id'    => $validated['page_id'],
+                    'description'=> 'AboutLink',
+                    'content'    => $linkText,
+                    'indicator'  => 'About Page',
+                    'elemType'   => 'text',
+                    'alt'        => $aboutGroupId,
+                ]);
+            }
+        }
+    }
+
+    return redirect()->back()->with('success', 'About section added successfully!');
+}
 
     /* -------------------------------
         ADMIN VIEW PAGES
@@ -73,7 +149,6 @@ class Page_Sections extends Controller
         $sections = Page_Section::where('page_id', 3)->get()->groupBy('indicator');
         return view('admin.admin-updates', compact('sections'));
     }
-
     /* -------------------------------
         GENERAL SECTION EDIT / UPDATE
     ---------------------------------*/
