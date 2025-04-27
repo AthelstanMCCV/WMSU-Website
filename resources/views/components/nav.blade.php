@@ -12,20 +12,68 @@
         <div class="navLinksCont h-full flex items-center opacity-0 pointer-events-none absolute xl:opacity-100 xl:pointer-events-auto xl:relative">
             <div class="flex items-center text-xs inter-extralight text-[#BD0F03]">
                 <a class="navLinks hover:font-extrabold duration-150 ease-in-out" href="/" id="Home">Home</a>
-                <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="About Us">About Us <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-                <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Admissions">Admissions <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-                <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Academic">Academic <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-                <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Administration">Administration <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-                <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Res & Ext">Res & Ext <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
-                <a class="navLinks group hover:font-extrabold duration-150 ease-in-out" href="" id="Other">Others <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt=""></a>
+                <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="About Us">
+                    About Us <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    <div class="dropdown-menu">
+                        <!-- Dropdown content will be added here -->
+                    </div>
+                </div>
+                <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Admissions">
+                    Admissions <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    <div class="dropdown-menu">
+                        <!-- Dropdown content will be added here -->
+                    </div>
+                </div>
+                <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Academic">
+                    Academic <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    <div class="dropdown-menu">
+                        <!-- Dropdown content will be added here -->
+                    </div>
+                </div>
+                <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Administration">
+                    Administration <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    <div class="dropdown-menu">
+                        <!-- Dropdown content will be added here -->
+                    </div>
+                </div>
+                <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Res & Ext">
+                    Res & Ext <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    <div class="dropdown-menu">
+                        <!-- Dropdown content will be added here -->
+                    </div>
+                </div>
+                <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Other">
+                    Others <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    <div class="dropdown-menu">
+                        <!-- Dropdown content will be added here -->
+                    </div>
+                </div>
             </div>
             <a class="MyWmsuBtn inter-regular text-xs py-2 px-7 ml-5 bg-[#BD0F03] border border-white text-white hover:bg-white hover:text-[#BD0F03] hover:border-[#BD0F03] duration-300 ease-in-out" href="/register">MyWMSU</a>
         </div>
 
         <div class="fixed top-[80px] md:top-[98px] right-8 z-50">
-            <button class="bg-[white] hover:bg-[white] text-white px-5 md:px-7 py-2 rounded-b-[100px] shadow-lg transition-all duration-300 ease-in-out transform hover:translate-y-2">
+            <button id="search-toggle-btn" class="bg-[white] hover:bg-[white] text-white px-5 md:px-7 py-2 rounded-b-[100px] shadow-lg transition-all duration-300 ease-in-out transform hover:translate-y-2">
                 <img src="{{ asset('images/search-icon.png') }}" alt="Search" class="h-2.5 w-2.5 md:h-3 md:w-3 -mt-1">
             </button>
+            <!-- Search Dropdown -->
+            <div id="search-dropdown" class="hidden fixed left-1/2 top-[120px] transform -translate-x-1/2 w-[600px] h-[400px] bg-gray-100 rounded-2xl shadow-2xl border border-gray-100 z-50">
+                <div class="relative px-7 pt-7 pb-2">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" placeholder="Search" class="flex-1 outline-none border border-black focus:ring-1 focus:ring-black focus:border-black bg-transparent text-gray-700 text-base placeholder-gray-400" autofocus />
+                        <span class="ml-2 text-xs text-gray-400 px-2 py-1 border rounded bg-gray-50 hover:bg-red-200 hover:text-red-600 hover:border-red-700 active:bg-red-700 active:text-red-700 active:border-red-600 transition-colors duration-150 cursor-pointer">esc</span>
+                    </div>
+                </div>
+                <hr class="border-gray-100">
+                <div class="px-7 py-8 text-gray-400 text-lg">No recent searches</div>
+                <hr class="border-gray-100">
+                <div class="fixed bottom-4 right-4 flex justify-end items-center px-7 py-4">
+                    <span class="text-xs text-gray-400 mr-1">Search by</span>
+                    <img src="../images/WMSU-Logo.png" alt="algolia" class="h-5 w-auto ml-1 align-middle">
+                    <span class="text-xs text-red-600 font-bold ml-1 align-middle">WMSU</span>
+                </div>
+            </div>
         </div>
 
         <!-- Hamburger of Mobile and Tablet View -->
@@ -80,6 +128,11 @@
                             <span class="flex-1 ms-3 whitespace-nowrap">Others</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-center w-full h-9 bg-[#BD0F03] text-white font-medium transition-all duration-200" style="border-radius: 0 2em 0 2em / 0 2em 0 2em;" onmouseover="this.style.background='#fff';this.style.color='#BD0F03';this.style.border='2px solid #BD0F03';" onmouseout="this.style.background='#BD0F03';this.style.color='#fff';this.style.border='none';">
+                            <span class="flex-1 text-left ml-5">MyWMSU</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -109,4 +162,44 @@
         button.setAttribute('aria-expanded', 'false');
         drawer.classList.add('-translate-x-full');
     }
+
+    // Search Dropdown Logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchBtn = document.getElementById('search-toggle-btn');
+        const dropdown = document.getElementById('search-dropdown');
+        let isOpen = false;
+
+        function openDropdown() {
+            dropdown.classList.remove('hidden');
+            isOpen = true;
+            // Focus input
+            const input = dropdown.querySelector('input');
+            if (input) input.focus();
+        }
+        function closeDropdown() {
+            dropdown.classList.add('hidden');
+            isOpen = false;
+        }
+        searchBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (isOpen) {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        });
+        // Close on click outside
+        document.addEventListener('mousedown', function(e) {
+            if (isOpen && !dropdown.contains(e.target) && !searchBtn.contains(e.target)) {
+                closeDropdown();
+            }
+        });
+        // Close on esc
+        document.addEventListener('keydown', function(e) {
+            if (isOpen && e.key === 'Escape') {
+                closeDropdown();
+            }
+        });
+    });
 </script>
+
