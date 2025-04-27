@@ -1,4 +1,4 @@
-    <nav class="fixed top-0 z-50 w-full bg-red-800 border-b border-red-700 dark:bg-red-900 dark:border-red-800">
+    <nav class="fixed top-0 z-50 w-full bg-red-800 border-b border-red-700 dark:bg-red-800 dark:border-red-800">
       <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center justify-start rtl:justify-end">
@@ -10,7 +10,7 @@
              </button>
             <a href="" class="flex ms-2 md:me-24">
               <img src="../images/admin.png" class="h-8 me-3" alt="Admin logo" />
-              <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white dark:text-red-100">Admin</span>
+              <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white dark:text-red-100">ADMIN DASHBOARD</span>
             </a>
           </div>
           <div class="flex items-center">
@@ -35,7 +35,7 @@
                       <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:text-black dark:hover:bg-gray-100" role="menuitem">Admin Account</a>
                     </li>
                     <li>
-                      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:text-black dark:hover:bg-gray-100" role="menuitem">Fees Management</a>
+                      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:text-black dark:hover:bg-gray-100" role="menuitem">Management</a>
                     </li>
                     <li>
                       <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:text-black dark:hover:bg-gray-100" role="menuitem">Settings</a>
@@ -51,8 +51,8 @@
       </div>
     </nav>
     
-    <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-red-800 border-red-700 sm:translate-x-0 dark:bg-red-900 dark:border-red-800" aria-label="Sidebar">
-       <div class="h-full px-3 pb-4 overflow-y-auto bg-red-800 dark:bg-red-900">
+    <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-red-800 border-red-700 sm:translate-x-0 dark:bg-red-800 dark:border-red-800" aria-label="Sidebar">
+       <div class="h-full px-3 pb-4 overflow-y-auto bg-red-800 dark:bg-red-800">
           <ul class="space-y-2 font-medium">
              <li>
                 <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-red-700 dark:hover:bg-red-700 group">
