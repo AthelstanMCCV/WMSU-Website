@@ -65,60 +65,12 @@
                         </tbody>
                     </table>
                 </div>
-            @endforeach        
-            <form action="{{ url('/addSection') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-                @csrf
-            
-                <!-- About Title -->
-                <div>
-                    <label for="aboutTitle" class="block text-sm font-medium text-gray-700">About Title</label>
-                    <input type="text" name="aboutTitle" id="aboutTitle"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-            
-                <!-- Image -->
-                <div>
-                    <label for="aboutImage" class="block text-sm font-medium text-gray-700">Image (optional)</label>
-                    <input type="file" name="aboutImage" id="aboutImage"
-                        accept="image/*"
-                        class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                    <p class="mt-1 text-sm text-gray-500">Allowed formats: jpeg, png, jpg, gif. Max 5MB.</p>
-                </div>
-            
-                <!-- Text Content -->
-                <div>
-                    <label for="aboutContent" class="block text-sm font-medium text-gray-700">Text Content</label>
-                    <textarea name="aboutContent" id="aboutContent" rows="4"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-                </div>
-            
-                <!-- Multiple Text Links -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Text Links</label>
-                    <div id="linkInputs" class="space-y-2 mt-2">
-                        <input type="text" name="links[]" placeholder="Enter link text"
-                            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                    </div>
-                    <button type="button" onclick="addLinkInput()"
-                        class="mt-2 text-indigo-600 hover:underline text-sm">+ Add another link</button>
-                </div>
-
-                <input type="text" name="page_id" value="1" hidden>
-            
-                <!-- Submit -->
-                <div>
-                    <button type="submit"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Add Section
-                    </button>
-                </div>
-            </form>
+            @endforeach            
           </div>
        </div>
     </x-admin-head>
  </x-head>
- 
- 
+
 <script>
     function openModal(id) {
         const modal = document.getElementById(`modal-${id}`);
@@ -138,17 +90,5 @@
         setTimeout(() => {
             modal.classList.add('hidden');
         }, 200);
-    }
-
-    function addLinkInput() {
-        const linkInputsContainer = document.getElementById('linkInputs');
-
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = 'links[]';
-        input.placeholder = 'Enter link text';
-        input.className = 'block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500';
-
-        linkInputsContainer.appendChild(input);
     }
     </script>

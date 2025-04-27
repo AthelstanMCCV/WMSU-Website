@@ -19,14 +19,6 @@
     justify-content: center;
 }
 
-.swiper-wrapper {
-  height: 600px; /* or whatever you want */
-}
-
-.swiper-slide {
-  height: 550px; /* or whatever you want */
-}
-
 @media (max-width: 768px) {
     .swiper-slide {
       transition: transform 0.3s ease, opacity 0.3s ease;
@@ -44,8 +36,4 @@
       transform: scale(0.85);
       opacity: 0.8;
     }
-  }
-
-  .no-transition {
-    transition: none !important;
   }
