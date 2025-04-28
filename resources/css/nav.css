@@ -96,9 +96,9 @@ color: #BD0F03;
 }
 
 .nav-arrow {
-transform: rotate(180deg); /* Arrow points UP by default */
-transition: transform 0.2s;
+  transform: rotate(180deg); /* Arrow points UP by default */
+  transition: transform 0.2s;
 }
 .navLinks.group:hover .nav-arrow {
-transform: rotate(0deg);   /* Arrow points DOWN on hover */
+  transform: rotate(0deg);   /* Arrow points DOWN on hover */
 }

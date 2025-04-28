@@ -300,6 +300,7 @@ align-items: center;
 justify-content: center;
 width: 100%;
 height: 100%;
+margin-left: 1rem;
 }
 
 .rectangle-plus {
@@ -310,6 +311,7 @@ font-weight: 800;
 line-height: 1;
 margin-bottom: 0;
 transition: transform 0.3s;
+margin-left: 1rem;
 }
 
 .rectangle-more {
@@ -321,6 +323,7 @@ letter-spacing: 1px;
 line-height: 1;
 margin-top: 0.2rem;
 transition: transform 0.3s ease;
+margin-left: 1rem;
 }
 
 .services-rectangle-cont:hover {
@@ -352,8 +355,8 @@ transform: rotate(45deg);
 }
 
 .services-rectangle-cont:hover .rectangle-close-group .rectangle-plus {
-transform: rotate(45deg) translateX(12px);
-transition: transform 0.3s ease-in-out;
+transform: rotate(45deg);
+transition: transform 0.3s ease;
 }
 
 
@@ -629,102 +632,107 @@ transition: none !important;
 
 /* Shared styles across all mobile sizes */
 @media screen and (max-width: 700px) {
-  .services-title-card {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 0;
-      margin: 20px 0;
-      box-sizing: border-box;
-  }
-
-  /* Red Line Before Title */
-  .services-title-card::before {
-      width: 2px;
-      height: 80px; /* Increased height */
-      background-color: #7C0A02;
-      margin-bottom: 30px; /* Increased margin */
-  }
-
-  /* Title Container */
-  .services-title {
-      width: 160px;
-      height: 160px; /* Made square like service boxes */
-      background: #EEE;
-      border-radius: 20px;
-      padding: 15px;
-      position: relative;
-      box-sizing: border-box;
-  }
-
-  /* Title Text */
-  .services-title h2 {
-      color: #7C0A02;
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin: 0;
-      line-height: 1.2;
-      position: absolute;
-      bottom: 25px; /* Position from bottom */
-      left: 15px;
-      width: calc(100% - 30px);
-      text-align: left;
-  }
-
-  /* Red Line After Title */
-  .services-title-card::after {
-      content: '';
-      width: 2px;
-      height: 80px; /* Increased height */
-      background-color: #7C0A02;
-      margin-top: 30px; /* Increased margin */
-  }
-
-  /* Services container */
   .services-cont {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      padding: 15px;
-      box-sizing: border-box;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: stretch;
+    justify-items: center;
+    margin: 0 auto;
   }
-
-  /* Individual service box */
   .square-cont {
-      width: 160px;
-      background-color: #EEE;
-      border-radius: 20px;
-      position: relative;
-      margin: 0;
-      box-sizing: border-box;
-      display:inline-block;
-      flex-direction: column;
-      justify-content: flex-end; /* Pushes content to bottom */
+    width: 110px;
+    height: 110px;
+    background-color: #EEE;
+    border-radius: 16px;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
   }
-
-  /* Service text */
+  .square-outer {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px 0 16px 16px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(124, 10, 2, 0.26);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .square-inner {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px 0 12px 12px;
+    background: #7C0A02;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .square-icon {
+    width: 24px;
+    height: 24px;
+    z-index: 3;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .square-icon img, .square-inner img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+  }
   .square-text {
-      font-size: 1rem;
-      font-weight: 600;
-      left: 15px;
-      display: inline-block;
-      bottom: 25px; /* Increased distance from bottom */
-      line-height: 1.2;
-      padding-right: 15px;
-      box-sizing: border-box;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    top: auto;
+    width: 100%;
+    text-align: center;
+    line-height: 1.1;
+    padding: 0 2px;
+    position: absolute;
+    box-sizing: border-box;
+    white-space: normal;
+    word-break: break-word;
   }
-
-  /* Icon container */
-  .square-raindrop {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      width: 45px;
-      height: 45px;
-      z-index: 2;
+  .services-rectangle-cont {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border-radius: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .services-rectangle-cont .rectangle-plus {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    float: none;
   }
 }
 
@@ -759,12 +767,41 @@ transition: none !important;
 }
 
 @media (max-width: 900px) {
+  .services-cont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    justify-content: center;
+    justify-items: center;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+  .rectangle-more {
+    display: none !important;
+  }
+  .services-rectangle-cont {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border-radius: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .services-rectangle-cont .rectangle-plus {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    float: none;
+  }
+}
+
 .rectangle-more {
-  display: none !important;
+  margin-top: 0.2rem;
+  transition: transform 0.3s ease;
 }
-.services-rectangle-cont {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+
+.services-rectangle-x {
+  margin-top: -20px;
 }

@@ -1,3 +1,4 @@
+
 <section class="navSectionCont">
     <div class="navSection h-full flex justify-between items-center mx-3 sm:mx-5">
         <div class="navLogo&TitleCont h-full flex items-center gap-2 sm:gap-4">
@@ -13,37 +14,37 @@
             <div class="flex items-center text-xs inter-extralight text-[#BD0F03]">
                 <a class="navLinks hover:font-extrabold duration-150 ease-in-out" href="/" id="Home">Home</a>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="About Us">
-                    About Us <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    About Us <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
                     <div class="dropdown-menu">
                         <!-- Dropdown content will be added here -->
                     </div>
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Admissions">
-                    Admissions <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    Admissions <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
                     <div class="dropdown-menu">
                         <!-- Dropdown content will be added here -->
                     </div>
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Academic">
-                    Academic <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    Academic <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
                     <div class="dropdown-menu">
                         <!-- Dropdown content will be added here -->
                     </div>
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Administration">
-                    Administration <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    Administration <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
                     <div class="dropdown-menu">
                         <!-- Dropdown content will be added here -->
                     </div>
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Res & Ext">
-                    Res & Ext <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    Res & Ext <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
                     <div class="dropdown-menu">
                         <!-- Dropdown content will be added here -->
                     </div>
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Other">
-                    Others <img class="ml-1 group-hover:rotate-180 duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
+                    Others <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
                     <div class="dropdown-menu">
                         <!-- Dropdown content will be added here -->
                     </div>
@@ -53,7 +54,7 @@
         </div>
 
         <div class="fixed top-[80px] md:top-[98px] right-8 z-50">
-            <button id="search-toggle-btn" class="bg-[white] hover:bg-[white] text-white px-5 md:px-7 py-2 rounded-b-[100px] shadow-lg transition-all duration-300 ease-in-out transform hover:translate-y-2">
+            <button id="search-toggle-btn" class="hidden md:block bg-[white] hover:bg-[white] text-white px-5 md:px-7 py-2 rounded-b-[100px] shadow-lg transition-all duration-300 ease-in-out transform hover:translate-y-2">
                 <img src="{{ asset('images/search-icon.png') }}" alt="Search" class="h-2.5 w-2.5 md:h-3 md:w-3 -mt-1">
             </button>
             <!-- Search Dropdown -->
@@ -131,10 +132,27 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center justify-center w-full h-9 bg-[#BD0F03] text-white font-medium transition-all duration-200" style="border-radius: 0 2em 0 2em / 0 2em 0 2em;" onmouseover="this.style.background='#fff';this.style.color='#BD0F03';this.style.border='2px solid #BD0F03';" onmouseout="this.style.background='#BD0F03';this.style.color='#fff';this.style.border='none';">
-                            <span class="flex-1 text-left ml-5">MyWMSU</span>
+                        <a href="#" class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 group">
+                            <span class="flex-1 ms-3 whitespace-nowrap text-white">MyWMSU</span>
                         </a>
                     </li>
+                    <!-- Tablet Only Search Option -->
+                    <li class="tablet-only-search">
+                        <div class="sidebar-search" id="tablet-sidebar-search-toggle">
+                            <span><i class="fa fa-search"></i></span>
+                            <svg class="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <span>Search</span>
+                        </div>
+                    </li>
+                    
+                    <!-- Mobile Search Toggle Button -->
+                    <li class="block md:hidden">
+                        <button id="mobile-search-toggle" class="flex items-center w-full p-2 text-white rounded-lg hover:bg-gray-100 group">
+                            <svg class="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <span>Search</span>
+                        </button>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -196,11 +214,233 @@
                 closeDropdown();
             }
         });
-        // Close on esc
+        // Close on esc key
         document.addEventListener('keydown', function(e) {
             if (isOpen && e.key === 'Escape') {
                 closeDropdown();
             }
         });
+        
+        // Close on esc button click
+        const escBtn = document.getElementById('search-esc-btn');
+        if (escBtn) {
+            escBtn.addEventListener('click', function() {
+                closeDropdown();
+            });
+        }
+    });
+
+    // Mobile sidebar search toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileSearchToggle = document.getElementById('mobile-search-toggle');
+        const mobileSearchDropdown = document.getElementById('mobile-search-dropdown');
+        if (mobileSearchToggle && mobileSearchDropdown) {
+            mobileSearchToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileSearchDropdown.classList.toggle('hidden');
+            });
+            // Optional: close on click outside
+            document.addEventListener('mousedown', function(e) {
+                if (!mobileSearchDropdown.contains(e.target) && !mobileSearchToggle.contains(e.target)) {
+                    mobileSearchDropdown.classList.add('hidden');
+                }
+            });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabletSearchToggle = document.getElementById('tablet-sidebar-search-toggle');
+        const tabletSearchInput = document.getElementById('tablet-sidebar-search-input');
+        if (tabletSearchToggle && tabletSearchInput) {
+            tabletSearchToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                tabletSearchInput.classList.toggle('hidden');
+                if (!tabletSearchInput.classList.contains('hidden')) {
+                    tabletSearchInput.querySelector('input').focus();
+                }
+            });
+            document.addEventListener('mousedown', function(e) {
+                if (!tabletSearchInput.contains(e.target) && !tabletSearchToggle.contains(e.target)) {
+                    tabletSearchInput.classList.add('hidden');
+                }
+            });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar search for mobile/tablet
+        const sidebarSearchToggles = [
+            document.getElementById('tablet-sidebar-search-toggle'),
+            document.getElementById('mobile-search-toggle')
+        ].filter(Boolean);
+        const searchDropdown = document.getElementById('search-dropdown');
+        let isSearchOpen = false;
+
+        function openSearchModal() {
+            if (searchDropdown) {
+                searchDropdown.classList.remove('hidden');
+                isSearchOpen = true;
+                // Focus input
+                const input = searchDropdown.querySelector('input');
+                if (input) input.focus();
+            }
+        }
+        function closeSearchModal() {
+            if (searchDropdown) {
+                searchDropdown.classList.add('hidden');
+                isSearchOpen = false;
+            }
+        }
+
+        sidebarSearchToggles.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openSearchModal();
+            });
+            btn.addEventListener('touchstart', function(e) {
+                e.stopPropagation();
+                openSearchModal();
+            });
+        });
+
+        // Close on click/tap outside
+        document.addEventListener('mousedown', function(e) {
+            if (isSearchOpen && searchDropdown && !searchDropdown.contains(e.target) &&
+                !sidebarSearchToggles.some(btn => btn && btn.contains(e.target))) {
+                closeSearchModal();
+            }
+        });
+        document.addEventListener('touchstart', function(e) {
+            if (isSearchOpen && searchDropdown && !searchDropdown.contains(e.target) &&
+                !sidebarSearchToggles.some(btn => btn && btn.contains(e.target))) {
+                closeSearchModal();
+            }
+        });
+
+        // Close on esc key
+        document.addEventListener('keydown', function(e) {
+            if (isSearchOpen && e.key === 'Escape') {
+                closeSearchModal();
+            }
+        });
+
+        // Close on esc button click/touch inside modal
+        const escBtn = document.getElementById('search-esc-btn');
+        if (escBtn) {
+            escBtn.addEventListener('click', function() {
+                closeSearchModal();
+            });
+            escBtn.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                closeSearchModal();
+            });
+        }
     });
 </script>
+
+<style>
+    @media (max-width: 900px) {
+        .sidebar-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+            margin-left: 2rem;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .sidebar-search input[type="text"] {
+            background: #fff;
+            color: #7C0A02;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 1rem;
+            margin-left: 8px;
+            width: 120px;
+        }
+        .sidebar-search svg, .sidebar-search i {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 900px) and (min-width: 601px) {
+        .tablet-only-search {
+            display: list-item !important;
+        }
+        .sidebar-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.5rem 0.75rem;
+        }
+        .sidebar-search-input {
+            display: flex;
+            align-items: center;
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+        }
+        .sidebar-search-input input[type="text"] {
+            background: #fff;
+            color: #7C0A02;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 1rem;
+            width: 120px;
+        }
+        .sidebar-search svg, .sidebar-search i {
+            font-size: 1.2rem;
+        }
+    }
+    @media (max-width: 600px), (min-width: 901px) {
+        .tablet-only-search {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 900px) {
+        #search-dropdown {
+            width: 95vw !important;
+            max-width: 95vw !important;
+            min-width: 0 !important;
+            left: 50% !important;
+            top: 8vh !important;
+            height: auto !important;
+            min-height: 200px;
+            max-height: 80vh;
+            border-radius: 1rem !important;
+            padding: 1rem 0.5rem !important;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        #search-dropdown form {
+            flex-direction: column !important;
+            gap: 0.5rem;
+        }
+        #search-dropdown input[type="text"] {
+            width: 100% !important;
+            font-size: 1rem !important;
+            margin: 0 !important;
+        }
+        #search-results {
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+    }
+    @media (max-width: 600px) {
+        #search-dropdown {
+            width: 99vw !important;
+            max-width: 99vw !important;
+            left: 50% !important;
+            top: 4vh !important;
+            padding: 0.5rem 0.25rem !important;
+            font-size: 0.95rem !important;
+        }
+    }
+</style>
