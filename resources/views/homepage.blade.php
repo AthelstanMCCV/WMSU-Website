@@ -347,7 +347,7 @@
                     </div>
                 </div>
             </a>
-            <a href="">
+            <a href="http://register.wmsu.edu.ph/encoding/">
                 <div class="services-logo-cont">
                     <div class="square-cont">
                         <div class="square-raindrop">

@@ -66,7 +66,7 @@
                     </table>
                 </div>
             @endforeach        
-            <form action="{{ url('/addSection') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+            {{-- <form action="{{ url('/addSection') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
             
                 <!-- About Title -->
@@ -112,7 +112,7 @@
                         Add Section
                     </button>
                 </div>
-            </form>
+            </form> --}}
           </div>
        </div>
     </x-admin-head>
