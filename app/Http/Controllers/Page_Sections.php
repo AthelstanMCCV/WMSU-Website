@@ -424,7 +424,7 @@ class Page_Sections extends Controller
         // Handle new uploaded images
         if ($request->hasFile('media')) {
             foreach ($request->file('media') as $file) {
-                $path = $file->store('updates', 'public'); // or wherever you store images
+                $path = $file->store('images', 'public'); // or wherever you store images
                 Page_Section::create([
                     'page_id' => 3, // or your Updates page id
                     'indicator' => 'UpdatesArticles',
