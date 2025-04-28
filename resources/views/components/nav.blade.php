@@ -59,14 +59,16 @@
             <!-- Search Dropdown -->
             <div id="search-dropdown" class="hidden fixed left-1/2 top-[120px] transform -translate-x-1/2 w-[600px] h-[400px] bg-gray-100 rounded-2xl shadow-2xl border border-gray-100 z-50">
                 <div class="relative px-7 pt-7 pb-2">
-                    <div class="flex items-center">
+                    <form method="GET" action="{{ route('site.search.json') }}" class="flex items-center w-full">
                         <svg class="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <input type="text" placeholder="Search" class="flex-1 outline-none border border-black focus:ring-1 focus:ring-black focus:border-black bg-transparent text-gray-700 text-base placeholder-gray-400" autofocus />
-                        <span class="ml-2 text-xs text-gray-400 px-2 py-1 border rounded bg-gray-50 hover:bg-red-200 hover:text-red-600 hover:border-red-700 active:bg-red-700 active:text-red-700 active:border-red-600 transition-colors duration-150 cursor-pointer">esc</span>
-                    </div>
+                        <input type="text" name="query" placeholder="Search" 
+                            class="flex-1 outline-none border border-black focus:ring-1 focus:ring-black focus:border-black bg-transparent text-gray-700 text-base placeholder-gray-400" 
+                            autofocus />
+                        <span id="search-esc-btn" class="ml-2 text-xs text-gray-400 px-2 py-1 border rounded bg-gray-50 hover:bg-red-200 hover:text-red-600 hover:border-red-700 active:bg-red-700 active:text-red-700 active:border-red-600 transition-colors duration-150 cursor-pointer">esc</span>
+                    </form>
                 </div>
                 <hr class="border-gray-100">
-                <div class="px-7 py-8 text-gray-400 text-lg">No recent searches</div>
+                <div id="search-results" class="px-7 py-5 text-gray-800 overflow-y-auto h-[250px] space-y-4"></div>
                 <hr class="border-gray-100">
                 <div class="fixed bottom-4 right-4 flex justify-end items-center px-7 py-4">
                     <span class="text-xs text-gray-400 mr-1">Search by</span>
@@ -202,4 +204,3 @@
         });
     });
 </script>
-

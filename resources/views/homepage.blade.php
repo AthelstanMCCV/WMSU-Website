@@ -52,41 +52,60 @@
     @endif
     
  
-    <!-- WMSU NEWS SECTION -->
-    <section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center">
-        <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
-        <div class="w-full h-full mt-5 md:px-4">
-            <div class="newsTitleCont flex items-center justify-between w-full h-20">
-                <div class="hidden md:block w-1/3"></div>
-                <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-5xl w-full md:w-1/3 text-center">wmsu news</p>
-                <div class="hidden md:flex flex-col w-1/3 h-full items-end justify-end">
-                    <div class="flex flex-col items-end group cursor-pointer mr-5">
-                        <img class="size-7 group-hover:rotate-45 duration-300 ease-in-out" src="{{asset('images/plus.png')}}" alt="">
-                        <p class="uppercase inter-medium tracking-tighter text-sm md:text-base">more articles</p>
-                    </div>
+<!-- WMSU NEWS SECTION -->
+@if($updatesArticles->isNotEmpty())
+<section class="w-screen h-auto md:h-[50rem] flex flex-col justify-start items-center">
+    <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
+    <div class="w-full h-full mt-5 md:px-4">
+        <div class="newsTitleCont flex items-center justify-between w-full h-20">
+            <div class="hidden md:block w-1/3"></div>
+            <p class="newsTitle uppercase text-[#7C0A02] inter-bold text-5xl w-full md:w-1/3 text-center">wmsu news</p>
+            <div class="hidden md:flex flex-col w-1/3 h-full items-end justify-end">
+                <div class="flex flex-col items-end group cursor-pointer mr-5">
+                    <img class="size-7 group-hover:rotate-45 duration-300 ease-in-out" src="{{ asset('images/plus.png') }}" alt="">
+                    <p class="uppercase inter-medium tracking-tighter text-sm md:text-base">more articles</p>
                 </div>
             </div>
-    
-            <!-- Swiper Container -->
-            <div class="w-full mt-8">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        @for($i = 0; $i < 4; $i++)
-                            <div class="swiper-slide">
-                                <x-home-card>
-                                    <x-slot:homeCardImg>{{ asset('images/news1.png') }}</x-slot:homeCardImg>
-                                    <x-slot:homeCardTitle>WMSU Ranks Among Top Universities in the Philippines</x-slot:homeCardTitle> 
-                                    <x-slot:homeCardBody>Western Mindanao State University (WMSU) has been recognized as one of the top universities in the country, highlighting its commitment to quality education, research, and community development.</x-slot:homeCardBody>
-                                </x-home-card>
-                            </div>
-                        @endfor
-                    </div>
+        </div>
 
-                    <!-- Optional Navigation -->
-                    <div class="swiper-pagination mt-4"></div>
+        <!-- Swiper Container -->
+        <div class="w-full mt-8">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    @foreach($updatesArticles as $updatesGroup)
+                        @php
+                            $sections = $updatesGroup->keyBy('description');
+                        @endphp
+
+                        <div class="swiper-slide">
+                            <x-home-card>
+                                <x-slot:homeCardImg>
+                                    <div class="relative w-full h-full">
+                                        @php
+                                            $images = $updatesGroup->where('description', 'ArticleImage');
+                                        @endphp
+                                        <div class="relative w-full h-72 overflow-hidden">
+                                            @foreach($images as $index => $image)
+                                                <img src="{{ asset($image->imagePath) }}" alt=""
+                                                    class="absolute top-0 left-0 w-full h-full object-cover 
+                                                            {{ $index === 0 ? 'opacity-100 no-transition' : 'opacity-0 transition-opacity duration-1000 ease-in-out' }} image-fader">
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </x-slot:homeCardImg>
+                                <x-slot:homeCardTitle>{{ $sections['ArticleTitle']->content ?? 'No Title' }}</x-slot:homeCardTitle>
+                                <x-slot:homeCardBody>{{ $sections['ArticleBody']->content ?? 'No content available.' }}</x-slot:homeCardBody>
+                            </x-home-card>
+                        </div>
+                    @endforeach
                 </div>
+
+                <div class="swiper-pagination mt-4"></div>
             </div>
-    </section>
+        </div>
+    </div>
+</section>
+@endif
     
     
     <!-- RESEARCH ARCHIVES SECTION -->
@@ -149,63 +168,57 @@
     @endif
 
     <!-- ABOUT WMSU SECTION -->
-    <section class="w-screen h-auto md:h-[40rem] flex flex-col justify-start items-center">
-        <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
-        <div class="px-4 md:px-14 relative w-full h-full bg-no-repeat bg-cover bg-center mt-5" style="background-image: url('{{ asset('images/news2-long.png') }}')">
-          <div class="absolute inset-0 bg-gradient-to-r from-[#7C0A02] to-[#7C0A02] opacity-70"></div>
-          <div class="relative flex flex-col md:flex-row z-10 h-full items-center justify-center py-8 md:py-0">
+    @php
+    $aboutGroup = $aboutPageSection ?? collect();
+    $aboutData = $aboutGroup->keyBy('description');
+    
+    // Filter AboutLink rows
+    $aboutLinks = $aboutGroup->where('description', 'AboutLink');
+@endphp
+
+<section class="w-screen h-auto md:h-[40rem] flex flex-col justify-start items-center">
+    <div class="w-[2px] h-[110px] bg-[#BD0F03]"></div>
+    <div class="px-4 md:px-14 relative w-full h-full bg-no-repeat bg-cover bg-center mt-5" 
+        style="background-image: url('{{ asset($aboutData['AboutImage']->imagePath ?? 'images/default.png') }}')">
+        
+        <div class="absolute inset-0 bg-gradient-to-r from-[#7C0A02] to-[#7C0A02] opacity-70"></div>
+        <div class="relative flex flex-col md:flex-row z-10 h-full items-center justify-center py-8 md:py-0">
             
             <div class="text-white inter-extrabold uppercase text-4xl md:text-6xl lg:text-9xl w-full md:w-5/12 text-center md:text-left">
-              <p>About</p>
-              <p class="pl-0 md:pl-20">WMSU</p>
+                <p class="text-center">{{ $aboutData['AboutTitle']->content ?? 'About WMSU' }}</p>
             </div>
-      
+
             <div class="w-full md:w-2/12 h-0.5 md:h-full flex justify-center items-center my-4 md:my-0">
-              <div class="w-full md:w-0.5 h-0.5 md:h-5/6 bg-white"></div>
+                <div class="w-full md:w-0.5 h-0.5 md:h-5/6 bg-white"></div>
             </div>
-      
+
             <div class="text-white w-full md:w-5/12 flex flex-col gap-4 md:gap-20 px-4 md:px-0">
-              <p class="inter-extralight text-lg md:text-2xl lg:text-3xl text-center md:text-left">
-                Learn how WMSU shapes future leaders, explore our rich history, and become part of a vibrant academic community.
-              </p>
-      
-              <div class="flex flex-col gap-2">
-                <div class="group relative cursor-pointer">
-                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
-                    History of WMSU <span>></span>
-                  </p>
-                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
+                <p class="inter-extralight text-lg md:text-2xl lg:text-3xl text-center md:text-left">
+                    {{ $aboutData['AboutContent']->content ?? 'No content available.' }}
+                </p>
+
+                <div class="flex flex-col gap-2">
+                    <!-- Loop through the fetched AboutLink rows -->
+                    @foreach($aboutLinks as $link)
+                        <div class="group relative cursor-pointer">
+                            <p class="inter-semibold text-lg md:text-xl flex justify-between">
+                                {{ $link->content }} <span>></span>
+                            </p>
+                            <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="group relative cursor-pointer">
-                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
-                    Leadership and Governance <span>></span>
-                  </p>
-                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
-                </div>
-                <div class="group relative cursor-pointer">
-                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
-                    Mission and Vision <span>></span>
-                  </p>
-                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
-                </div>
-                <div class="group relative cursor-pointer">
-                  <p class="inter-semibold text-lg md:text-xl flex justify-between">
-                    WMSU in the Community <span>></span>
-                  </p>
-                  <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
-                </div>
-              </div>
-      
             </div>
-          </div>
         </div>
-      </section>
+    </div>
+</section>
       
 
     <section class="PresCorner bg-gray-100"></section>
     <!-- Line Divider -->
    <section class="w-screen h-[130px] flex flex-col justify-start items-center">
     <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
+    <div class="w-full h-full mt-5"></div>
    </section>
 
     <!-- President's Corner Section -->
@@ -216,7 +229,7 @@
         </div>
 
         <!-- Right: Content Section -->
-        <div class="md:w-[55%] md:pl-32 pr-13">
+        <div class="md:w-[55%] md:pl-32 pr-13 flex flex-col justify-center">
             <h2 class="text-[2rem] sm:text-[2.2rem] md:text-[2.5rem] font-bold text-[#7c0a02] mb-6 sm:mb-8 md:mb-10 ml-8">PRESIDENT'S CORNER</h2>
 
             <!-- Reports List -->
@@ -285,6 +298,7 @@
         </div>
     </section>
   
+    
     <section class="w-screen h-[130px] flex flex-col justify-start items-center">
         <div class="w-[2px] h-[110px] bg-[#BD0000]"></div>
     </section>

@@ -17,8 +17,9 @@ class Page_Sections extends Controller
     {
         $sectionMappings = [
             'Homepage Hero' => 1,
+            'About Page' => 1,
             'Research & Extension News' => 2,
-            'About Us' => 3,
+            'UpdatesArticles' => 3,
         ];
 
         $sections = [];
@@ -29,6 +30,11 @@ class Page_Sections extends Controller
                 ->get();
         }
 
+        // Fetch all rows for 'About Page' section (page_id = 1)
+        $aboutPageSection = Page_Section::where('page_id', 1)
+        ->where('indicator', 'About Page')
+        ->get(); // This will get all rows for 'About Page'
+
         $latestNewsAlt = Page_Section::where('indicator', 'Research & Extension News')
             ->orderBy('created_at', 'desc')
             ->value('alt');
@@ -38,8 +44,89 @@ class Page_Sections extends Controller
             ->get()
             ->keyBy('description');
 
-        return view('homepage', compact('sections', 'latestNews'));
+        $updatesArticlesRaw = Page_Section::where('indicator', 'UpdatesArticles')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->groupBy('alt');
+    
+        // Limit to 4 latest groups
+        $updatesArticles = $updatesArticlesRaw->sortByDesc(function ($group) {
+            // Use the created_at of the first item in each group
+            return $group->first()->created_at;
+        })->take(4);
+
+        return view('homepage', compact('sections', 'latestNews', 'updatesArticles', 'aboutPageSection'));
     }
+
+    public function addAboutSection(Request $request)
+{
+    $aboutGroupId = (string) Str::uuid();
+
+    $validated = $request->validate([
+        'aboutTitle'   => 'nullable|string|max:255',
+        'aboutContent' => 'nullable|string',
+        'aboutImage'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+        'links'        => 'nullable|array',
+        'links.*'      => 'nullable|string|max:255',
+        'page_id'      => 'required|integer|exists:pages,id',
+    ]);
+
+    // Image
+    if ($request->hasFile('aboutImage')) {
+        $imagePath = $request->file('aboutImage')->store('images', 'public');
+
+        Page_Section::create([
+            'page_id'    => $validated['page_id'],
+            'description'=> 'AboutImage',
+            'imagePath'  => $imagePath,
+            'indicator'  => 'About Page',
+            'elemType'   => 'image',
+            'alt'        => $aboutGroupId,
+        ]);
+    }
+
+    // Title
+    if (!empty($request->aboutTitle)) {
+        Page_Section::create([
+            'page_id'    => $validated['page_id'],
+            'description'=> 'AboutTitle',
+            'content'    => $validated['aboutTitle'],
+            'indicator'  => 'About Page',
+            'elemType'   => 'text',
+            'alt'        => $aboutGroupId,
+        ]);
+    }
+
+    // Content
+    if (!empty($request->aboutContent)) {
+        Page_Section::create([
+            'page_id'    => $validated['page_id'],
+            'description'=> 'AboutContent',
+            'content'    => $validated['aboutContent'],
+            'indicator'  => 'About Page',
+            'elemType'   => 'text',
+            'alt'        => $aboutGroupId,
+        ]);
+    }
+
+    // Links (if any)
+    if (!empty($validated['links'])) {
+        foreach ($validated['links'] as $linkText) {
+            if (!empty($linkText)) {
+                Page_Section::create([
+                    'page_id'    => $validated['page_id'],
+                    'description'=> 'AboutLink',
+                    'content'    => $linkText,
+                    'indicator'  => 'About Page',
+                    'elemType'   => 'text',
+                    'alt'        => $aboutGroupId,
+                ]);
+            }
+        }
+    }
+
+    return redirect()->back()->with('success', 'About section added successfully!');
+}
 
     /* -------------------------------
         ADMIN VIEW PAGES
@@ -57,6 +144,11 @@ class Page_Sections extends Controller
         return view('admin.admin-res&ext', compact('sections'));
     }
 
+    public function showUpdatesData()
+    {
+        $sections = Page_Section::where('page_id', 3)->get()->groupBy('indicator');
+        return view('admin.admin-updates', compact('sections'));
+    }
     /* -------------------------------
         GENERAL SECTION EDIT / UPDATE
     ---------------------------------*/
@@ -211,6 +303,170 @@ class Page_Sections extends Controller
     }
 
     /* -------------------------------
+        UPDATES PAGE CRUD
+    ---------------------------------*/
+
+    public function addArticlesSection(Request $request)
+    {
+        // Validate form fields
+        $validated = $request->validate([
+            'title'   => 'required|string|max:255',
+            'date'    => 'required|date',
+            'body'    => 'required|string',
+            'images'  => 'nullable|array',
+            'images.*'=> 'image|mimes:jpeg,png,jpg,gif,webp|max:5120'
+        ]);
+    
+        // Optional: group the article parts with a UUID alt value
+        $articleGroupId = (string) Str::uuid();
+    
+        // Save Title
+        Page_Section::create([
+            'page_id'     => 3, // or dynamically set if needed
+            'description' => 'ArticleTitle',
+            'content'     => $validated['title'],
+            'imagePath'   => null,
+            'indicator'   => 'UpdatesArticles',
+            'elemType'    => 'text',
+            'subpage'     => null,
+            'alt'         => $articleGroupId
+        ]);
+
+            // Save Date
+        Page_Section::create([
+            'page_id'     => 3,
+            'description' => 'ArticleDate',
+            'content'     => $validated['date'],
+            'imagePath'   => null,
+            'indicator'   => 'UpdatesArticles',
+            'elemType'    => 'date',
+            'subpage'     => null,
+            'alt'         => $articleGroupId
+        ]);
+    
+        // Save Body
+        Page_Section::create([
+            'page_id'     => 3,
+            'description' => 'ArticleBody',
+            'content'     => $validated['body'],
+            'imagePath'   => null,
+            'indicator'   => 'UpdatesArticles',
+            'elemType'    => 'text',
+            'subpage'     => null,
+            'alt'         => $articleGroupId
+        ]);
+    
+        // Save Images if any
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('images', 'public');
+    
+                Page_Section::create([
+                    'page_id'     => 3,
+                    'description' => 'ArticleImage',
+                    'content'     => null,
+                    'imagePath'   => $imagePath,
+                    'indicator'   => 'UpdatesArticles',
+                    'elemType'    => 'image',
+                    'subpage'     => null,
+                    'alt'         => $articleGroupId
+                ]);
+            }
+        }
+    
+        return redirect()->back()->with('success', 'Article added successfully!');
+    }
+
+    public function updateUpdateArticle(Request $request, $alt)
+    {
+        // Update text fields
+        if ($request->has('newsItems')) {
+            foreach ($request->newsItems as $id => $content) {
+                $section = Page_Section::find($id);
+                if ($section) {
+                    $section->content = $content;
+                    $section->save();
+                }
+            }
+        }
+    
+        // Media upload handling
+        if ($request->hasFile('media')) {
+            $mediaSections = Page_Section::where('alt', $alt)
+                                ->where('description', 'ArticleImage')
+                                ->get();
+    
+            foreach ($mediaSections as $media) {
+                // Delete old image if exists
+                if ($media->imagePath && Storage::exists('public/' . $media->imagePath)) {
+                    Storage::delete('public/' . $media->imagePath);
+                }
+                // Store new file
+                $filePath = $request->file('media')->store('images', 'public');
+                $media->imagePath = $filePath;
+                $media->save();
+            }
+        }
+
+        // Remove selected images
+        if ($request->has('removeImages')) {
+            foreach ($request->removeImages as $imageId) {
+                $image = Page_Section::find($imageId);
+                if ($image && $image->imagePath && Storage::exists('public/' . $image->imagePath)) {
+                    Storage::delete('public/' . $image->imagePath);
+                }
+                if ($image) {
+                    $image->delete();
+                }
+            }
+        }
+
+        // Handle new uploaded images
+        if ($request->hasFile('media')) {
+            foreach ($request->file('media') as $file) {
+                $path = $file->store('updates', 'public'); // or wherever you store images
+                Page_Section::create([
+                    'page_id' => 3, // or your Updates page id
+                    'indicator' => 'UpdatesArticles',
+                    'alt' => $alt,
+                    'description' => 'ArticleImage',
+                    'imagePath' => $path,
+                ]);
+            }
+        }
+    
+        return redirect()->back()->with('success', 'Updates article group updated successfully!');
+    }
+    
+
+    public function deleteUpdateArticleGroup($alt)
+    {
+        $articles = Page_Section::where('alt', $alt)->get();
+    
+        foreach ($articles as $article) {
+            if ($article->imagePath && Storage::exists('public/' . $article->imagePath)) {
+                Storage::delete('public/' . $article->imagePath);
+            }
+            $article->delete();
+        }
+    
+        return redirect()->back()->with('success', 'Article group deleted successfully!');
+    }
+
+    public function deleteArticleImage($id)
+    {
+        $image = Page_Section::findOrFail($id);
+    
+        if ($image->imagePath && Storage::exists('public/' . $image->imagePath)) {
+            Storage::delete('public/' . $image->imagePath);
+        }
+    
+        $image->delete();
+    
+        return response()->json(['success' => true]);
+    }
+
+    /* -------------------------------
         PUBLIC RESEARCH & EXTENSION PAGES
     ---------------------------------*/
 
@@ -223,4 +479,42 @@ class Page_Sections extends Controller
     {
         return view('res&ext-actprogproj');
     }
+
+    public function searchJson(Request $request)
+    {
+    $query = $request->input('query');
+
+    $matchingSections = Page_Section::where('content', 'like', '%' . $query . '%')
+        ->orWhere('description', 'like', '%' . $query . '%')
+        ->get();
+
+    $pages = $matchingSections->groupBy('page_id')->map(function ($sections, $pageId) use ($query) {
+        $routes = [
+            1 => ['title' => 'Homepage', 'route' => route('homepage')],
+            2 => ['title' => 'Research & Extension News', 'route' => route('research.news')],
+            3 => ['title' => 'Updates', 'route' => route('updates')],
+        ];
+
+        $snippets = $sections->map(function ($section) use ($query) {
+            $content = $section->content ?? '';
+            $pos = stripos($content, $query);
+            if ($pos !== false) {
+                $start = max($pos - 30, 0);
+                $length = 60;
+                $snippet = substr($content, $start, $length);
+                return '... ' . $snippet . ' ...';
+            }
+            return null;
+        })->filter()->values();
+
+        return [
+            'title' => $routes[$pageId]['title'] ?? 'Untitled Page',
+            'route' => $routes[$pageId]['route'] ?? '#',
+            'snippets' => $snippets,
+        ];
+    })->values();
+
+    return response()->json($pages);
+    }
 }
+
