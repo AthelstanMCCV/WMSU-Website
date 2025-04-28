@@ -9,7 +9,12 @@ Route::get('/research-news', [Page_Sections::class, 'showResearchNews'])->name('
 Route::get('/updates', [Page_Sections::class, 'showUpdates'])->name('updates');
 
 Route::get('/ResExt-Home', [Page_Sections::class, 'showResExtHome']);
-Route::get('/ResExt-Home/Activities', [Page_Sections::class, 'showResExtActivities']);
+Route::get('/ResExt-Home/Activities', [Page_Sections::class, 'showResExtActivities'])->name('research.news');
+Route::get('/Linkages', [Page_Sections::class, 'showLinkages']);
+Route::get('/About', [Page_Sections::class, 'showAbout']);
+Route::get('/Admission', [Page_Sections::class, 'showAdmission']);
+Route::get('/Academics', [Page_Sections::class, 'showAcademics']);
+Route::get('/Services', [Page_Sections::class, 'showServices']);
 Route::get('/dashboard', fn() => view('admin.admin-dashboard'));
 Route::get('/dashboard/homepage', [Page_Sections::class, 'showHomepageData'])->name('admin.homepage');
 Route::get('/dashboard/Research&Extension', [Page_Sections::class, 'showResearchExtensionData'])->name('admin.res&ext');

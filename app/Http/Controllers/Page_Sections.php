@@ -493,6 +493,12 @@ class Page_Sections extends Controller
             1 => ['title' => 'Homepage', 'route' => route('homepage')],
             2 => ['title' => 'Research & Extension News', 'route' => route('research.news')],
             3 => ['title' => 'Updates', 'route' => route('updates')],
+            4 => ['title' => 'ResExt Home', 'route' => url('/ResExt-Home')],
+            5 => ['title' => 'ResExt Activities', 'route' => url('/ResExt-Home/Activities')],
+            6 => ['title' => 'Linkages', 'route' => url('/Linkages')],
+            7 => ['title' => 'About', 'route' => url('/About')],
+            8 => ['title' => 'Admission', 'route' => url('/Admission')],
+            9 => ['title' => 'Academics', 'route' => url('/Academics')],
         ];
 
         $snippets = $sections->map(function ($section) use ($query) {
@@ -515,6 +521,30 @@ class Page_Sections extends Controller
     })->values();
 
     return response()->json($pages);
+    }
+    
+    /* -------------------------------
+            VIEW PAGES
+    ---------------------------------*/
+
+    public function showLinkages(){
+        return view('linkage');
+    }
+
+    public function showAbout(){
+        return view('about');
+    }
+
+    public function showAdmission(){
+        return view('admission');
+    }
+
+    public function showAcademics(){
+        return view('academics');
+    }
+
+    public function showServices(){
+        return view('hero');
     }
 }
 

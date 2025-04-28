@@ -15,7 +15,29 @@
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="About Us">
                     About Us <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
                     <div class="dropdown-menu">
-                        <!-- Dropdown content will be added here -->
+                        <div class="dropdown-title">
+                            <div class="dropdown-content">
+                                <h6 class="inter-bold">CORE VALUES</h6>
+                                <p class="inter-light">Mission</p>
+                                <p class="inter-light">Vision</p>
+                                <p class="inter-light">Quality Policy</p>
+                                <p class="inter-light">University Function</p>
+                            </div>
+                            <div class="nav-divider"></div>
+                            <div class="dropdown-content">
+                                <h6 class="inter-bold">INSTITUTIONAL IDENTITY</h6>
+                                <p class="inter-light">Strategic Plan</p>
+                                <p class="inter-light">Transparency Seal</p>
+                            </div>
+                            <div class="nav-divider"></div>
+                            <div class="dropdown-content">
+                                <h6 class="inter-bold">FOUNDATION</h6>
+                                <a href='/About' class="inter-light">History of WMSU</a>
+                                <p class="inter-light">News Archive</p>
+                                <p class="inter-light">Bids & Awards</p>
+                                <p class="inter-light">Gallery</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Admissions">
@@ -31,15 +53,39 @@
                     </div>
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Administration">
-                    Administration <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
-                    <div class="dropdown-menu">
-                        <!-- Dropdown content will be added here -->
-                    </div>
+                    Administration
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Res & Ext">
                     Res & Ext <img class="ml-1 nav-arrow transition-transform duration-150 ease-in-out" src="{{ asset('images/Expand Arrow.png') }}" alt="">
                     <div class="dropdown-menu">
-                        <!-- Dropdown content will be added here -->
+                        <div class="dropdown-title">
+                            <div class="dropdown-content">
+                                <h6 class="inter-bold">ABOUT</h6>
+                                <a href="/ResExt-Home" class="inter-light">RESEL</a>
+                                <p class="inter-light">Research Development</p>
+                                <p class="inter-light">Extension Services</p>
+                                <p class="inter-light">External Linkages</p>
+                                <h6 class="inter-bold">RESEARCH CENTERS</h6>
+                                <p class="inter-light">Research Development and Evaluation Center</p>
+                                <p class="inter-light">Research Ethics Oversight Center</p>
+                                <p class="inter-light">Pure and Analytical Research Center</p>
+                            </div>
+                            <div class="nav-divider"></div>
+                            <div class="dropdown-content">
+                                <h6 class="inter-bold">RESEARCH OFFICES</h6>
+                                <p class="inter-light">Intellectual Property & Technology Business Management - ITSO</p>
+                                <p class="inter-light">Research Centers Operations Office</p>
+                                <p class="inter-light">Research Ethics Oversight Committee</p>
+                                <p class="inter-light">Creatives Works Unit</p>
+                                <p class="inter-light">Research Project Development Unit</p>
+                            </div>
+                            <div class="nav-divider"></div>
+                            <div class="dropdown-content">
+                                <h6 class="inter-bold">ACTIVITIES, PROGRAMS & PROJECTS</h6>
+                                <a href='/ResExt-Home/Activities' class="inter-light">Research & Development</a>
+                                <a href='/About' class="inter-light">History of WMSU</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="navLinks group hover:font-extrabold duration-150 ease-in-out" id="Other">
