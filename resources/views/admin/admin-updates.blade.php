@@ -54,12 +54,14 @@
                                     <td class="px-6 py-4">{{ $articleGroup->firstWhere('description', 'ArticleTitle')->content ?? '' }}</td>
                                     <td class="px-6 py-4">{{ $articleGroup->firstWhere('description', 'ArticleDate')->content ?? '' }}</td>
                                     <td class="px-6 py-4">{{ $articleGroup->firstWhere('description', 'ArticleBody')->content ?? '' }}</td>
-                                    <td class="px-6 py-4 flex space-x-2">
-                                        @foreach($articleGroup->where('description', 'ArticleImage') as $image)
-                                            <img src="{{ asset('storage/' . $image->imagePath) }}" class="w-24 h-16 object-cover rounded" />
-                                        @endforeach
+                                    <td class="px-6 py-4">
+                                        <div class="flex flex-wrap gap-2 max-w-[300px] overflow-x-auto">
+                                            @foreach($articleGroup->where('description', 'ArticleImage') as $image)
+                                                <img src="{{ asset('storage/' . $image->imagePath) }}" class="w-24 h-16 object-cover rounded" />
+                                            @endforeach
+                                        </div>
                                     </td>
-                                    <td class="px-6 py-4 space-x-2">
+                                      <td class="px-6 py-4 flex items-center space-x-2">
                                         <button onclick="document.getElementById('editModal-{{ $alt }}').classList.remove('hidden')" class="px-3 py-1 bg-yellow-500 text-white rounded">Edit</button>
                                         <button onclick="document.getElementById('deleteModal-{{ $alt }}').classList.remove('hidden')" class="px-3 py-1 bg-red-500 text-white rounded">Delete</button>
                                     </td>

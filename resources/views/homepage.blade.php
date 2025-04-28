@@ -39,7 +39,7 @@
     
                 <div class="lowerNavDivider"></div>
     
-                <a href="#" class="text-xl md:text-2xl uppercase px-8 md:px-[65px] py-2 my-5 border border-white text-white rounded-[20px] bg-[#BD0F03] hover:bg-white hover:border-[#BD0F03] hover:text-[#BD0F03] duration-300 ease-in-out">
+                <a href="/Academics" class="text-xl md:text-2xl uppercase px-8 md:px-[65px] py-2 my-5 border border-white text-white rounded-[20px] bg-[#BD0F03] hover:bg-white hover:border-[#BD0F03] hover:text-[#BD0F03] duration-300 ease-in-out">
                     <span class="font-bold">
                         {{ $sections['Homepage Hero']->firstWhere('description', 'HpCTABtn')->content ?? '' }}
                     </span>
@@ -154,9 +154,9 @@
                                 </p>
                             </div>
                             <div>
-                                <p class="flex gap-2 text-[#7C0A02] text-3xl inter-medium tracking-tight mt-2 cursor-pointer">
+                                <a href="/ResExt-Home/Activities" class="flex gap-2 text-[#7C0A02] text-3xl inter-medium tracking-tight mt-2 cursor-pointer">
                                     Read More <span> > </span>
-                                </p>
+                                </a>
                             </div>
                         </div>
                         <img class="border-2 border-[#7C0A02] w-[550px] h-[490px] object-cover" src="{{ asset('storage/' . ($latestNews['RENewsImg']->imagePath ?? 'images/default.png')) }}" alt="Research Image">
@@ -201,9 +201,9 @@
                     <!-- Loop through the fetched AboutLink rows -->
                     @foreach($aboutLinks as $link)
                         <div class="group relative cursor-pointer">
-                            <p class="inter-semibold text-lg md:text-xl flex justify-between">
+                            <a href="/About" class="inter-semibold text-lg md:text-xl flex justify-between">
                                 {{ $link->content }} <span>></span>
-                            </p>
+                            </a>
                             <div class="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full"></div>
                         </div>
                     @endforeach
@@ -308,7 +308,7 @@
         <div class="camp-cont"> 
             <div class="camp-cont-left"> 
                 <div class="camp-text"> 
-                    <div class="camp-text-title">ZAMBOANGA DEL SUR</div>
+                    <div class="camp-text-title">ZAMBOANGA DEL NORTE</div>
                     <div class="camp-text-mix">
                         <div class="camp-text-plus">+</div>
                         <div class="camp-text-show">SHOW MORE</div>
@@ -333,67 +333,77 @@
     <section class="wmsu-services-cont">
         <div class="main-page-titles-cont">SERVICES</div>
         <div class="services-cont">
-            <div class="services-logo-cont">
-                <div class="square-cont">
-                    <div class="square-raindrop">
-                        <div class="square-outer"></div>
-                        <div class="square-inner"></div>
-                        <div class="square-icon">
-                            <img src="{{ asset('images/Freshman-icon.png')}}" alt="">
+            <a href="http://apply.wmsu.edu.ph/admission/">
+                <div class="services-logo-cont">
+                    <div class="square-cont">
+                        <div class="square-raindrop">
+                            <div class="square-outer"></div>
+                            <div class="square-inner"></div>
+                            <div class="square-icon">
+                                <img src="{{ asset('images/Freshman-icon.png')}}" alt="">
+                            </div>
+                        </div>
+                        <div class="square-text">Freshman Online Pre-Admission</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://register.wmsu.edu.ph/encoding/">
+                <div class="services-logo-cont">
+                    <div class="square-cont">
+                        <div class="square-raindrop">
+                            <div class="square-outer"></div>
+                            <div class="square-inner"></div>
+                            <div class="square-icon">
+                                <img src="{{asset('images/Old Student-icon.png')}}" alt="">
+                            </div>
+                        </div>
+                        <div class="square-text">Online Registration (Old Student)</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://advising.wmsu.edu.ph/encoding/">
+                <div class="services-logo-cont">
+                    <div class="square-cont">
+                        <div class="square-raindrop">
+                            <div class="square-outer"></div>
+                            <div class="square-inner"></div>
+                            <div class="square-icon">
+                                <img src="{{asset('images/Advising-icon.png')}}" alt="">
+                            </div>
+                        </div>
+                        <div class="square-text">Online Advising</div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://apps.wmsu.edu.ph/enlistment/">
+                <div class="services-logo-cont">
+                    <div class="square-cont">
+                        <div class="square-raindrop">
+                            <div class="square-outer"></div>
+                            <div class="square-inner"></div>
+                            <div class="square-icon">
+                                <img src="{{asset('images/Enlistment-icon.png')}}" alt="">
+                            </div>
+                        </div>
+                        <div class="square-text">Online Enlistment</div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Services">
+                <div class="services-rectangle-cont">
+                    <div class="rectangle-text">
+                        <div class="rectangle-text-hide">WMSU<br>SERVICES</div>
+                        <div class="rectangle-center-group">
+                            <span class="rectangle-plus">+</span>
+                            <span class="rectangle-more">MORE</span>
+                        </div>
+                        <div class="rectangle-close-group">
+                            <span class="rectangle-plus">+</span>
+                            <span class="rectangle-more">MORE</span>
                         </div>
                     </div>
-                    <div class="square-text">Freshman Online Pre-Admission</div>
-                </div>
-            </div>
-            <div class="services-logo-cont">
-                <div class="square-cont">
-                    <div class="square-raindrop">
-                        <div class="square-outer"></div>
-                        <div class="square-inner"></div>
-                        <div class="square-icon">
-                            <img src="{{asset('images/Old Student-icon.png')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="square-text">Online Registration (Old Student)</div>
-                </div>
-            </div>
-            <div class="services-logo-cont">
-                <div class="square-cont">
-                    <div class="square-raindrop">
-                        <div class="square-outer"></div>
-                        <div class="square-inner"></div>
-                        <div class="square-icon">
-                            <img src="{{asset('images/Advising-icon.png')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="square-text">Online Advising</div>
-                </div>
-            </div>
-            <div class="services-logo-cont">
-                <div class="square-cont">
-                    <div class="square-raindrop">
-                        <div class="square-outer"></div>
-                        <div class="square-inner"></div>
-                        <div class="square-icon">
-                            <img src="{{asset('images/Enlistment-icon.png')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="square-text">Online Enlistment</div>
-                </div>
-            </div>
-            <div class="services-rectangle-cont">
-                <div class="rectangle-text">
-                    <div class="rectangle-text-hide">WMSU<br>SERVICES</div>
-                    <div class="rectangle-center-group">
-                        <span class="rectangle-plus">+</span>
-                        <span class="rectangle-more">MORE</span>
-                    </div>
-                    <div class="rectangle-close-group">
-                        <span class="rectangle-plus">+</span>
-                        <span class="rectangle-more">MORE</span>
-                    </div>
-                </div>
-            </div> 
+                </div> 
+            </a>
         </div>
     </section>
           

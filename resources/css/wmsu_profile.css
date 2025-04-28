@@ -1,0 +1,246 @@
+.new-milestone-container {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+    margin: 2rem 0;
+    opacity: 1;
+}
+
+
+.new-milestone-container:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.milestone-image {
+    flex: 1;
+    max-width: 50%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.new-milestone-container.in-view .milestone-image {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.milestone-content {
+    flex: 1;
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+
+.new-milestone-container:nth-child(odd) .milestone-content {
+    transform: translateX(100px); 
+}
+
+
+.new-milestone-container:nth-child(even) .milestone-content {
+    transform: translateX(-100px);
+}
+
+.new-milestone-container.in-view .milestone-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.milestone-radiohead-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    transition-delay: 0.8s; 
+}
+
+.new-milestone-container.in-view .milestone-radiohead-container {
+    opacity: 1;
+}
+
+.circle {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #BD0F03;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #BD0F03;
+    border-radius: 50%;
+}
+
+.milestone-content {
+    flex: 1;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: 0.4s;
+}
+
+.milestone-content.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.milestone-title {
+    color: #BD0F03;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-family: "Inter", sans-serif;
+}
+
+.milestone-description {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    font-family: "Inter", sans-serif;
+}
+
+.hero-section {
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+    margin-bottom: 4.5rem;
+}
+
+.separator-line {
+    position: relative;
+    width: 80%;
+    height: 2px;
+    background: #BD0F03;
+    margin: -20px auto 40px auto;
+    box-shadow: 0 3px 10px rgba(189, 15, 3, 0.3);
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0; 
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-tagline {
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 10px; 
+    color: black;
+}
+
+.hero-title {
+    font-size: 5.5rem;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    font-weight: 500;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(20px); 
+        opacity: 0; 
+    }
+    to {
+        transform: translateY(0); 
+        opacity: 1;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1; 
+    color: white;
+    padding: 20px; 
+    padding-top: 200px; 
+    padding-bottom: 10px; 
+    text-align: center; 
+    animation: slideInFromBottom 0.8s ease-out; 
+} 
+
+.hero-text {
+    font-size: 1.2rem; 
+    margin-top: 10px; 
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; 
+    background-color: rgba(124, 10, 2, 0.76); 
+}
+
+.parallelogram {
+    display: inline-block; 
+    background-color: #fffcef; 
+    transform: skew(-20deg); 
+    padding: 1px 20px; 
+    margin-bottom: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+
+
+.header-container:hover .header-title {
+    color: #BD0F03;
+    transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.milestone-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
