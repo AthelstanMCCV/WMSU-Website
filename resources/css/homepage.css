@@ -19,14 +19,6 @@
     justify-content: center;
 }
 
-.swiper-wrapper {
-  height: 600px; /* or whatever you want */
-}
-
-.swiper-slide {
-  height: 550px; /* or whatever you want */
-}
-
 .main-page-titles-cont {
   flex-shrink: 0;
   color: #7C0A02;
@@ -190,7 +182,7 @@
 
 .services-rectangle-cont {
   width: 7.75rem;
-  height: 17rem;
+  height:  17rem;
   flex-shrink: 0;
   background: #7C0A02;
   display: flex;
@@ -198,7 +190,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .square-cont {
@@ -272,12 +264,12 @@
 }
 
 .rectangle-text {
-  width: 100%;
-  height: 100%;
+  width: 1rem;
+  height:  17rem;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .rectangle-text-hide {
@@ -287,75 +279,59 @@
   font-size: 3.54994rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 82.32%;
+  line-height: 82.32%; /* 2.92231rem */
   letter-spacing: -0.1775rem;
-  text-align: left;
-  margin-left: 2rem;
-}
-
-.rectangle-center-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
 .rectangle-plus {
   color: #FFF;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 2.5rem;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 0;
-  transition: transform 0.3s;
+  font-family: Inter;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.1775rem;
+  position: relative;
+  top: 18%;
+  transition: transform 0.3s ease-in-out;
 }
 
 .rectangle-more {
   color: #FFF;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 1rem;
+  font-family: Inter;
+  font-size: 0.77175rem;
+  font-style: normal;
   font-weight: 700;
-  letter-spacing: 1px;
-  line-height: 1;
-  margin-top: 0.2rem;
-  transition: transform 0.3s ease;
+  line-height: normal;
+  letter-spacing: -0.03856rem;
+  position: relative;
+  bottom: 23%;
 }
 
-.services-rectangle-cont:hover {
-  width: 23rem;
-}
-
-.rectangle-close-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-right: 2rem;
-}
-
-/* Default: show center group, hide close group */
-.rectangle-close-group { display: none; }
-.services-rectangle-cont:hover .rectangle-close-group { display: flex; }
-
-/* On hover: show text-hide, keep close group visible */
-.services-rectangle-cont:hover .rectangle-text-hide {
-  display: block;
-}
-.services-rectangle-cont:hover .rectangle-center-group {
-  display: none;
-}
-
-.services-rectangle-cont:hover .rectangle-plus {
-  transform: rotate(45deg);
-}
-
-.services-rectangle-cont:hover .rectangle-close-group .rectangle-plus {
-  transform: rotate(45deg) translateX(12px);
+.services-rectangle:hover .rectangle-plus {
+  transform: rotate(-45deg);
   transition: transform 0.3s ease-in-out;
 }
 
+.services-rectangle:hover {
+  width: 23rem;
+}
+
+
+.services-rectangle:hover .rectangle-text-hide {
+  display:block; /* Show text when expanded */
+  color: #FFF;
+  font-family: Inter;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 82.32%; /* 2.92231rem */
+  letter-spacing: -0.1775rem;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+}
 
 .services-squares:hover .square-raindrop,
   .services-squares:hover .square-outer {
@@ -390,7 +366,7 @@
       font-size: 1.2rem;
       letter-spacing: 0.00005rem;
       color: #FFF;
-      z-indexz: 3;
+      z-index: 3;
       transition: all 0.5s ease-in-out;
       position: relative;
       top: 75%;
@@ -415,356 +391,8 @@
       transform: scale(0.85);
       opacity: 0.8;
     }
-
-    /* WMSU Services grid for mobile */
-    .services-cont {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin: 0 auto;
-      width: 100%;
-      max-width: 400px;
-      padding: 1rem;
-    }
-    .services-logo-cont {
-      width: 100%;
-      height: auto;
-      margin: 0;
-    }
-}
-
-.no-transition {
-  transition: none !important;
-}
-
-@media screen and (max-width: 768px) {
-  /* WMSU Campuses Container */
-  .camp-cont {
-      width: 100%;
-      height: auto;
-      display: flex;
-      flex-direction: column;
-      background: white;
   }
 
-  .main-page-titles-cont {
-      color: #7C0A02;
-      font-size: 2.5rem;
-      font-weight: 800;
-      text-align: center;
-      padding: 20px;
-      margin: 0;
-      position: relative;
+  .no-transition {
+    transition: none !important;
   }
-
-  .main-page-titles-cont::before {
-      position: absolute;
-      top: -80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 80px;
-      background-color: #7C0A02;
-  }
-
-  .camp-cont-mid {
-      display: none;
-  }
-
-  /* Left Campus Section */
-  .camp-cont-left {
-      width: 100%;
-      height: 200px;
-      position: relative;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
-                       url('../images/OCHO.png');
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-  }
-
-  /* Right Campus Section */
-  .camp-cont-right {
-      width: 100%;
-      height: 200px;
-      position: relative;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
-                       url('../images/OCHO.png');
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: -20px;
-      clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
-  }
-
-
-  /* Campus Text Container */
-  .camp-text {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 2;
-  }
-
-  /* Campus Title */
-  .camp-text-title {
-      color: #7C0A02;
-      font-size: 2rem;
-      font-weight: 800;
-      text-align: center;
-      margin: 0;
-      width: auto;
-      height: auto;
-      position: static;
-      letter-spacing: -1px;
-      text-shadow: none;
-  }
-
-  /* Hide unnecessary elements */
-  .camp-text-mix,
-  .camp-text-plus,
-  .camp-text-show {
-      display: none;
-  }
-}
-
-/* Small Mobile (up to 375px) */
-@media screen and (max-width: 375px) {
-    .services-cont {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0;
-        padding: 20px;
-        background: white;
-    }
-
-    .square-cont {
-        width: 100%;
-        height: 150px;
-        background: #EEE;
-        border-radius: 30px 0;
-        padding: 20px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        margin-bottom: 20px;
-    }
-
-    .main-page-titles-cont {
-        font-size: 2rem;
-    }
-}
-
-/* Medium Mobile (376px - 576px) */
-@media screen and (min-width: 376px) and (max-width: 576px) {
-    .services-cont {
-        width: 100%;
-        padding: 15px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    .square-cont {
-        width: 100%;
-        height: 160px;
-        border-radius: 20px;
-    }
-
-    .square-text {
-        font-size: 1rem;
-        bottom: 25px;
-        left: 15px;
-    }
-
-    .main-page-titles-cont {
-        font-size: 2.3rem;
-    }
-}
-
-/* Large Mobile (577px - 700px) */
-@media screen and (min-width: 577px) and (max-width: 760px) {
-    .services-cont {
-        width: 100%;
-        max-width: 650px;
-        margin: 0 auto;
-        padding: 20px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .square-cont {
-        width: 100%;
-        height: 180px;
-        border-radius: 25px;
-    }
-
-    .square-text {
-        color: #000;
-        font-size: 1.25rem;
-        font-weight: 600;
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-        position: static;
-        left: 0;
-        width: 80%;
-    }
-}
-
-/* Shared styles across all mobile sizes */
-@media screen and (max-width: 700px) {
-    .services-title-card {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
-        margin: 20px 0;
-        box-sizing: border-box;
-    }
-
-    /* Red Line Before Title */
-    .services-title-card::before {
-        width: 2px;
-        height: 80px; /* Increased height */
-        background-color: #7C0A02;
-        margin-bottom: 30px; /* Increased margin */
-    }
-
-    /* Title Container */
-    .services-title {
-        width: 160px;
-        height: 160px; /* Made square like service boxes */
-        background: #EEE;
-        border-radius: 20px;
-        padding: 15px;
-        position: relative;
-        box-sizing: border-box;
-    }
-
-    /* Title Text */
-    .services-title h2 {
-        color: #7C0A02;
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin: 0;
-        line-height: 1.2;
-        position: absolute;
-        bottom: 25px; /* Position from bottom */
-        left: 15px;
-        width: calc(100% - 30px);
-        text-align: left;
-    }
-
-    /* Red Line After Title */
-    .services-title-card::after {
-        content: '';
-        width: 2px;
-        height: 80px; /* Increased height */
-        background-color: #7C0A02;
-        margin-top: 30px; /* Increased margin */
-    }
-
-    /* Services container */
-    .services-cont {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        padding: 15px;
-        box-sizing: border-box;
-    }
-
-    /* Individual service box */
-    .square-cont {
-        width: 160px;
-        background-color: #EEE;
-        border-radius: 20px;
-        position: relative;
-        margin: 0;
-        box-sizing: border-box;
-        display:inline-block;
-        flex-direction: column;
-        justify-content: flex-end; /* Pushes content to bottom */
-    }
-
-    /* Service text */
-    .square-text {
-        font-size: 1rem;
-        font-weight: 600;
-        left: 15px;
-        display: inline-block;
-        bottom: 25px; /* Increased distance from bottom */
-        line-height: 1.2;
-        padding-right: 15px;
-        box-sizing: border-box;
-    }
-
-    /* Icon container */
-    .square-raindrop {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        width: 45px;
-        height: 45px;
-        z-index: 2;
-    }
-}
-
-
-/* Add More Services Section */
-@media screen and (max-width: 768px) {
-    .services-rectangle-cont {
-        width: 100%;
-        height: 100px;
-        margin-top: -20px;
-    }
-    .rectangle-text {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
-    .rectangle-text-hide {
-        display: block;
-        color: white;
-        font-size: 1.5rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        text-align: center;
-        letter-spacing: 1px;
-        line-height: 1.2;
-        margin-left: 0;
-    }
-    .rectangle-close-group {
-        margin-right: 0;
-    }
-}
-
-@media (max-width: 900px) {
-  .rectangle-more {
-    display: none !important;
-  }
-  .services-rectangle-cont {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-}
