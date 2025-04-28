@@ -1,105 +1,104 @@
 .navDivider{
-    width: 2px;
-    height: 50px;
-    background-color: #BD0F03;
-    margin: 0 10px;
+  width: 2px;
+  height: 50px;
+  background-color: #BD0F03;
+  margin: 0 10px;
 }
 
 .navLinks {
-  position: relative;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  margin: 0 10px;
-  cursor: pointer;
+position: relative;
+text-transform: uppercase;
+display: flex;
+align-items: center;
+margin: 0 10px;
+cursor: pointer;
 }
 
 .navLinks .dropdown-menu {
-  position: fixed;
-  top: 90px; 
-  left: 0;
-  width: 100vw; /* Full width of the viewport */
-  height: 75vh; 
-  background-color: #f5f5f5;
-  opacity: 0.5; /* Slightly see-through */
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 1000;
-  margin: 0;        
-  padding: 0;       
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
+position: fixed;
+top: 112px; 
+left: 0;
+width: 100vw; /* Full width of the viewport */
+height: 75vh; 
+background-color: #f5f5f5;
+opacity: 0; /* Slightly see-through */
+visibility: hidden;
+transition: opacity 0.3s ease, visibility 0.3s ease;
+z-index: 1000;
+margin: 0;        
+padding: 0;       
+box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
 }
 
 .navLinks:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
+opacity: .9;
+visibility: visible;
 }
 
 .dropdown-menu a {
-  color: #333;
-  padding: 0.75rem 1rem;
-  display: block;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-  font-size: 0.9rem;
+color: #333;
+padding: 0.75rem 1rem;
+display: block;
+text-decoration: none;
+transition: background-color 0.2s ease;
+font-size: 0.9rem;
 }
 
 .dropdown-menu a:hover {
-  background-color: #e5e5e5;
-  color: #BD0F03; 
+background-color: #e5e5e5;
+color: #BD0F03; 
 }
 
 .MyWmsuBtn{
-    border-radius: 25px 0 25px 0;
+  border-radius: 25px 0 25px 0;
 }
 
 .menu {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    padding: 0;
-  }
-  .line {
-    fill: none;
-    stroke: #BD0F03;
-    stroke-width: 6;
-    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
-      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .line1 {
-    stroke-dasharray: 60 207;
-    stroke-width: 6;
-  }
-  .line2 {
-    stroke-dasharray: 60 60;
-    stroke-width: 6;
-  }
-  .line3 {
-    stroke-dasharray: 60 207;
-    stroke-width: 6;
-  }
-  .opened .line1 {
-    stroke-dasharray: 90 207;
-    stroke-dashoffset: -134;
-    stroke-width: 6;
-  }
-  .opened .line2 {
-    stroke-dasharray: 1 60;
-    stroke-dashoffset: -30;
-    stroke-width: 6;
-  }
-  .opened .line3 {
-    stroke-dasharray: 90 207;
-    stroke-dashoffset: -134;
-    stroke-width: 6;
-  }
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+.line {
+  fill: none;
+  stroke: #BD0F03;
+  stroke-width: 6;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.line1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+.line2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 6;
+}
+.line3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+.opened .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+.opened .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 6;
+}
+.opened .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
 
 .nav-arrow {
-  transform: rotate(180deg); /* Arrow points UP by default */
-  transition: transform 0.2s;
+transform: rotate(180deg); /* Arrow points UP by default */
+transition: transform 0.2s;
 }
 .navLinks.group:hover .nav-arrow {
-  transform: rotate(0deg);   /* Arrow points DOWN on hover */
+transform: rotate(0deg);   /* Arrow points DOWN on hover */
 }
-  
