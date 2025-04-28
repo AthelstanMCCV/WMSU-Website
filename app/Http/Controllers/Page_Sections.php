@@ -479,4 +479,42 @@ class Page_Sections extends Controller
     {
         return view('res&ext-actprogproj');
     }
+
+    public function searchJson(Request $request)
+    {
+    $query = $request->input('query');
+
+    $matchingSections = Page_Section::where('content', 'like', '%' . $query . '%')
+        ->orWhere('description', 'like', '%' . $query . '%')
+        ->get();
+
+    $pages = $matchingSections->groupBy('page_id')->map(function ($sections, $pageId) use ($query) {
+        $routes = [
+            1 => ['title' => 'Homepage', 'route' => route('homepage')],
+            2 => ['title' => 'Research & Extension News', 'route' => route('research.news')],
+            3 => ['title' => 'Updates', 'route' => route('updates')],
+        ];
+
+        $snippets = $sections->map(function ($section) use ($query) {
+            $content = $section->content ?? '';
+            $pos = stripos($content, $query);
+            if ($pos !== false) {
+                $start = max($pos - 30, 0);
+                $length = 60;
+                $snippet = substr($content, $start, $length);
+                return '... ' . $snippet . ' ...';
+            }
+            return null;
+        })->filter()->values();
+
+        return [
+            'title' => $routes[$pageId]['title'] ?? 'Untitled Page',
+            'route' => $routes[$pageId]['route'] ?? '#',
+            'snippets' => $snippets,
+        ];
+    })->values();
+
+    return response()->json($pages);
+    }
 }
+

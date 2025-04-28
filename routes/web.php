@@ -4,7 +4,10 @@ use App\Http\Controllers\Page_Sections;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [Page_Sections::class, 'showHomepage']);
+Route::get('/', [Page_Sections::class, 'showHomepage'])->name('homepage');
+Route::get('/research-news', [Page_Sections::class, 'showResearchNews'])->name('research.news');
+Route::get('/updates', [Page_Sections::class, 'showUpdates'])->name('updates');
+
 Route::get('/ResExt-Home', [Page_Sections::class, 'showResExtHome']);
 Route::get('/ResExt-Home/Activities', [Page_Sections::class, 'showResExtActivities']);
 Route::get('/dashboard', fn() => view('admin.admin-dashboard'));
@@ -36,3 +39,5 @@ Route::delete('/admin/updates-articles/delete/{alt}', [Page_Sections::class, 'de
 Route::delete('/admin/updates-articles/delete-image/{id}', [Page_Sections::class, 'deleteArticleImage'])->name('updates-articles.delete-image');
 
 Route::post('/addSection', [Page_Sections::class, 'addAboutSection']);
+
+Route::get('/search-json', [Page_Sections::class, 'searchJson'])->name('site.search.json');

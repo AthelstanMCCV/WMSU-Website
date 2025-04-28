@@ -229,7 +229,7 @@
         </div>
 
         <!-- Right: Content Section -->
-        <div class="md:w-[55%] md:pl-32 pr-13">
+        <div class="md:w-[55%] md:pl-32 pr-13 flex flex-col justify-center">
             <h2 class="text-[2rem] sm:text-[2.2rem] md:text-[2.5rem] font-bold text-[#7c0a02] mb-6 sm:mb-8 md:mb-10 ml-8">PRESIDENT'S CORNER</h2>
 
             <!-- Reports List -->
