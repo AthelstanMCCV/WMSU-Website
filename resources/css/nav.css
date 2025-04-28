@@ -94,4 +94,12 @@
     stroke-dashoffset: -134;
     stroke-width: 6;
   }
+
+.nav-arrow {
+  transform: rotate(180deg); /* Arrow points UP by default */
+  transition: transform 0.2s;
+}
+.navLinks.group:hover .nav-arrow {
+  transform: rotate(0deg);   /* Arrow points DOWN on hover */
+}
   

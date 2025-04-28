@@ -370,8 +370,14 @@
             <div class="services-rectangle-cont">
                 <div class="rectangle-text">
                     <div class="rectangle-text-hide">WMSU<br>SERVICES</div>
-                    <div class="rectangle-plus">+</div>
-                    <div class="rectangle-more">MORE</div> 
+                    <div class="rectangle-center-group">
+                        <span class="rectangle-plus">+</span>
+                        <span class="rectangle-more">MORE</span>
+                    </div>
+                    <div class="rectangle-close-group">
+                        <span class="rectangle-plus">+</span>
+                        <span class="rectangle-more">MORE</span>
+                    </div>
                 </div>
             </div> 
         </div>
