@@ -16,6 +16,7 @@ class Page_Section extends Model
         'imagePath',
         'alt',
         'description',
+        'archived',
     ];
 
     protected $table = 'page_sections';

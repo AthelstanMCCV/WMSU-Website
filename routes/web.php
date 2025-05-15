@@ -37,11 +37,15 @@ Route::post('/sections/{id}/update', [Page_Sections::class, 'update'])->name('se
 Route::get('/news-group/{alt}/edit', [Page_Sections::class, 'editNewsGroup'])->name('editNewsGroup');
 Route::delete('/news-group/{alt}', [Page_Sections::class, 'deleteNewsGroup'])->name('deleteNewsGroup');
 Route::post('/news-group/{alt}/update', [Page_Sections::class, 'updateNewsGroup'])->name('updateNewsGroup');
+Route::patch('/restore-news/{alt}', [Page_Sections::class, 'restore'])->name('restoreNewsGroup');
+
 
 // Updates Articles routes
 Route::post('/admin/updates-articles/update/{alt}', [Page_Sections::class, 'updateUpdateArticle'])->name('updates-articles.update');
 Route::delete('/admin/updates-articles/delete/{alt}', [Page_Sections::class, 'deleteUpdateArticleGroup'])->name('updates-articles.delete');
 Route::delete('/admin/updates-articles/delete-image/{id}', [Page_Sections::class, 'deleteArticleImage'])->name('updates-articles.delete-image');
+Route::post('/admin/updates-articles/recover/{alt}', [Page_Sections::class, 'recover'])->name('updates-articles.recover');
+
 
 Route::post('/addSection', [Page_Sections::class, 'addAboutSection']);
 

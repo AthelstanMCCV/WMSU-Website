@@ -9,7 +9,6 @@
                 </svg>
              </button>
             <a href="" class="flex ms-2 md:me-24">
-              <img src="../images/admin.png" class="h-8 me-3" alt="Admin logo" />
               <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white dark:text-red-100">ADMIN DASHBOARD</span>
             </a>
           </div>

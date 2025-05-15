@@ -17,6 +17,15 @@
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="/login" method="POST">
         @csrf
+        @if ($errors->any())
+          <div class="bg-red-100 text-red-800 p-2 rounded">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+        @endif
 
         <div>
           <label for="loginname" class="block text-sm/6 font-medium text-gray-900">Username</label>

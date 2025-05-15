@@ -16,7 +16,6 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        $validated['password'] = Hash::make($validated['password']);
         $user = User::create($validated);
         Auth::login($user);
 

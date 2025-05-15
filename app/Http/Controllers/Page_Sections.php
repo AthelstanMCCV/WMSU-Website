@@ -36,24 +36,25 @@ class Page_Sections extends Controller
         ->get(); // This will get all rows for 'About Page'
 
         $latestNewsAlt = Page_Section::where('indicator', 'Research & Extension News')
+            ->where('archived', '!=', 'Yes')
             ->orderBy('created_at', 'desc')
             ->value('alt');
 
         $latestNews = Page_Section::where('indicator', 'Research & Extension News')
             ->where('alt', $latestNewsAlt)
+            ->where('archived', '!=', 'Yes')
             ->get()
             ->keyBy('description');
 
         $updatesArticlesRaw = Page_Section::where('indicator', 'UpdatesArticles')
+            ->where('archived', '!=', 'Yes')
             ->orderBy('created_at', 'desc')
             ->get()
             ->groupBy('alt');
-    
-        // Limit to 4 latest groups
-        $updatesArticles = $updatesArticlesRaw->sortByDesc(function ($group) {
-            // Use the created_at of the first item in each group
-            return $group->first()->created_at;
-        })->take(4);
+
+        $updatesArticles = $updatesArticlesRaw
+            ->sortByDesc(fn($group) => $group->first()->created_at)
+            ->take(4);
 
         return view('homepage', compact('sections', 'latestNews', 'updatesArticles', 'aboutPageSection'));
     }
@@ -140,14 +141,27 @@ class Page_Sections extends Controller
 
     public function showResearchExtensionData()
     {
-        $sections = Page_Section::where('page_id', 2)->get()->groupBy('indicator');
-        return view('admin.admin-res&ext', compact('sections'));
+        $allSections = Page_Section::where('page_id', 2)->get();
+
+        // Separate active and archived sections, both grouped by indicator
+        $activeSections = $allSections->where('archived', '!=', 'Yes')->groupBy('indicator');
+        $archivedSections = $allSections->where('archived', 'Yes')->groupBy('indicator');
+
+        return view('admin.admin-res&ext', compact('activeSections', 'archivedSections'));
     }
 
     public function showUpdatesData()
     {
         $sections = Page_Section::where('page_id', 3)->get()->groupBy('indicator');
-        return view('admin.admin-updates', compact('sections'));
+
+        $updatesArticles = $sections['UpdatesArticles'] ?? collect();
+
+        $groupedByAlt = $updatesArticles->groupBy('alt');
+
+        $nonArchivedGroups = $groupedByAlt->filter(fn($group) => optional($group->first())->archived !== 'Yes');
+        $archivedGroups = $groupedByAlt->filter(fn($group) => optional($group->first())->archived === 'Yes');
+
+        return view('admin.admin-updates', compact('sections', 'nonArchivedGroups', 'archivedGroups'));
     }
     /* -------------------------------
         GENERAL SECTION EDIT / UPDATE
@@ -206,6 +220,7 @@ class Page_Sections extends Controller
                 'indicator' => 'Research & Extension News',
                 'elemType' => 'image',
                 'alt' => $newsGroupId,
+                'archived'   => 'No',
             ]);
         }
 
@@ -218,6 +233,7 @@ class Page_Sections extends Controller
                 'indicator' => 'Research & Extension News',
                 'elemType' => 'text',
                 'alt' => $newsGroupId,
+                'archived'   => 'No',
             ]);
         }
 
@@ -231,6 +247,7 @@ class Page_Sections extends Controller
                 'indicator' => 'Research & Extension News',
                 'elemType' => 'date',
                 'alt' => $newsGroupId,
+                'archived'   => 'No',
             ]);
         }
 
@@ -243,6 +260,7 @@ class Page_Sections extends Controller
                 'indicator' => 'Research & Extension News',
                 'elemType' => 'text',
                 'alt' => $newsGroupId,
+                'archived'   => 'No',
             ]);
         }
 
@@ -255,6 +273,7 @@ class Page_Sections extends Controller
                 'indicator' => 'Research & Extension News',
                 'elemType' => 'text',
                 'alt' => $newsGroupId,
+                'archived'   => 'No',
             ]);
         }
 
@@ -267,40 +286,50 @@ class Page_Sections extends Controller
         return view('admin.edit-news-group', compact('newsItems'));
     }
 
-    public function updateNewsGroup(Request $request, $alt)
-    {
-        // Update text fields
-        if ($request->has('newsItems')) {
-            foreach ($request->newsItems as $id => $content) {
-                $section = Page_Section::find($id);
-                if ($section) {
-                    $section->content = $content;
-                    $section->save();
-                }
+public function updateNewsGroup(Request $request, $alt)
+{
+    // Update text fields
+    if ($request->has('newsItems')) {
+        foreach ($request->newsItems as $id => $content) {
+            $section = Page_Section::find($id);
+            if ($section) {
+                $section->content = $content;
+                $section->archived = 'No';  // Set archive column to No when edited
+                $section->save();
             }
         }
-
-        // Media upload
-        if ($request->hasFile('media')) {
-            $media = Page_Section::where('alt', $alt)->where('description', 'RENewsImg')->first();
-            if ($media) {
-                if ($media->imagePath && Storage::exists('public/' . $media->imagePath)) {
-                    Storage::delete('public/' . $media->imagePath);
-                }
-                $filePath = $request->file('media')->store('uploads', 'public');
-                $media->imagePath = $filePath;
-                $media->save();
-            }
-        }
-
-        return redirect()->back()->with('success', 'News group updated successfully.');
     }
+
+    // Media upload
+    if ($request->hasFile('media')) {
+        $media = Page_Section::where('alt', $alt)->where('description', 'RENewsImg')->first();
+        if ($media) {
+            if ($media->imagePath && Storage::exists('public/' . $media->imagePath)) {
+                Storage::delete('public/' . $media->imagePath);
+            }
+            $filePath = $request->file('media')->store('images', 'public');
+            $media->imagePath = $filePath;
+            $media->archived = 'No';  // Also set archive to No for media item
+            $media->save();
+        }
+    }
+
+    return redirect()->back()->with('success', 'News group updated successfully.');
+}
 
     public function deleteNewsGroup($alt)
     {
-        Page_Section::where('alt', $alt)->delete();
-        return redirect()->back()->with('success', 'News item deleted successfully!');
+        Page_Section::where('alt', $alt)->update(['archived' => 'Yes']);
+        return redirect()->back()->with('success', 'News item archived successfully!');
     }
+
+    public function restore($alt)
+    {
+    Page_Section::where('alt', $alt)->update(['archived' => 'No']);
+
+    return redirect()->back()->with('success', 'News item restored successfully.');
+    }
+
 
     /* -------------------------------
         UPDATES PAGE CRUD
@@ -329,7 +358,8 @@ class Page_Sections extends Controller
             'indicator'   => 'UpdatesArticles',
             'elemType'    => 'text',
             'subpage'     => null,
-            'alt'         => $articleGroupId
+            'alt'         => $articleGroupId,
+            'archived'   => 'No',
         ]);
 
             // Save Date
@@ -341,7 +371,8 @@ class Page_Sections extends Controller
             'indicator'   => 'UpdatesArticles',
             'elemType'    => 'date',
             'subpage'     => null,
-            'alt'         => $articleGroupId
+            'alt'         => $articleGroupId,
+            'archived'   => 'No',
         ]);
     
         // Save Body
@@ -353,7 +384,8 @@ class Page_Sections extends Controller
             'indicator'   => 'UpdatesArticles',
             'elemType'    => 'text',
             'subpage'     => null,
-            'alt'         => $articleGroupId
+            'alt'         => $articleGroupId,
+            'archived'   => 'No',
         ]);
     
         // Save Images if any
@@ -369,7 +401,8 @@ class Page_Sections extends Controller
                     'indicator'   => 'UpdatesArticles',
                     'elemType'    => 'image',
                     'subpage'     => null,
-                    'alt'         => $articleGroupId
+                    'alt'         => $articleGroupId,
+                    'archived'   => 'No',
                 ]);
             }
         }
@@ -378,79 +411,76 @@ class Page_Sections extends Controller
     }
 
     public function updateUpdateArticle(Request $request, $alt)
-    {
-        // Update text fields
-        if ($request->has('newsItems')) {
-            foreach ($request->newsItems as $id => $content) {
-                $section = Page_Section::find($id);
-                if ($section) {
-                    $section->content = $content;
-                    $section->save();
-                }
+{
+    // Update text fields
+    if ($request->has('newsItems')) {
+        foreach ($request->newsItems as $id => $content) {
+            $section = Page_Section::find($id);
+            if ($section) {
+                $section->content = $content;
+                $section->archived = 'No';  // Set archived to No when edited
+                $section->save();
             }
         }
-    
-        // Media upload handling
-        if ($request->hasFile('media')) {
-            $mediaSections = Page_Section::where('alt', $alt)
-                                ->where('description', 'ArticleImage')
-                                ->get();
-    
-            foreach ($mediaSections as $media) {
-                // Delete old image if exists
-                if ($media->imagePath && Storage::exists('public/' . $media->imagePath)) {
-                    Storage::delete('public/' . $media->imagePath);
-                }
-                // Store new file
-                $filePath = $request->file('media')->store('images', 'public');
-                $media->imagePath = $filePath;
-                $media->save();
-            }
-        }
-
-        // Remove selected images
-        if ($request->has('removeImages')) {
-            foreach ($request->removeImages as $imageId) {
-                $image = Page_Section::find($imageId);
-                if ($image && $image->imagePath && Storage::exists('public/' . $image->imagePath)) {
-                    Storage::delete('public/' . $image->imagePath);
-                }
-                if ($image) {
-                    $image->delete();
-                }
-            }
-        }
-
-        // Handle new uploaded images
-        if ($request->hasFile('media')) {
-            foreach ($request->file('media') as $file) {
-                $path = $file->store('images', 'public'); // or wherever you store images
-                Page_Section::create([
-                    'page_id' => 3, // or your Updates page id
-                    'indicator' => 'UpdatesArticles',
-                    'alt' => $alt,
-                    'description' => 'ArticleImage',
-                    'imagePath' => $path,
-                ]);
-            }
-        }
-    
-        return redirect()->back()->with('success', 'Updates article group updated successfully!');
     }
+
+    // Media upload handling
+    if ($request->hasFile('media')) {
+        $mediaSections = Page_Section::where('alt', $alt)
+                            ->where('description', 'ArticleImage')
+                            ->get();
+
+        foreach ($mediaSections as $media) {
+            // Delete old image if exists
+            if ($media->imagePath && Storage::exists('public/' . $media->imagePath)) {
+                Storage::delete('public/' . $media->imagePath);
+            }
+            // Store new file
+            $filePath = $request->file('media')->store('images', 'public');
+            $media->imagePath = $filePath;
+            $media->archived = 'No';  // Set archived to No for media updated
+            $media->save();
+        }
+    }
+
+    // Remove selected images
+    if ($request->has('removeImages')) {
+        foreach ($request->removeImages as $imageId) {
+            $image = Page_Section::find($imageId);
+            if ($image && $image->imagePath && Storage::exists('public/' . $image->imagePath)) {
+                Storage::delete('public/' . $image->imagePath);
+            }
+            if ($image) {
+                $image->delete();
+            }
+        }
+    }
+
+    // Handle new uploaded images
+    if ($request->hasFile('media')) {
+        foreach ($request->file('media') as $file) {
+            $path = $file->store('images', 'public'); // or wherever you store images
+            Page_Section::create([
+                'page_id' => 3, // or your Updates page id
+                'indicator' => 'UpdatesArticles',
+                'alt' => $alt,
+                'description' => 'ArticleImage',
+                'imagePath' => $path,
+                'archived' => 'No', // Set archived to No for newly created images
+            ]);
+        }
+    }
+
+    return redirect()->back()->with('success', 'Updates article group updated successfully!');
+}
     
 
     public function deleteUpdateArticleGroup($alt)
     {
-        $articles = Page_Section::where('alt', $alt)->get();
-    
-        foreach ($articles as $article) {
-            if ($article->imagePath && Storage::exists('public/' . $article->imagePath)) {
-                Storage::delete('public/' . $article->imagePath);
-            }
-            $article->delete();
-        }
-    
-        return redirect()->back()->with('success', 'Article group deleted successfully!');
+        // Soft delete by marking archived = 'Yes' for all articles with this alt
+        Page_Section::where('alt', $alt)->update(['archived' => 'Yes']);
+
+        return redirect()->back()->with('success', 'Article group archived (soft deleted) successfully!');
     }
 
     public function deleteArticleImage($id)
@@ -464,6 +494,12 @@ class Page_Sections extends Controller
         $image->delete();
     
         return response()->json(['success' => true]);
+    }
+
+    public function recover($alt)
+    {
+        Page_Section::where('alt', $alt)->update(['archived' => 'No']);
+        return redirect()->back()->with('success', 'Article group recovered successfully.');
     }
 
     /* -------------------------------
